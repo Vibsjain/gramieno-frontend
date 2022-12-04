@@ -8,8 +8,11 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: #5c5755;
     font-family: 'Roboto', sans-serif;
+}
+
+.back{
+  background-color: #5c5755;
 }
 
 .about-font{
@@ -25,4 +28,8 @@
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
     }
+  }
+
+  .control-dots{
+    display: none;
   }
