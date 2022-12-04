@@ -19,12 +19,12 @@ const OurStory = () => {
     return (
         <div>
             <Navbar />
-            <div className="flex py-12 px-8">
-                <div className="flex w-4/12 justify-center items-center">
+            <div className="flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
+                <div className="flex sm:w-4/12 w-full justify-center items-center">
                     <img src={Logo} alt="" />
                 </div>
-                <div className="w-8/12 pr-48">
-                    <h1 className="text-[26px] italic about-font text-justify">
+                <div className="sm:w-8/12 w-full sm:pr-48">
+                    <h1 className="sm:text-[18px] text-[16px] italic about-font text-justify">
                         {aboutText}
                     </h1>
                 </div>
