@@ -33,3 +33,13 @@
   .control-dots{
     display: none;
   }
+
+.home-story{
+  background-image: url("../Images/homeStory.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 80vh;
+  width: 80%;
+
+}
