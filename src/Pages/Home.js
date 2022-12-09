@@ -5,8 +5,6 @@ import Three from "../Assets/Images/HeroImages/Three.jpg";
 import Four from "../Assets/Images/HeroImages/Four.jpg";
 import Five from "../Assets/Images/HeroImages/Five.jpg";
 import Main from "../Assets/Images/HeroImages/Main.jpg";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import { Carousel } from "react-responsive-carousel";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +16,25 @@ import homeTestimonial from "../Assets/Images/homeTestimonial.jpeg";
 function Home() {
     const navigate = useNavigate();
     const storyText = `text-[#836663]`;
+    const responsive1 = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 1,
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+        },
+    };
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -41,16 +58,16 @@ function Home() {
         <div className="w-full back">
             <Navbar />
             {/* Hero Section */}
-            <div className="w-full flex justify-center">
-                {/* <Carousel
+            <div className="w-full">
+                <Carousel
+                    responsive={responsive1}
+                    infinite={true}
                     autoPlay={true}
-                    showArrows={false}
-                    showThumbs={false}
-                    showStatus={false}
-                    infiniteLoop={true}
-                    interval={3000}
-                    transitionTime={1000}
-                    className="w-9/12 rounded-xl"
+                    autoPlaySpeed={2000}
+                    transitionDuration={700}
+                    className="w-full pl-36"
+                    showDots={false}
+                    arrows={false}
                 >
                     <img className="w-full w-9/12 h-[80vh]" src={Main} alt="" />
                     <img className="w-full w-9/12 h-[80vh]" src={One} alt="" />
@@ -63,8 +80,6 @@ function Home() {
                     <img className="w-full w-9/12 h-[80vh]" src={Four} alt="" />
                     <img className="w-full w-9/12 h-[80vh]" src={Five} alt="" />
                 </Carousel>
-                 */}
-                <img className="w-full w-10/12 h-[80vh]" src={Main} alt="" />
             </div>
             {/* Products Section */}
             <div className="flex flex-col w-full mt-12 min-h-[100vh]">
@@ -87,10 +102,9 @@ function Home() {
                     responsive={responsive}
                     className="px-12"
                     infinite={true}
-                    autoPlay = {true}
+                    autoPlay={true}
                     autoPlaySpeed={1000}
                     transitionDuration={700}
-
                 >
                     <ProductCard
                         image={table}
