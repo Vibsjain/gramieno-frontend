@@ -58,7 +58,7 @@ function Home() {
         <div className="w-full back">
             <Navbar />
             {/* Hero Section */}
-            <div className="w-full">
+            <div className="w-full sm:flex hidden">
                 <Carousel
                     responsive={responsive1}
                     infinite={true}
@@ -83,15 +83,15 @@ function Home() {
             </div>
             {/* Products Section */}
             <div className="flex flex-col w-full mt-12 min-h-[100vh]">
-                <div className="w-full flex py-4 px-12 h-36 items-center">
+                <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
                     <div className="w-1/2 flex justify-start">
-                        <h1 className="text-[30px] text-white font-bold">
+                        <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
                             Our Products
                         </h1>
                     </div>
                     <div className="w-1/2 flex justify-end">
                         <button
-                            className="h-12 w-[8rem] bg-white rounded-xl"
+                            className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-white rounded-xl"
                             onClick={() => navigate("/products")}
                         >
                             See All
@@ -148,7 +148,7 @@ function Home() {
                 </div> */}
             </div>
             {/* Artisians Section */}
-            <div className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-2 gap-16 mt-24">
+            <div className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-8 gap-16 mt-24">
                 <Artisians
                     title="The Woodwork Artisans"
                     image={artisan1}
@@ -162,7 +162,7 @@ function Home() {
                 />
             </div>
             {/* Story Card */}
-            <div className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
+            {/* <div className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
                 <div className="flex flex-col justify-between home-story rounded-xl">
                     <h1 className="text-white text-[26px] font-extrabold px-12 mt-8">
                         Our Story
@@ -192,9 +192,9 @@ function Home() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* Testimonial Card */}
-            <div className="flex w-full h-[70vh] mt-16">
+            <div className="flex sm:flex-row flex-col-reverse w-full h-[70vh] mt-16">
                 <div className="w-1/2 py-12 px-24 flex flex-col justify-between items-center">
                     <h1 className="text-white text-[26px] font-extrabold">
                         Testimonial

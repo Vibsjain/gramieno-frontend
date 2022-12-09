@@ -43,7 +43,10 @@ function Navbar() {
             </div>
             <div className="flex sm:w-3/12 w-9/12 sm:py-12 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
                 <i className="fa fa-shopping-cart sm:text-[28px] text-[25px] text-white hover:text-black cursor-pointer"></i>
-                <button className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[14px] text-white hover:text-black hover:bg-white text-center">
+                <button
+                    className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[14px] text-white hover:text-black hover:bg-white text-center"
+                    onClick={() => navigate("/admin")}
+                >
                     Sign In
                 </button>
             </div>
@@ -62,15 +65,20 @@ function Navbar() {
             </div>
             {open && (
                 <div className="h-[100vh] absolute w-full sm:hidden flex justify-end bg-[rgb(0,0,0,0)]">
-                    <div className="h-full w-8/12 bg-[#5c5755] py-4 px-4">
+                    <div className="h-full w-8/12 side-nav py-4 px-4">
                         <CloseOutlined
                             className="text-[30px] text-white"
                             onClick={() => setOpen(!open)}
                         />
-                        <ul className="flex flex-col">
+                        <ul className="flex flex-col mt-12 gap-4">
                             {navLinks.map((link) => {
                                 return (
-                                    <button className="">{link.title}</button>
+                                    <button
+                                        className="text-white text-lg"
+                                        onClick={() => navigate(`${link.path}`)}
+                                    >
+                                        {link.title}
+                                    </button>
                                 );
                             })}
                         </ul>

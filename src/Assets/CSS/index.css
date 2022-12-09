@@ -15,12 +15,16 @@
   background-color: #5c5755;
 }
 
+.back1{
+  background-color: #1E293B;
+}
+
 .about-font{
     font-family: 'Poppins', sans-serif;
 }
 
 .side-nav {
-    background: rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.4);
   }
   
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -52,3 +56,6 @@
   box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2), 0 12px 26px 0 rgba(255, 255, 255, 0.19);
 }   
 
+.admin-shadow{
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2), 0 12px 26px 0 rgba(255, 255, 255, 0.19);
+}

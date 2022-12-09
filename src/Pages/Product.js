@@ -48,14 +48,14 @@ const Product = () => {
     return (
         <div className="back">
             <Navbar />
-            <div className="w-full flex flex-col px-24">
-                <div className="w-full flex">
-                    <div className="w-1/2 flex gap-16">
+            <div className="w-full flex flex-col sm:px-24 px-4">
+                <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
+                    <div className="sm:w-1/2 w-full flex gap-16">
                         <div className="flex flex-col w-full gap-4">
                             <img
                                 src={table}
                                 alt="table"
-                                className="w-full h-full rounded-2xl"
+                                className="w-full rounded-2xl"
                             />
                             <div className="flex w-full gap-4 justify-center">
                                 <img
@@ -82,7 +82,7 @@ const Product = () => {
                         </div>
                         <div></div>
                     </div>
-                    <div className="w-1/2 flex flex-col text-white gap-12 ">
+                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 ">
                         <h1 className="font-bold text-[20px]">
                             Multipurpose Portable Table (Yellow-Orange)
                         </h1>
@@ -107,14 +107,14 @@ const Product = () => {
                         <h1 className="pl-4 font-bold text-[20px]">
                             ₹ 2250.00
                         </h1>
-                        <div className="w-full flex gap-4">
+                        <div className="w-full flex gap-4 justify-center sm:justify-start">
                             <button className={btnClass}>Add to Cart</button>
                             <button className={btnClass}>Buy Now</button>
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex mt-24">
-                    <div className="w-1/2 flex flex-col text-white gap-12 ">
+                <div className="w-full flex sm:flex flex-col-reverse mt-24 sm:gap-0 gap-8">
+                    <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap:8">
                         <h1 className="font-bold text-[20px]">
                             More Details About the Product
                         </h1>
@@ -142,7 +142,7 @@ const Product = () => {
                             </h1>
                         </div>
                     </div>
-                    <div className="w-1/2 ">
+                    <div className="sm:w-1/2 w-full">
                         <Carousel
                             responsive={responsive1}
                             infinite={true}
@@ -168,7 +168,9 @@ const Product = () => {
                 </div>
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">Woodwork Products</h1>
+                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                    Woodwork Products
+                </h1>
                 <Carousel
                     responsive={responsive}
                     className="px-12"
@@ -216,7 +218,9 @@ const Product = () => {
                 </Carousel>
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">Woodwork Products</h1>
+                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                    Woodwork Products
+                </h1>
                 <Carousel
                     responsive={responsive}
                     className="px-12"
@@ -264,7 +268,9 @@ const Product = () => {
                 </Carousel>
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">Woodwork Products</h1>
+                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                    Woodwork Products
+                </h1>
                 <Carousel
                     responsive={responsive}
                     className="px-12"

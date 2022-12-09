@@ -23,7 +23,7 @@ const OurStory = () => {
                     <img src={Logo} alt="" />
                 </div>
                 <div className="sm:w-8/12 w-full sm:pr-48">
-                    <h1 className="sm:text-[18px] text-[16px] italic about-font text-justify">
+                    <h1 className="sm:text-[18px] text-[16px] italic about-font text-justify text-white">
                         {aboutText}
                     </h1>
                 </div>
