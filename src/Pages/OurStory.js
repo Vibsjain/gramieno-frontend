@@ -1,7 +1,6 @@
 import React from "react";
 import Logo from "../Assets/Images/logo.png";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import { Navbar, Footer } from "../Components";
 
 const OurStory = () => {
     const aboutText = `Logo 
@@ -17,7 +16,7 @@ const OurStory = () => {
     Gramien'O (ग्रामीण'O) is a step towards nurturing the seeds sown during the Walk.
     `;
     return (
-        <div>
+        <div className="back">
             <Navbar />
             <div className="flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
                 <div className="flex sm:w-4/12 w-full justify-center items-center">

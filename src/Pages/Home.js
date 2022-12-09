@@ -1,5 +1,4 @@
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+import { ProductCard, Artisians, Navbar, Footer } from "../Components";
 import One from "../Assets/Images/HeroImages/One.jpg";
 import Two from "../Assets/Images/HeroImages/Two.jpg";
 import Three from "../Assets/Images/HeroImages/Three.jpg";
@@ -11,12 +10,10 @@ import Main from "../Assets/Images/HeroImages/Main.jpg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
-import ProductCard from "../Components/ProductCard";
 import table from "../Assets/Images/table.png";
-import Artisians from "../Components/Artisians";
 import artisan1 from "../Assets/Images/artisan1.jpeg";
 import artisan2 from "../Assets/Images/artisan2.jpeg";
-import homeStory from "../Assets/Images/homeStory.jpeg";
+import homeTestimonial from "../Assets/Images/homeTestimonial.jpeg";
 
 function Home() {
     const navigate = useNavigate();
@@ -71,21 +68,21 @@ function Home() {
                     <ProductCard
                         image={table}
                         item="Multipurpose Portable Table"
-                        details="Yellow-Orange"
+                        description="Yellow-Orange"
                         price={2499}
                     />
                     <ProductCard
                         image={table}
                         item="Multipurpose Portable Table"
-                        details="Yellow-Orange"
+                        description="Yellow-Orange"
                         price={2499}
                     />
                 </div>
             </div>
             {/* Artisians Section */}
-            <div className="w-full min-h-[100vh] flex px-36 gap-16 mt-24">
+            <div className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-2 gap-16 mt-24">
                 <Artisians
-                    title="The Woodwork Artisans"
+                    title="The Woodwork Artisans"   
                     image={artisan1}
                     details="Chhotu, Rakesh & Buddhu are excellent craftsmen and their Ability to convert an idea into finished products is unmatched. But what is most admiring, is their enthusiasm and ever-smiling faces even under adverse times like the pandemic. Gramien’O brings to you their creation"
                 />
@@ -97,7 +94,7 @@ function Home() {
                 />
             </div>
             {/* Story Card */}
-            <div className="w-full flex flex-col h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
+            <div className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
                 <div className="flex flex-col justify-between home-story rounded-xl">
                     <h1 className="text-white text-[26px] font-extrabold px-12 mt-8">
                         Our Story
@@ -126,6 +123,33 @@ function Home() {
                             View More
                         </button>
                     </div>
+                </div>
+            </div>
+            {/* Testimonial Card */}
+            <div className="flex w-full h-[70vh] mt-16">
+                <div className="w-1/2 py-12 px-24 flex flex-col justify-between items-center">
+                    <h1 className="text-white text-[26px] font-extrabold">
+                        Testimonial
+                    </h1>
+                    <h1 className="text-white text-center text-[14px] px-16">
+                        “Laptop Table from Gramien’O was godsend for WFH(Work
+                        From Home). It helped me to do the work without risking
+                        my posture. It also helped me manage my Chai while I
+                        attended to my demanding work.Thoughtful design to
+                        adjust the table made it easier for me to work on same
+                        in bed or sofa and even in recliner. It has a place to
+                        keep my phone accessible and space for notepad.”
+                    </h1>
+                    <button className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white font-bold hover:text-black text-center hover:bg-white">
+                        View More
+                    </button>
+                </div>
+                <div className="w-1/2 py-12 px-24 flex flex-col justify-between items-center">
+                    <img
+                        src={homeTestimonial}
+                        alt="testimonial"
+                        className=" w-3/4 h-[100%]"
+                    />
                 </div>
             </div>
             <Footer />

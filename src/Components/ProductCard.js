@@ -1,10 +1,10 @@
 import React from "react";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { useNavigation } from "react-router-dom";
 
-const ProductCard = ({ image, item, details, price }) => {
+const ProductCard = ({ image, item, description, price }) => {
     const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
     return (
-        <div className="drop-shadow-2xl about-font">
+        <div className="drop-shadow-2xl about-font rounded-2xl zoom ">
             <div className="w-[18rem] bg-white h-[18rem] rounded-t-2xl">
                 <img src={image} className="rounded-t-2xl h-full w-full "></img>
             </div>
@@ -18,7 +18,9 @@ const ProductCard = ({ image, item, details, price }) => {
                     </h1>
                 </div>
                 <h1 className="w-1/2 px-2 text-center text-[13px] font-light about-font text-gray-600">
-                    {details}
+                    {description.length > 20
+                        ? description.slice(0, 30) + "..."
+                        : description}
                 </h1>
                 <div className="w-full flex min-h-full">
                     <div className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black">
@@ -28,7 +30,9 @@ const ProductCard = ({ image, item, details, price }) => {
                         <button className={btnClass}>Buy Now</button>
                     </div>
                 </div>
-                <button className="text-right text-[12px] px-4 about-font">View More Details</button>
+                <button className="text-right text-[12px] px-4 about-font">
+                    View More Details
+                </button>
             </div>
         </div>
     );

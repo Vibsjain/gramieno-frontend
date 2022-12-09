@@ -19,14 +19,14 @@ function Navbar() {
     });
     return (
         <div className="flex w-full">
-            <div className="flex sm:w-9/12 w-3/12 sm:py-12 sm:px-20 px-4 py-4 sm:items-center ">
+            <div className="flex sm:w-9/12 w-3/12 sm:py-12   sm:px-12 px-4 py-4 sm:items-center ">
                 <img className="sm:h-[60px] h-[50px]" src={Logo} alt="" />
-                <ul className="flex gap-6 mx-8 hidden sm:flex">
+                <ul className="flex gap-4 mx-8 hidden sm:flex">
                     {navLinks.map((link) => {
                         return (
                             <li>
                                 <button
-                                    className="flex text-[18px] text-[#FFFFFF] hover:text-black hover:bg-white py-2 px-6 rounded-xl"
+                                    className="flex text-[16px] text-[#FFFFFF] hover:text-black hover:bg-white py-2 px-6 rounded-xl"
                                     onClick={() => navigate(`${link.path}`)}
                                 >
                                     {link.title}
@@ -41,9 +41,9 @@ function Navbar() {
                     })}
                 </ul>
             </div>
-            <div className="flex sm:w-3/12 w-9/12 sm:py-12 sm:px-20 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
-                <i className="fa fa-shopping-cart sm:text-[35px] text-[25px]    text-white hover:text-black cursor-pointer"></i>
-                <button className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white hover:text-black hover:bg-white text-center">
+            <div className="flex sm:w-3/12 w-9/12 sm:py-12 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
+                <i className="fa fa-shopping-cart sm:text-[28px] text-[25px] text-white hover:text-black cursor-pointer"></i>
+                <button className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[14px] text-white hover:text-black hover:bg-white text-center">
                     Sign In
                 </button>
             </div>
