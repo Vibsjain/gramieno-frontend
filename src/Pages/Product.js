@@ -1,8 +1,30 @@
 import React from "react";
 import { Navbar, Footer, ProductCard } from "../Components";
 import table from "../Assets/Images/table.png";
+import table1 from "../Assets/Images/table1.jpeg";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Product = () => {
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 1,
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+        },
+    };
     const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
     return (
         <div className="back">
@@ -101,12 +123,28 @@ const Product = () => {
                             </h1>
                         </div>
                     </div>
-                    <div className="w-1/2 flex justify-center">
-                        <img
-                            src={table}
-                            alt="table"
-                            className="w-10/12 h-10/12 rounded-2xl"
-                        />
+                    <div className="w-1/2 ">
+                        <Carousel
+                            responsive={responsive}
+                            infinite={true}
+                            autoPlay={true}
+                            autoPlaySpeed={1000}
+                            transitionDuration={700}
+                            className="w-full pl-36"
+                            showDots={false}
+                            arrows={false}
+                        >
+                            <img
+                                src={table}
+                                alt="table"
+                                className="w-96 h-72 rounded-2xl"
+                            />
+                            <img
+                                src={table1}
+                                alt="table"
+                                className="w-96 h-72 rounded-2xl"
+                            />
+                        </Carousel>
                     </div>
                 </div>
             </div>

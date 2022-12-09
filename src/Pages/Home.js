@@ -18,6 +18,25 @@ import homeTestimonial from "../Assets/Images/homeTestimonial.jpeg";
 function Home() {
     const navigate = useNavigate();
     const storyText = `text-[#836663]`;
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5,
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+        },
+    };
     return (
         <div className="w-full back">
             <Navbar />
@@ -64,7 +83,15 @@ function Home() {
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-wrap gap-8 w-full px-12 py-12">
+                <Carousel
+                    responsive={responsive}
+                    className="px-12"
+                    infinite={true}
+                    autoPlay = {true}
+                    autoPlaySpeed={1000}
+                    transitionDuration={700}
+
+                >
                     <ProductCard
                         image={table}
                         item="Multipurpose Portable Table"
@@ -77,12 +104,39 @@ function Home() {
                         description="Yellow-Orange"
                         price={2499}
                     />
-                </div>
+                    <ProductCard
+                        image={table}
+                        item="Multipurpose Portable Table"
+                        description="Yellow-Orange"
+                        price={2499}
+                    />
+                    <ProductCard
+                        image={table}
+                        item="Multipurpose Portable Table"
+                        description="Yellow-Orange"
+                        price={2499}
+                    />
+                    <ProductCard
+                        image={table}
+                        item="Multipurpose Portable Table"
+                        description="Yellow-Orange"
+                        price={2499}
+                    />
+                    <ProductCard
+                        image={table}
+                        item="Multipurpose Portable Table"
+                        description="Yellow-Orange"
+                        price={2499}
+                    />
+                </Carousel>
+                {/* <div className="flex flex-wrap gap-8 w-full px-12 py-12">
+                    
+                </div> */}
             </div>
             {/* Artisians Section */}
             <div className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-2 gap-16 mt-24">
                 <Artisians
-                    title="The Woodwork Artisans"   
+                    title="The Woodwork Artisans"
                     image={artisan1}
                     details="Chhotu, Rakesh & Buddhu are excellent craftsmen and their Ability to convert an idea into finished products is unmatched. But what is most admiring, is their enthusiasm and ever-smiling faces even under adverse times like the pandemic. Gramien’O brings to you their creation"
                 />

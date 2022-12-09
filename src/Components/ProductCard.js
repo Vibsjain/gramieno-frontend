@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigation } from "react-router-dom";
 
 const ProductCard = ({ image, item, description, price }) => {
+    // const navigate = useNavigation();
     const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
     return (
-        <div className="drop-shadow-2xl about-font rounded-2xl zoom ">
+        <div className="w-[18rem] drop-shadow-2xl about-font rounded-2xl zoom ">
             <div className="w-[18rem] bg-white h-[18rem] rounded-t-2xl">
                 <img src={image} className="rounded-t-2xl h-full w-full "></img>
             </div>
