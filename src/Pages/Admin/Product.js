@@ -19,22 +19,6 @@ const Product = () => {
             name: "Apple MacBook Pro 17",
             price: "$2999",
         },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
     ];
     return (
         <div className="px-24 mt-12">
@@ -60,7 +44,9 @@ const Product = () => {
                         {data.map((item, index) => (
                             <tr
                                 className={`text-white bg-[#192335] border-b ${
-                                    index % 2 === 0 ? "bg-[#F9FAFB]" : "bg-white"
+                                    index % 2 === 0
+                                        ? "bg-[#F9FAFB]"
+                                        : "bg-white"
                                 }}`}
                             >
                                 <th

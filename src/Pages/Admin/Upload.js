@@ -1,4 +1,5 @@
 import React from "react";
+import { PlusCircleOutlined } from "@ant-design/icons";
 
 const Upload = () => {
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8`;
@@ -53,7 +54,12 @@ const Upload = () => {
                         class={inputStyle}
                         placeholder="₹ Price"
                     />
-                    <button className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 ">Upload</button>
+
+                    <label class={labelStyle}>Add Images</label>
+                    <PlusCircleOutlined className="text-[35px] text-white cursor pointer" />
+                    <button className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 ">
+                        Upload
+                    </button>
                 </div>
             </div>
         </div>
