@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { Navbar, Footer, ProductCard } from "../Components";
 import table from "../Assets/Images/table.png";
 import Logo from "../Assets/Images/logo.png";
+import { buyBtn } from "../Assets/Constants";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Products = () => {
-    const navButtonStyle = `sm:w-36 w-64 text-center blok border border-white rounded py-2 px-4`;
+    AOS.init();
+    const navButtonStyle = `sm:min-w-36 min-w-64 text-center border border-white rounded py-2 px-4`;
     const navChosesStyle = `bg-white text-black`;
     const navHoverStyle = `back text-white hover:bg-white hover:text-black`;
-    const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
+    const btnClass = buyBtn;
     const [data, setData] = useState([]);
-    const [woodenTab, setWoodenTab] = useState(true);
+    const [woodenTab, setWoodenTab] = useState(false);
     const [incenseTab, setIncenseTab] = useState(false);
     const [roseTab, setRoseTab] = useState(false);
-    const [allTab, setAllTab] = useState(false);
+    const [allTab, setAllTab] = useState(true);
     const [products, setProducts] = useState([
         {
             id: 1,
@@ -89,7 +93,7 @@ const Products = () => {
         <div className="back">
             <Navbar />
             {/* Product Hero Section */}
-            <div className="my-8 sm:px-24 px-8 rounded-2xl">
+            <div className="my-8 sm:px-24 px-8 rounded-2xl" data-aos="zoom-in">
                 <div className="w-full flex sm:flex-row flex-col rounded-2xl">
                     <div className="sm:w-7/12 w-full rounded-2xl">
                         <img
@@ -115,8 +119,24 @@ const Products = () => {
             {/* Products */}
             <div className="mt-24">
                 {/* Products Navigation */}
-                <div className="flex w-full sm:px-36 px-12 justify-center items-center">
+                <div
+                    className="flex w-full sm:px-36 px-12 justify-center items-center"
+                    data-aos="zoom-in"
+                >
                     <ul class="flex sm:flex-row flex-col gap-4">
+                        <li>
+                            <button
+                                class={`${navButtonStyle} ${
+                                    allTab ? navChosesStyle : navHoverStyle
+                                }`}
+                                onClick={() => {
+                                    clearAll();
+                                    setAllTab(true);
+                                }}
+                            >
+                                All
+                            </button>
+                        </li>
                         <li>
                             <button
                                 class={`${navButtonStyle} ${
@@ -156,32 +176,21 @@ const Products = () => {
                                 Rose Pack
                             </button>
                         </li>
-                        <li>
-                            <button
-                                class={`${navButtonStyle} ${
-                                    allTab ? navChosesStyle : navHoverStyle
-                                }`}
-                                onClick={() => {
-                                    clearAll();
-                                    setAllTab(true);
-                                }}
-                            >
-                                All
-                            </button>
-                        </li>
                     </ul>
                 </div>
 
                 {/* Product Cards */}
                 <div className="flex flex-wrap w-full px-8 my-24 gap-12 justify-center ">
                     {products?.map((product, index) => (
-                        <ProductCard
-                            key={index}
-                            item={product.item}
-                            price={product.price}
-                            image={product.image}
-                            description={product.description}
-                        />
+                        <div data-aos = "zoom-in">
+                            <ProductCard
+                                key={index}
+                                item={product.item}
+                                price={product.price}
+                                image={product.image}
+                                description={product.description}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>

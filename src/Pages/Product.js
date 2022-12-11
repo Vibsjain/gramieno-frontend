@@ -1,9 +1,10 @@
 import React from "react";
-import { Navbar, Footer, ProductCard } from "../Components";
+import { Navbar, Footer, Slider } from "../Components";
 import table from "../Assets/Images/table.png";
 import table1 from "../Assets/Images/table1.jpeg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { buyBtn } from "../Assets/Constants";
 
 const Product = () => {
     const responsive = {
@@ -44,7 +45,7 @@ const Product = () => {
             items: 1,
         },
     };
-    const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
+    const btnClass = buyBtn;
     return (
         <div className="back">
             <Navbar />
@@ -113,7 +114,7 @@ const Product = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex sm:flex flex-col-reverse mt-24 sm:gap-0 gap-8">
+                <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
                     <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap:8">
                         <h1 className="font-bold text-[20px]">
                             More Details About the Product
@@ -171,151 +172,19 @@ const Product = () => {
                 <h1 className="font-bold text-white my-12 px-12 text-[26px]">
                     Woodwork Products
                 </h1>
-                <Carousel
-                    responsive={responsive}
-                    className="px-12"
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={1000}
-                    transitionDuration={700}
-                >
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                </Carousel>
+                <Slider />
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
                 <h1 className="font-bold text-white my-12 px-12 text-[26px]">
                     Woodwork Products
                 </h1>
-                <Carousel
-                    responsive={responsive}
-                    className="px-12"
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={1000}
-                    transitionDuration={700}
-                >
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                </Carousel>
+                <Slider />
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
                 <h1 className="font-bold text-white my-12 px-12 text-[26px]">
                     Woodwork Products
                 </h1>
-                <Carousel
-                    responsive={responsive}
-                    className="px-12"
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={1000}
-                    transitionDuration={700}
-                >
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                </Carousel>
+                <Slider />
             </div>
             <Footer />
         </div>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { adminShowBtn, tableHeadStyle } from "../../Assets/Constants";
+import ProductModal from "./ProductModal";
 
 const Product = () => {
-    const headStyle = `text-[18px] py-8 px-8`;
+    const [open, setOpen] = useState(false);
+    const headStyle = tableHeadStyle;
     const data = [
         {
             name: "Apple MacBook Pro 17",
@@ -22,6 +25,7 @@ const Product = () => {
     ];
     return (
         <div className="px-24 mt-12">
+            <ProductModal open={open} setOpen={setOpen} />
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-white  bg-[rgb(20,28,47)] py-2 px-2">
@@ -51,13 +55,18 @@ const Product = () => {
                             >
                                 <th
                                     scope="row"
-                                    className="py-4 px-8 font-medium whitespace-nowrap"
+                                    className="py-4 px-8 font-medium whitespace-nowrap about-font"
                                 >
                                     {item.name}
                                 </th>
-                                <td className="py-4 px-8">{item.price}</td>
+                                <td className="py-4 px-8 about-font">
+                                    {item.price}
+                                </td>
                                 <td className="py-4 px-8 text-center">
-                                    <button className="bg-[#141C2F] px-4 py-2 rounded-xl hover:text-black">
+                                    <button
+                                        className={adminShowBtn}
+                                        onClick={() => setOpen(!open)}
+                                    >
                                         Show More
                                     </button>
                                 </td>

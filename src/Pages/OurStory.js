@@ -1,8 +1,11 @@
 import React from "react";
 import Logo from "../Assets/Images/logo.png";
 import { Navbar, Footer } from "../Components";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const OurStory = () => {
+    AOS.init();
     const aboutText = `Logo 
     Gramien (Village) 'O (Global) : We bring products from the heartland which can have global appeal and acceptance.
     Diya is indicative of spreading the light and prosperity for all stakeholders associated with the brand.
@@ -19,10 +22,13 @@ const OurStory = () => {
         <div className="back">
             <Navbar />
             <div className="flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
-                <div className="flex sm:w-4/12 w-full justify-center items-center">
+                <div
+                    className="flex sm:w-4/12 w-full justify-center items-center"
+                    data-aos="zoom-in"
+                >
                     <img src={Logo} alt="" />
                 </div>
-                <div className="sm:w-8/12 w-full sm:pr-48">
+                <div className="sm:w-8/12 w-full sm:pr-48" data-aos="zoom-in">
                     <h1 className="sm:text-[18px] text-[16px] italic about-font text-justify text-white">
                         {aboutText}
                     </h1>

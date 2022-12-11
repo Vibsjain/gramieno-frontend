@@ -1,15 +1,16 @@
 import React from "react";
-import { useNavigation } from "react-router-dom";
+import { buyBtn } from "../Assets/Constants";
+// import { useNavigation } from "react-router-dom";
 
 const ProductCard = ({ image, item, description, price }) => {
     // const navigate = useNavigation();
-    const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font`;
+    const btnClass = buyBtn;
     return (
-        <div className="w-[18rem] drop-shadow-2xl about-font rounded-2xl zoom ">
-            <div className="w-[18rem] bg-white h-[18rem] rounded-t-2xl">
+        <div className="w-[20rem] drop-shadow-2xl about-font rounded-2xl zoom ">
+            <div className="w-[20rem] bg-white h-[18rem] rounded-t-2xl">
                 <img src={image} className="rounded-t-2xl h-full w-full "></img>
             </div>
-            <div className="flex flex-col gap-4 justify-between w-[18rem] min-h-[10rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
+            <div className="flex flex-col gap-4 justify-between w-[20rem] min-h-[10rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
                 <div className="flex w-full justify-between">
                     <h1 className="w-1/2 px-2 text-center font-bold about-font">
                         {item}

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
     const navigate = useNavigate();
-    const navButtonStyle = `w-48 text-center blok border border-[#141C2F] rounded py-2 px-4`;
+    const navButtonStyle = `min-w-48 text-center blok border border-[#141C2F] rounded py-2 px-4 about-font`;
     const navChosesStyle = `bg-[#fff] text-[#141C2F]`;
     const navHoverStyle = `bg-[#141C2F] text-white hover:bg-[#fff] hover:text-[#141C2F]`;
     const iconStyle = `text-[25px] text-white cursor-pointer`;
@@ -30,29 +30,29 @@ const Admin = () => {
     };
 
     return (
-        <div className="back1">
+        <div className="back1 about-font">
             {/* Admin Details */}
-            <div className="p-8">
+            <div className="p-8 about-font">
                 <div className="flex p-4 admin-shadow rounded-full">
                     <div className="flex w-4/12 justify-start px-6">
                         <img src={Logo} alt="logo" className="w-8" />
                     </div>
                     <div className="flex w-8/12 justify-end items-center gap-12 px-4">
-                        <h1 className="px-4 py-2 bg-white text-black rounded-2xl flex items-center font-bold h-12">
+                        <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl flex items-center font-bold h-12">
                             Nikhil Joshi
                         </h1>
                         <HomeOutlined
                             className={iconStyle}
                             onClick={() => navigate("/")}
                         />
-                        <SettingOutlined className={iconStyle} />
+                        <SettingOutlined className={iconStyle} spin/>
                         <LogoutOutlined className={iconStyle} />
                     </div>
                 </div>
             </div>
 
             <div className="mt-12 mb-24 w-full">
-                <h1 className="text-white font-bold text-[70px] text-center">
+                <h1 className="text-white font-bold text-[70px] text-center about-font">
                     Hey, Gramien'O
                 </h1>
             </div>

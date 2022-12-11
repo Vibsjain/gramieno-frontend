@@ -1,4 +1,10 @@
-import { ProductCard, Artisians, Navbar, Footer } from "../Components";
+import {
+    Slider,
+    Artisians,
+    Navbar,
+    Footer,
+    TestimonialCard,
+} from "../Components";
 import One from "../Assets/Images/HeroImages/One.jpg";
 import Two from "../Assets/Images/HeroImages/Two.jpg";
 import Three from "../Assets/Images/HeroImages/Three.jpg";
@@ -8,14 +14,17 @@ import Main from "../Assets/Images/HeroImages/Main.jpg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
-import table from "../Assets/Images/table.png";
 import artisan1 from "../Assets/Images/artisan1.jpeg";
 import artisan2 from "../Assets/Images/artisan2.jpeg";
 import homeTestimonial from "../Assets/Images/homeTestimonial.jpeg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
+    AOS.init();
     const navigate = useNavigate();
     const storyText = `text-[#836663]`;
+    const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
     const responsive1 = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -58,8 +67,8 @@ function Home() {
         <div className="w-full back">
             <Navbar />
             {/* Hero Section */}
-            <div className="w-full sm:flex hidden">
-                <Carousel
+            <div className="w-full sm:flex hidden " data-aos="fade-up">
+                {/* <Carousel
                     responsive={responsive1}
                     infinite={true}
                     autoPlay={true}
@@ -79,10 +88,18 @@ function Home() {
                     />
                     <img className="w-full w-9/12 h-[80vh]" src={Four} alt="" />
                     <img className="w-full w-9/12 h-[80vh]" src={Five} alt="" />
-                </Carousel>
+                </Carousel> */}
+                <img
+                    className="w-full h-[85vh] px-24 rounded-2xl"
+                    src={Four}
+                    alt=""
+                />
             </div>
             {/* Products Section */}
-            <div className="flex flex-col w-full mt-12 min-h-[100vh]">
+            <div
+                className="flex flex-col w-full mt-12 min-h-[100vh]"
+                data-aos="fade-up"
+            >
                 <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
                     <div className="w-1/2 flex justify-start">
                         <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
@@ -98,57 +115,13 @@ function Home() {
                         </button>
                     </div>
                 </div>
-                <Carousel
-                    responsive={responsive}
-                    className="px-12"
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={1000}
-                    transitionDuration={700}
-                >
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                    <ProductCard
-                        image={table}
-                        item="Multipurpose Portable Table"
-                        description="Yellow-Orange"
-                        price={2499}
-                    />
-                </Carousel>
-                {/* <div className="flex flex-wrap gap-8 w-full px-12 py-12">
-                    
-                </div> */}
+                <Slider />
             </div>
             {/* Artisians Section */}
-            <div className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-8 gap-16 mt-24">
+            <div
+                className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-36 px-8 gap-16 mt-24"
+                data-aos="fade-up"
+            >
                 <Artisians
                     title="The Woodwork Artisans"
                     image={artisan1}
@@ -162,7 +135,7 @@ function Home() {
                 />
             </div>
             {/* Story Card */}
-            {/* <div className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
+            {/* <div data-aos="fade-up" className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
                 <div className="flex flex-col justify-between home-story rounded-xl">
                     <h1 className="text-white text-[26px] font-extrabold px-12 mt-8">
                         Our Story
@@ -194,31 +167,20 @@ function Home() {
                 </div>
             </div> */}
             {/* Testimonial Card */}
-            <div className="flex sm:flex-row flex-col-reverse w-full h-[70vh] mt-16">
-                <div className="w-1/2 py-12 px-24 flex flex-col justify-between items-center">
-                    <h1 className="text-white text-[26px] font-extrabold">
-                        Testimonial
-                    </h1>
-                    <h1 className="text-white text-center text-[14px] px-16">
-                        “Laptop Table from Gramien’O was godsend for WFH(Work
-                        From Home). It helped me to do the work without risking
-                        my posture. It also helped me manage my Chai while I
-                        attended to my demanding work.Thoughtful design to
-                        adjust the table made it easier for me to work on same
-                        in bed or sofa and even in recliner. It has a place to
-                        keep my phone accessible and space for notepad.”
-                    </h1>
-                    <button className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white font-bold hover:text-black text-center hover:bg-white">
-                        View More
-                    </button>
-                </div>
-                <div className="w-1/2 py-12 px-24 flex flex-col justify-between items-center">
-                    <img
-                        src={homeTestimonial}
-                        alt="testimonial"
-                        className=" w-3/4 h-[100%]"
-                    />
-                </div>
+            <div className="w-full mt-24" data-aos="fade-up">
+                <h1 className="text-center my-12 font-bold text-[30px] text-white">
+                    Testimonials
+                </h1>
+                <Carousel responsive={responsive} infinite={true}>
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                    <TestimonialCard text={text} />
+                </Carousel>
             </div>
             <Footer />
         </div>
