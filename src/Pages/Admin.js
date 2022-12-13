@@ -35,7 +35,12 @@ const Admin = () => {
             <div className="p-8 about-font">
                 <div className="flex p-4 admin-shadow rounded-full">
                     <div className="flex w-4/12 justify-start px-6">
-                        <img src={Logo} alt="logo" className="w-8" />
+                        <img
+                            src={Logo}
+                            alt="logo"
+                            className="w-8 cursor-pointer"
+                            onClick={() => navigate("/")}
+                        />
                     </div>
                     <div className="flex w-8/12 justify-end items-center gap-12 px-4">
                         <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl flex items-center font-bold h-12">
@@ -45,8 +50,11 @@ const Admin = () => {
                             className={iconStyle}
                             onClick={() => navigate("/")}
                         />
-                        <SettingOutlined className={iconStyle} spin/>
-                        <LogoutOutlined className={iconStyle} />
+                        <SettingOutlined className={iconStyle} spin />
+                        <LogoutOutlined
+                            className={iconStyle}
+                            onClick={() => navigate("/")}
+                        />
                     </div>
                 </div>
             </div>

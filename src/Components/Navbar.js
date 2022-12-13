@@ -20,7 +20,12 @@ function Navbar() {
     return (
         <div className="flex w-full">
             <div className="flex sm:w-9/12 w-3/12 sm:py-12   sm:px-12 px-4 py-4 sm:items-center ">
-                <img className="sm:h-[60px] h-[50px]" src={Logo} alt="" />
+                <img
+                    className="sm:h-[60px] h-[50px] cursor-pointer"
+                    src={Logo}
+                    alt=""
+                    onClick={() => navigate("/")}
+                />
                 <ul className="flex gap-4 mx-8 hidden sm:flex">
                     {navLinks.map((link) => {
                         return (
