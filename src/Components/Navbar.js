@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Logo from "../Assets/Images/logo.png";
 import { useNavigate, useLocation } from "react-router-dom";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
@@ -13,10 +13,6 @@ function Navbar() {
         { title: "Our Story", path: "/our-story" },
         { title: "Contact", path: "#contact" },
     ];
-
-    useEffect(() => {
-        console.log(location.pathname);
-    });
     return (
         <div className="flex w-full">
             <div className="flex sm:w-9/12 w-3/12 sm:py-12   sm:px-12 px-4 py-4 sm:items-center ">

@@ -12,6 +12,7 @@ const Upload = () => {
             price: 0,
             description: "",
             countInStock: 0,
+            images: [],
             dimensions: [
                 {
                     length: 0,

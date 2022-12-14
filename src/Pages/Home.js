@@ -1,3 +1,4 @@
+import { useEffect, useContext } from "react";
 import {
     Slider,
     Artisians,
@@ -16,11 +17,12 @@ import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
 import artisan1 from "../Assets/Images/artisan1.jpeg";
 import artisan2 from "../Assets/Images/artisan2.jpeg";
-import homeTestimonial from "../Assets/Images/homeTestimonial.jpeg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ProductContext from "../Context/ProductContext";
 
 function Home() {
+    const { products, getProducts } = useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
     const storyText = `text-[#836663]`;
@@ -63,6 +65,10 @@ function Home() {
             items: 1,
         },
     };
+    useEffect(() => {
+        getProducts();
+        console.log(products);
+    }, []);
     return (
         <div className="w-full back">
             <Navbar />
@@ -135,7 +141,10 @@ function Home() {
                 />
             </div>
             {/* Story Card */}
-            {/* <div data-aos="fade-up" className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl ">
+            <div
+                data-aos="fade-up"
+                className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl "
+            >
                 <div className="flex flex-col justify-between home-story rounded-xl">
                     <h1 className="text-white text-[26px] font-extrabold px-12 mt-8">
                         Our Story
@@ -165,7 +174,7 @@ function Home() {
                         </button>
                     </div>
                 </div>
-            </div> */}
+            </div>
             {/* Testimonial Card */}
             <div className="w-full mt-24" data-aos="fade-up">
                 <h1 className="text-center my-12 font-bold text-[30px] text-white">
