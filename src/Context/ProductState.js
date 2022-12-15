@@ -11,6 +11,7 @@ const ProductState = (props) => {
         setLoading(true);
         const res = await api.get("/products");
         setProducts(res.data);
+        console.log(res.data);
         setLoading(false);
     };
 
@@ -36,6 +37,7 @@ const ProductState = (props) => {
                     product,
                     getProduct,
                     addProduct,
+                    loading,
                 }}
             >
                 {props.children}
