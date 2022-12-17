@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { adminShowBtn, tableHeadStyle } from "../../Assets/Constants";
 import ProductModal from "./ProductModal";
+import ProductContext from "../../Context/ProductContext";
 
 const Product = () => {
+    const { products, getProducts } = useContext(ProductContext);
     const [open, setOpen] = useState(false);
+    const [id, setId] = useState("");
     const headStyle = tableHeadStyle;
-    const data = [
+    const [data, setData] = useState([
         {
             name: "Apple MacBook Pro 17",
             price: "$2999",
@@ -22,10 +25,14 @@ const Product = () => {
             name: "Apple MacBook Pro 17",
             price: "$2999",
         },
-    ];
+    ]);
+    useEffect(() => {
+        getProducts();
+        setData(products);
+    });
     return (
         <div className="px-24 mt-12">
-            <ProductModal open={open} setOpen={setOpen} />
+            <ProductModal open={open} setOpen={setOpen} id={id} />
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-white  bg-[rgb(20,28,47)] py-2 px-2">
@@ -65,7 +72,10 @@ const Product = () => {
                                 <td className="py-4 px-8 text-center">
                                     <button
                                         className={adminShowBtn}
-                                        onClick={() => setOpen(!open)}
+                                        onClick={() => {
+                                            setId(item._id);
+                                            setOpen(!open);
+                                        }}
                                     >
                                         Show More
                                     </button>

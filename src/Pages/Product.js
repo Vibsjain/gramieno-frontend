@@ -99,22 +99,27 @@ const Product = () => {
                             responsive={responsive1}
                             infinite={true}
                             autoPlay={true}
-                            autoPlaySpeed={1000}
+                            autoPlaySpeed={2000}
                             transitionDuration={700}
-                            className="w-full pl-36"
+                            className="w-full"
                             showDots={false}
                             arrows={false}
                         >
-                            <img
-                                src={table}
-                                alt="table"
-                                className="w-96 h-72 rounded-2xl"
-                            />
-                            <img
-                                src={table1}
-                                alt="table"
-                                className="w-96 h-72 rounded-2xl"
-                            />
+                            {product.images ? (
+                                product.images.map((image, index) => (
+                                    <img
+                                        src={image}
+                                        alt="table"
+                                        className="w-96 h-72 rounded-lg"
+                                    />
+                                ))
+                            ) : (
+                                <img
+                                    src={table1}
+                                    alt="table"
+                                    className="w-96 h-72 rounded-2lg"
+                                />
+                            )}
                         </Carousel>
                     </div>
                 </div>

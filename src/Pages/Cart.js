@@ -7,125 +7,26 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
     const navigate = useNavigate();
-    // const { products, getProducts } = useContext(ProductContext);
-    const products = [
-        {
-            _id: "639d5dee7051456947b26e18",
-            name: "Stick Stand",
-            price: 85,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 1,
-            dimensions: [33, 41, 50],
-            __v: 0,
-        },
-        {
-            _id: "639d5e0c7051456947b26e1a",
-            name: "Study table",
-            price: 1500,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 10,
-            dimensions: [133, 141, 150],
-            __v: 0,
-        },
-        {
-            _id: "639d5e0f7051456947b26e1c",
-            name: "Study table",
-            price: 1500,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 10,
-            dimensions: [133, 141, 150],
-            __v: 0,
-        },
-        {
-            _id: "639d5e107051456947b26e1e",
-            name: "Study table",
-            price: 1500,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 10,
-            dimensions: [133, 141, 150],
-            __v: 0,
-        },
-        {
-            _id: "639d5e117051456947b26e20",
-            name: "Study table",
-            price: 1500,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 10,
-            dimensions: [133, 141, 150],
-            __v: 0,
-        },
-        {
-            _id: "639d5e127051456947b26e22",
-            name: "Study table",
-            price: 1500,
-            description:
-                "As close as possible to participation on time. It is supported only ICPC mode for virtual contests. If you've seen these problems, a virtual contest is not for you - solve these problems in the archive. If you just want to solve some problem from a contest, a virtual contest is not for you - solve this problem in the archive. Never use someone else's code, read the tutorials or communicate with other person during a virtual contest.",
-            images: [
-                "https://upload.wikimedia.org/wikipedia/commons/7/7f/4Coffee_Table.jpg",
-                "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/CENTER_TABLE2_CARV_GLASS_PEAR_WOOD_CENTBL2CARGPRW_06_900x.jpg?v=1661147387",
-                "https://m.media-amazon.com/images/I/81hkSG4FdPL._SL1080_.jpg",
-            ],
-            category: "Wooden Works",
-            countInStock: 10,
-            dimensions: [133, 141, 150],
-            __v: 0,
-        },
-    ];
-
+    const { products, getProducts } = useContext(ProductContext);
     const [cart, setCart] = useState([]);
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
         if (cart) {
             setCart(cart);
         }
-        // getProducts();
+        getProducts();
         console.log(products);
     }, []);
     const buyBtn = `w-8 h-8 justify-center items-center border-2 border-white rounded-[6px] text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold`;
     const Card = ({ id, quantity }) => {
         const product = products.find((item) => item._id === id);
         return (
-            <div className="w-full h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-2xl ">
+            <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
                 <div className="sm:w-4/12 w-full flex gap-16">
                     <img
                         src={product.images[0]}
                         alt="table"
-                        className="w-96 rounded-tl-2xl rounded-bl-2xl"
+                        className="w-96 rounded-tl-lg sm:rounded-bl-lg rounded-t-lg"
                     />
                 </div>
                 <div className="flex flex-col sm:w-6/12 w-full pl-4 py-2 justify-between">
@@ -204,11 +105,15 @@ const Cart = () => {
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-col sm:w-2/12 w-full pl-4 py-2 px-2 items-end justify-between ">
-                    <h1 className="font-bold">Total</h1>
-                    <div className="flex flex-col items-end">
-                        <h1>{product.price}</h1>
-                        <h1>x {quantity}</h1>
+                <div className="flex flex-col sm:w-2/12 w-full pl-4 py-2 px-6 sm:items-end items-start justify-between ">
+                    <div className="flex flex-row sm:flex-col justify-between w-full ">
+                        <h1 className="font-bold sm:text-right text-left">
+                            Total
+                        </h1>
+                        <div className="flex flex-col items-end">
+                            <h1>{product.price}</h1>
+                            <h1>x {quantity}</h1>
+                        </div>
                     </div>
                     <div className="w-full flex flex-col items-end ">
                         <h1 className="font-bold">
@@ -232,14 +137,19 @@ const Cart = () => {
                 </div>
             ) : (
                 <div>
-                    <div className="flex w-full min-h-[100vh]">
-                        <div className="flex flex-col gap-12 w-2/3 px-12">
+                    <div className="sm:hidden flex py-8">
+                        <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                            Your Cart
+                        </h1>
+                    </div>
+                    <div className="flex flex-col md:flex-row w-full min-h-[100vh] sm:gap-0 gap-12">
+                        <div className="flex flex-col gap-12 sm:w-2/3 w-full sm:px-8 px-4">
                             {cart.map((item) => (
                                 <Card id={item.id} quantity={item.quantity} />
                             ))}
                         </div>
-                        <div className="flex flex-col gap-4 items-center    w-1/3 mx-4">
-                            <div className="flex flex-col w-full justify-between min-h-[300px]  bg-white px-4 rounded-2xl py-4 ">
+                        <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4">
+                            <div className="flex flex-col w-full justify-between min-h-[300px]  bg-white px-4 rounded-lg py-4 ">
                                 <div className="flex flex-col w-full ">
                                     <h1 className="text-center font-bold text-[18px]">
                                         Subtotal
@@ -267,6 +177,24 @@ const Cart = () => {
                                             </h1>
                                         </div>
                                     ))}
+                                    <div className="flex px-4 justify-between mt-4">
+                                        <h1 className="font-bold">Tax</h1>
+                                        <h1>
+                                            ₹{" "}
+                                            {cart.reduce(
+                                                (acc, item) =>
+                                                    acc +
+                                                    products.find(
+                                                        (product) =>
+                                                            product._id ===
+                                                            item.id
+                                                    ).price *
+                                                        item.quantity *
+                                                        0.18,
+                                                0
+                                            )}
+                                        </h1>
+                                    </div>
                                 </div>
                                 <hr />
                                 <div className="flex px-4 justify-between ">
@@ -280,7 +208,8 @@ const Cart = () => {
                                                     (product) =>
                                                         product._id === item.id
                                                 ).price *
-                                                    item.quantity,
+                                                    item.quantity *
+                                                    1.18,
                                             0
                                         )}
                                     </h1>
@@ -289,7 +218,15 @@ const Cart = () => {
                             <div className="my-4">
                                 <button
                                     className="w-[100%] px-4 h-16 justify-center items-center border-2 border-white rounded-[6px] text-[20px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold"
-                                    onClick={() => navigate("/checkout")}
+                                    onClick={() => {
+                                        navigate("/checkout");
+                                        const orders = cart;
+                                        localStorage.setItem(
+                                            "orders",
+                                            JSON.stringify(orders)
+                                        );
+                                        console.log(orders);
+                                    }}
                                 >
                                     Proceed to Checkout
                                 </button>
@@ -298,7 +235,7 @@ const Cart = () => {
                     </div>
                 </div>
             )}
-            <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+            <h1 className="font-bold text-white my-12 px-12 sm:text-[26px] text-[20px] sm:text-left text-center">
                 See More Related Products
             </h1>
             <Slider />

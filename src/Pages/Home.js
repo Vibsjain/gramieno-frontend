@@ -5,13 +5,8 @@ import {
     Navbar,
     Footer,
     TestimonialCard,
+    HeroAnimate,
 } from "../Components";
-import One from "../Assets/Images/HeroImages/One.jpg";
-import Two from "../Assets/Images/HeroImages/Two.jpg";
-import Three from "../Assets/Images/HeroImages/Three.jpg";
-import Four from "../Assets/Images/HeroImages/Four.jpg";
-import Five from "../Assets/Images/HeroImages/Five.jpg";
-import Main from "../Assets/Images/HeroImages/Main.jpg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
@@ -73,37 +68,15 @@ function Home() {
         <div className="w-full back">
             <Navbar />
             {/* Hero Section */}
-            <div className="w-full sm:flex hidden " data-aos="fade-up">
-                {/* <Carousel
-                    responsive={responsive1}
-                    infinite={true}
-                    autoPlay={true}
-                    autoPlaySpeed={2000}
-                    transitionDuration={700}
-                    className="w-full pl-36"
-                    showDots={false}
-                    arrows={false}
-                >
-                    <img className="w-full w-9/12 h-[80vh]" src={Main} alt="" />
-                    <img className="w-full w-9/12 h-[80vh]" src={One} alt="" />
-                    <img className="w-full w-9/12 h-[80vh]" src={Two} alt="" />
-                    <img
-                        className="w-full w-9/12 h-[80vh]"
-                        src={Three}
-                        alt=""
-                    />
-                    <img className="w-full w-9/12 h-[80vh]" src={Four} alt="" />
-                    <img className="w-full w-9/12 h-[80vh]" src={Five} alt="" />
-                </Carousel> */}
-                <img
-                    className="w-full h-[85vh] px-24 rounded-2xl"
-                    src={Four}
-                    alt=""
-                />
+            <div
+                className="flex w-full sm:flex hidden justify-center"
+                data-aos="fade-up"
+            >
+                <HeroAnimate />
             </div>
             {/* Products Section */}
             <div
-                className="flex flex-col w-full mt-12 min-h-[100vh]"
+                className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[100vh]"
                 data-aos="fade-up"
             >
                 <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">

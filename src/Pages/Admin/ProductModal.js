@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-awesome-modal";
 import { CloseOutlined } from "@ant-design/icons";
 import table from "../../Assets/Images/table.png";
@@ -6,8 +6,15 @@ import table1 from "../../Assets/Images/table1.jpeg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { buyBtn } from "../../Assets/Constants";
+import ProductContext from "../../Context/ProductContext";
 
-const ProductModal = ({ open, setOpen }) => {
+const ProductModal = ({ open, setOpen, id }) => {
+    const [data, setData] = useState({});
+    const { getProduct, product } = useContext(ProductContext);
+    useEffect(() => {
+        getProduct(id);
+        setData(product);
+    }, [product]);
     const responsive1 = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -46,61 +53,39 @@ const ProductModal = ({ open, setOpen }) => {
                 <div className="sm:px-12 sm:py-12 px-2 py-8">
                     <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
                         <div className="sm:w-1/2 w-full flex gap-16">
-                            <div className="flex flex-col w-full gap-4">
+                            <div className="flex flex-col w-full gap-4 items-center">
                                 <img
-                                    src={table}
+                                    src={data.images ? data.images[0] : table}
                                     alt="table"
-                                    className="w-full rounded-2xl"
+                                    className="w-96 rounded-2xl"
                                 />
                                 <div className="flex w-full gap-4 justify-center">
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
+                                    {data.images
+                                        ? data.images.map((image, index) => (
+                                              <img
+                                                  src={image}
+                                                  alt="table"
+                                                  className="w-20 h-20 rounded-2xl"
+                                              />
+                                          ))
+                                        : null}
                                 </div>
                             </div>
                             <div></div>
                         </div>
                         <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 text-black">
                             <h1 className="font-bold text-[20px]">
-                                Multipurpose Portable Table (Yellow-Orange)
+                                {product.name
+                                    ? product.name
+                                    : "Multipurpose Portable Table (Yellow-Orange)"}
                             </h1>
                             <div className="pl-4">
-                                <h1>
-                                    &bull; Ideal for professionals(WFH) &
-                                    College Students
-                                </h1>
-                                <h1>
-                                    &bull; Separate section for laptop, notepad
-                                    and mobile
-                                </h1>
-                                <h1>
-                                    &bull; Adjustable at 5 different angles for
-                                    ease of operation
-                                </h1>
-                                <h1>
-                                    &bull; Easy to carry (3.5 kgs) 25 inches (L)
-                                    x 14.5 inches (B) x 9.5 inches (H)
+                                <h1 className="text-justify">
+                                    {product.description}
                                 </h1>
                             </div>
                             <h1 className="pl-4 font-bold text-[20px]">
-                                ₹ 2250.00
+                                ₹ {product.price}
                             </h1>
                         </div>
                     </div>
@@ -109,29 +94,9 @@ const ProductModal = ({ open, setOpen }) => {
                             <h1 className="font-bold text-[20px]">
                                 More Details About the Product
                             </h1>
-                            <h1>
-                                Ideal for professionals(WFH) & College Students
-                            </h1>
-                            <div className="pl-4">
-                                <h1>
-                                    &bull; Separate section for laptop, notepad
-                                    and mobile
-                                </h1>
-                                <h1>
-                                    &bull; Adjustable at 5 different angles for
-                                    ease of operation
-                                </h1>
-                                <h1>
-                                    &bull; Easy to carry (3.5 kgs) 25 inches (L)
-                                    x 14.5 inches (B) x 9.5 inches (H)
-                                </h1>
-                                <h1>
-                                    &bull; Ghana Teak base for sturdiness and
-                                    durability{" "}
-                                </h1>
-                                <h1>
-                                    &bull; Recycled wood melamine coated top for
-                                    elegant finish
+                            <div className="px-4">
+                                <h1 className="text-justify">
+                                    {product.description}
                                 </h1>
                             </div>
                         </div>
@@ -142,20 +107,25 @@ const ProductModal = ({ open, setOpen }) => {
                                 autoPlay={true}
                                 autoPlaySpeed={1000}
                                 transitionDuration={700}
-                                className="w-full pl-36"
+                                className="w-full "
                                 showDots={false}
                                 arrows={false}
                             >
-                                <img
-                                    src={table}
-                                    alt="table"
-                                    className="w-96 h-72 rounded-2xl"
-                                />
-                                <img
-                                    src={table1}
-                                    alt="table"
-                                    className="w-96 h-72 rounded-2xl"
-                                />
+                                {product.images ? (
+                                    product.images.map((image, index) => (
+                                        <img
+                                            src={image}
+                                            alt="table"
+                                            className="w-96 h-72 rounded-lg"
+                                        />
+                                    ))
+                                ) : (
+                                    <img
+                                        src={table1}
+                                        alt="table"
+                                        className="w-96 h-72 rounded-2lg"
+                                    />
+                                )}
                             </Carousel>
                         </div>
                     </div>
