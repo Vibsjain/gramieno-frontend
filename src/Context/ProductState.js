@@ -6,6 +6,7 @@ const ProductState = (props) => {
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(false);
+    const [added, setAdded] = useState(false);
 
     const getProducts = async () => {
         setLoading(true);
@@ -18,8 +19,9 @@ const ProductState = (props) => {
     const getProduct = async (id) => {
         setLoading(true);
         const res = await api.get(`/products/${id}`);
-        setProduct(res.data);
+        setProduct(res.data[0]);
         setLoading(false);
+        console.log(product);
     };
 
     const addProduct = async (product) => {
@@ -38,6 +40,8 @@ const ProductState = (props) => {
                     getProduct,
                     addProduct,
                     loading,
+                    added,
+                    setAdded,
                 }}
             >
                 {props.children}

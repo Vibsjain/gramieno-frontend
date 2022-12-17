@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { buyBtn } from "../Assets/Constants";
-// import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ProductContext from "../Context/ProductContext";
 
-const ProductCard = ({ image, item, description, price }) => {
-    // const navigate = useNavigation();
+const ProductCard = ({ image, item, description, price, id }) => {
+    const { added, setAdded } = useContext(ProductContext);
+    const navigate = useNavigate();
     const btnClass = buyBtn;
     return (
         <div className="w-[20rem] drop-shadow-2xl about-font rounded-2xl zoom ">
@@ -25,14 +27,48 @@ const ProductCard = ({ image, item, description, price }) => {
                         : description}
                 </h1>
                 <div className="w-full flex min-h-full">
-                    <div className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black">
+                    <div
+                        className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black"
+                        onClick={() => {
+                            const cart = JSON.parse(
+                                localStorage.getItem("cart")
+                            );
+                            if (cart) {
+                                const index = cart.findIndex(
+                                    (item) => item.id === id
+                                );
+                                if (index !== -1) {
+                                    cart[index].quantity += 1;
+                                    localStorage.setItem(
+                                        "cart",
+                                        JSON.stringify(cart)
+                                    );
+                                } else {
+                                    cart.push({ id, quantity: 1 });
+                                    localStorage.setItem(
+                                        "cart",
+                                        JSON.stringify(cart)
+                                    );
+                                }
+                            } else {
+                                localStorage.setItem(
+                                    "cart",
+                                    JSON.stringify([{ id, quantity: 1 }])
+                                );
+                            }
+                            setAdded(true);
+                        }}
+                    >
                         <button className={btnClass}>Add to Cart</button>
                     </div>
                     <div className="w-6/12 flex justify-center items-center">
                         <button className={btnClass}>Buy Now</button>
                     </div>
                 </div>
-                <button className="text-right text-[12px] px-4 about-font">
+                <button
+                    className="text-right text-[12px] px-4 about-font"
+                    onClick={() => navigate(`/products/${id}`)}
+                >
                     View More Details
                 </button>
             </div>

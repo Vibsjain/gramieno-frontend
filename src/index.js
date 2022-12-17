@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./Assets/CSS/index.css";
-import { Home, OurStory, Products, Product, Admin } from "./Pages";
+import { Home, OurStory, Products, Product, Admin, Cart } from "./Pages";
 import ProductState from "./Context/ProductState";
 
 const rootElement = document.getElementById("root");
@@ -15,6 +15,7 @@ render(
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<Product />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/cart" element={<Cart />} />
             </Routes>
         </BrowserRouter>
     </ProductState>,

@@ -2,12 +2,22 @@ import React from "react";
 import whatsapp from "../Assets/Images/whatsapp.png";
 import instagram from "../Assets/Images/instagram.webp";
 import facebook from "../Assets/Images/facebook.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+    const navigate = useNavigate();
     const socialIcons = [
         { title: "whatsapp", icon: whatsapp },
-        { title: "instagram", icon: instagram },
-        { title: "facebook", icon: facebook },
+        {
+            title: "instagram",
+            icon: instagram,
+            path: "https://www.instagram.com/gramieno_/",
+        },
+        {
+            title: "facebook",
+            icon: facebook,
+            path: "https://www.facebook.com/profile.php?id=100064278001685&ref=py_c",
+        },
     ];
 
     const footerLinks = [
@@ -37,9 +47,12 @@ const Footer = () => {
                     </button>
                 </div>
                 <div className="sm:w-4/12 w-full sm:p-12 p-4 flex flex-col gap-4">
-                    {footerLinks.map((link) => {
+                    {footerLinks.map((link, index) => {
                         return (
-                            <button className="sm:text-[18px] text-[16px] text-white sm:text-left">
+                            <button
+                                className="sm:text-[18px] text-[16px] text-white sm:text-left"
+                                key={index}
+                            >
                                 {link.title}
                             </button>
                         );
@@ -53,12 +66,18 @@ const Footer = () => {
                         ANANDSHIVA VILLAGEMART
                     </h1>
                     <div className="flex mt-8 gap-12 w-full justify-center">
-                        {socialIcons.map((icon) => {
+                        {socialIcons.map((icon, index) => {
                             return (
                                 <img
+                                    key={index}
                                     src={icon.icon}
                                     alt={icon.title}
-                                    className="sm:w-[3rem] w-[2.5rem]"
+                                    className="sm:w-[3rem] w-[2.5rem] cursor-pointer"
+                                    {...(icon.path && {
+                                        onClick: () => {
+                                            window.open(icon.path, "_blank");
+                                        },
+                                    })}
                                 />
                             );
                         })}

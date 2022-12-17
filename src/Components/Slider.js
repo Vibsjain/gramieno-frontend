@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { ProductCard } from "../Components";
 import table from "../Assets/Images/table.png";
+import productContext from "../Context/ProductContext";
 
 const Slider = ({ data }) => {
+    const { products, getProducts } = useContext(productContext);
+    useEffect(() => {
+        getProducts();
+    }, []);
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,42 +32,16 @@ const Slider = ({ data }) => {
     return (
         <div>
             <Carousel responsive={responsive} infinite={true}>
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
-                <ProductCard
-                    image={table}
-                    item="Multipurpose Portable Table"
-                    description="Yellow-Orange"
-                    price={2499}
-                />
+                {products.map((product, index) => (
+                    <ProductCard
+                        key={index}
+                        image={product.images[0]}
+                        item={product.name}
+                        description={product.description}
+                        price={product.price}
+                        id={product._id}
+                    />
+                ))}
             </Carousel>
         </div>
     );
