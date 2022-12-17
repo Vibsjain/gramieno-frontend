@@ -45,7 +45,7 @@ const OrderModal = ({ open, setOpen }) => {
                 </div>
                 <div className="sm:px-12 sm:py-12 px-2 py-8">
                     <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
-                        <div className="sm:w-1/2 w-full flex gap-16">
+                        <div className="sm:w-1/2 w-full flex gap-16 items-center ">
                             <div className="flex flex-col w-full gap-4">
                                 <img
                                     src={table}
@@ -68,14 +68,8 @@ const OrderModal = ({ open, setOpen }) => {
                                         alt="table"
                                         className="w-20 h-20 rounded-2xl"
                                     />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
                                 </div>
                             </div>
-                            <div></div>
                         </div>
                         <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 text-black">
                             <h1 className="font-bold text-[20px]">
@@ -142,7 +136,7 @@ const OrderModal = ({ open, setOpen }) => {
                                 autoPlay={true}
                                 autoPlaySpeed={1000}
                                 transitionDuration={700}
-                                className="w-full pl-36"
+                                className="w-full"
                                 showDots={false}
                                 arrows={false}
                             >

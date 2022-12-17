@@ -24,14 +24,21 @@ const Products = () => {
     useEffect(() => {
         getProducts();
         setData(products);
+        // eslint-disable-next-line
     }, []);
     return (
         <div className="back">
             <Navbar />
             {/* Product Hero Section */}
+            <div className="sm:hidden flex py-2 " data-aos="zoom-in">
+                <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                    Products
+                </h1>
+            </div>
             <div className="my-8 sm:px-24 px-8 rounded-2xl" data-aos="zoom-in">
                 <ProductAnimate />
             </div>
+
             {/* Products */}
             <div className="mt-[120vh] sm:mt-[90vh]">
                 {/* Products Navigation */}

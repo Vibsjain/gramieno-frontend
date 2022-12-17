@@ -23,6 +23,7 @@ function Navbar() {
             setCartItems(cart.length);
         }
         setAdded(false);
+        // eslint-disable-next-line
     }, [added]);
 
     return (
@@ -88,23 +89,33 @@ function Navbar() {
                 )}
             </div>
             {open && (
-                <div className="h-[100vh] absolute w-full sm:hidden flex justify-end bg-[rgb(0,0,0,0)]">
+                <div className="h-[100vh] absolute w-full sm:hidden flex justify-end bg-[rgb(0,0,0,0)] z-[10]">
                     <div className="h-full w-8/12 side-nav py-4 px-4">
                         <CloseOutlined
                             className="text-[30px] text-white"
                             onClick={() => setOpen(!open)}
                         />
-                        <ul className="flex flex-col mt-12 gap-4">
+                        <ul className="flex flex-col mt-12 gap-4 justify-center items-center">
                             {navLinks.map((link) => {
                                 return (
                                     <button
-                                        className="text-white text-lg"
+                                        className="text-black text-lg"
                                         onClick={() => navigate(`${link.path}`)}
                                     >
                                         {link.title}
                                     </button>
                                 );
                             })}
+                            <i
+                                className="fa fa-shopping-cart sm:text-[28px] text-[25px] hover:text-black cursor-pointer"
+                                onClick={() => navigate("/cart")}
+                            ></i>
+                            <button
+                                className="flex w-32 py-2 px-4 justify-center items-center border border-black rounded-xl  hover:text-black hover:bg-white text-center"
+                                onClick={() => navigate("/admin")}
+                            >
+                                Sign In
+                            </button>
                         </ul>
                     </div>
                 </div>

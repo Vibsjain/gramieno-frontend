@@ -29,9 +29,10 @@ const Product = () => {
     useEffect(() => {
         getProducts();
         setData(products);
-    });
+        // eslint-disable-next-line
+    },[]);
     return (
-        <div className="px-24 mt-12">
+        <div className="sm:px-24 px-4 mt-12">
             <ProductModal open={open} setOpen={setOpen} id={id} />
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
@@ -40,7 +41,7 @@ const Product = () => {
                             <th scope="col" className={headStyle}>
                                 Product
                             </th>
-                            <th scope="col" className={headStyle}>
+                            <th scope="col" className={`${headStyle} sm:flex hidden`}>
                                 Price
                             </th>
                             <th
@@ -66,7 +67,7 @@ const Product = () => {
                                 >
                                     {item.name}
                                 </th>
-                                <td className="py-4 px-8 about-font">
+                                <td className="py-4 px-8 about-font sm:flex hidden">
                                     {item.price}
                                 </td>
                                 <td className="py-4 px-8 text-center">

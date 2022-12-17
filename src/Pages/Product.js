@@ -7,14 +7,18 @@ import "react-multi-carousel/lib/styles.css";
 import { buyBtn } from "../Assets/Constants";
 import { useParams } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Product = () => {
+    AOS.init();
     const { id } = useParams();
     const { product, getProduct } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
         console.log(id);
         console.log(product);
+        // eslint-disable-next-line
     }, []);
     const responsive1 = {
         superLargeDesktop: {
@@ -48,8 +52,12 @@ const Product = () => {
                                 src={product.images ? product.images[0] : table}
                                 alt="table"
                                 className="w-96 rounded-2xl"
+                                data-aos="zoom-in"
                             />
-                            <div className="flex w-full gap-4 justify-center">
+                            <div
+                                className="flex w-full gap-4 justify-center"
+                                data-aos="zoom-in"
+                            >
                                 {product.images
                                     ? product.images.map((image, index) => (
                                           <img
@@ -61,23 +69,31 @@ const Product = () => {
                                     : null}
                             </div>
                         </div>
-                        <div></div>
                     </div>
                     <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 ">
-                        <h1 className="font-bold text-[20px]">
+                        <h1
+                            className="font-bold text-[20px]"
+                            data-aos="zoom-in"
+                        >
                             {product.name
                                 ? product.name
                                 : "Multipurpose Portable Table (Yellow-Orange)"}
                         </h1>
-                        <div className="pl-4">
+                        <div className="pl-4" data-aos="zoom-in">
                             <h1 className="text-justify">
                                 {product.description}
                             </h1>
                         </div>
-                        <h1 className="pl-4 font-bold text-[20px]">
+                        <h1
+                            className="pl-4 font-bold text-[20px]"
+                            data-aos="zoom-in"
+                        >
                             ₹ {product.price}
                         </h1>
-                        <div className="w-full flex gap-4 justify-center sm:justify-start">
+                        <div
+                            className="w-full flex gap-4 justify-center sm:justify-start"
+                            data-aos="zoom-in"
+                        >
                             <button className={btnClass}>Add to Cart</button>
                             <button className={btnClass}>Buy Now</button>
                         </div>
@@ -85,11 +101,14 @@ const Product = () => {
                 </div>
                 <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
                     <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap:8">
-                        <h1 className="font-bold text-[20px]">
+                        <h1
+                            className="font-bold text-[20px]"
+                            data-aos="zoom-in"
+                        >
                             More Details About the Product
                         </h1>
                         <div className="px-4">
-                            <h1 className="text-justify">
+                            <h1 className="text-justify" data-aos="zoom-in">
                                 {product.description}
                             </h1>
                         </div>
@@ -111,6 +130,7 @@ const Product = () => {
                                         src={image}
                                         alt="table"
                                         className="w-96 h-72 rounded-lg"
+                                        data-aos="zoom-in"
                                     />
                                 ))
                             ) : (
@@ -118,6 +138,7 @@ const Product = () => {
                                     src={table1}
                                     alt="table"
                                     className="w-96 h-72 rounded-2lg"
+                                    data-aos="zoom-in"
                                 />
                             )}
                         </Carousel>
@@ -125,24 +146,33 @@ const Product = () => {
                 </div>
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                <h1
+                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    data-aos="zoom-in"
+                >
                     Woodwork Products
                 </h1>
-                <Slider />
+                <Slider data-aos="zoom-in" />
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                <h1
+                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    data-aos="zoom-in"
+                >
                     Woodwork Products
                 </h1>
-                <Slider />
+                <Slider data-aos="zoom-in" />
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
-                <h1 className="font-bold text-white my-12 px-12 text-[26px]">
+                <h1
+                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    data-aos="zoom-in"
+                >
                     Woodwork Products
                 </h1>
-                <Slider />
+                <Slider data-aos="zoom-in" />
             </div>
-            <Footer />
+            <Footer data-aos="zoom-in" />
         </div>
     );
 };

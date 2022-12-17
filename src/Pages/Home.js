@@ -20,27 +20,8 @@ function Home() {
     const { products, getProducts } = useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
-    const storyText = `text-[#836663]`;
+    // const storyText = `text-[#836663]`;
     const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
-    const responsive1 = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 1,
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 1,
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1,
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-        },
-    };
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -63,6 +44,7 @@ function Home() {
     useEffect(() => {
         getProducts();
         console.log(products);
+        // eslint-disable-next-line
     }, []);
     return (
         <div className="w-full back">
@@ -73,6 +55,11 @@ function Home() {
                 data-aos="fade-up"
             >
                 <HeroAnimate />
+            </div>
+            <div className="sm:hidden flex py-2 ">
+                <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                    Hey, Gramien'O
+                </h1>
             </div>
             {/* Products Section */}
             <div
@@ -114,7 +101,7 @@ function Home() {
                 />
             </div>
             {/* Story Card */}
-            <div
+            {/* <div
                 data-aos="fade-up"
                 className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl "
             >
@@ -147,7 +134,7 @@ function Home() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> */}
             {/* Testimonial Card */}
             <div className="w-full mt-24" data-aos="fade-up">
                 <h1 className="text-center my-12 font-bold text-[30px] text-white">

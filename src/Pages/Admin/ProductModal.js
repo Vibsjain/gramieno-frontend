@@ -5,7 +5,6 @@ import table from "../../Assets/Images/table.png";
 import table1 from "../../Assets/Images/table1.jpeg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { buyBtn } from "../../Assets/Constants";
 import ProductContext from "../../Context/ProductContext";
 
 const ProductModal = ({ open, setOpen, id }) => {
@@ -14,6 +13,7 @@ const ProductModal = ({ open, setOpen, id }) => {
     useEffect(() => {
         getProduct(id);
         setData(product);
+        // eslint-disable-next-line
     }, [product]);
     const responsive1 = {
         superLargeDesktop: {
@@ -34,7 +34,7 @@ const ProductModal = ({ open, setOpen, id }) => {
             items: 1,
         },
     };
-    const btnClass = buyBtn;
+    
     return (
         <Modal
             visible={open}
@@ -71,7 +71,6 @@ const ProductModal = ({ open, setOpen, id }) => {
                                         : null}
                                 </div>
                             </div>
-                            <div></div>
                         </div>
                         <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 text-black">
                             <h1 className="font-bold text-[20px]">
@@ -79,7 +78,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                     ? product.name
                                     : "Multipurpose Portable Table (Yellow-Orange)"}
                             </h1>
-                            <div className="pl-4">
+                            <div className="sm:pl-4 px-2">
                                 <h1 className="text-justify">
                                     {product.description}
                                 </h1>

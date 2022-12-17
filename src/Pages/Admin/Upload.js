@@ -35,12 +35,12 @@ const Upload = () => {
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
     return (
-        <div className="w-full px-48 mt-24 about-font">
+        <div className="w-full sm:px-48 px-4 mt-24 about-font">
             <div className="bg-[#141C2F] rounded-2xl min-h-[70vh]">
                 <h1 className="text-center text-[25px] font-bold text-white py-8 px-12 about-font">
                     Add a new Product
                 </h1>
-                <div className="px-36">
+                <div className="sm:px-36 px-4">
                     <label className={labelStyle}>Category</label>
                     <select
                         name="category"

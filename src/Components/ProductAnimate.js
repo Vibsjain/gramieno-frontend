@@ -19,7 +19,7 @@ const ProductAnimate = () => {
                         />
                     </div>
                     <div className="sm:w-5/12 w-full sm:py-0 py-8 flex flex-col justify-center items-center gap-4 bg-white sm:rounded-t-[0px] sm:rounded-tr-2xl rounded-br-2xl sm:rounded-bl-[0px] rounded-bl-2xl ">
-                        <img src={Logo} />
+                        <img src={Logo} alt = "product"/>
                         <h1 className="sm:px-12 px-8 font-bold text-[18px]">
                             Village Mart for the Urban Heart
                         </h1>

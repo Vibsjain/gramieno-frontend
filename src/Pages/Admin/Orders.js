@@ -24,7 +24,7 @@ const Orders = () => {
         },
     ];
     return (
-        <div className="px-24 mt-12 about-font">
+        <div className="sm:px-24 px-4 mt-12 about-font">
             <OrderModal open={open} setOpen={setOpen} />
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
@@ -33,7 +33,7 @@ const Orders = () => {
                             <th scope="col" className={headStyle}>
                                 Person
                             </th>
-                            <th scope="col" className={headStyle}>
+                            <th scope="col" className={`${headStyle} sm:flex hidden`}>
                                 Product
                             </th>
                             <th
@@ -59,7 +59,7 @@ const Orders = () => {
                                 >
                                     {item.name}
                                 </th>
-                                <td className="py-4 px-8 about-font text-[14px]">
+                                <td className="py-4 px-8 about-font text-[14px] hidden sm:flex">
                                     {item.product}
                                 </td>
                                 <td className="py-4 px-8 text-center">

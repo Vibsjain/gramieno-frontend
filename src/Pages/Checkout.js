@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navbar, Footer, Slider } from "../Components";
-import { useNavigate } from "react-router-dom";
+import { Navbar, Footer } from "../Components";
+// import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 
 const Checkout = () => {
     const { added, setAdded, products, getProducts } =
         useContext(ProductContext);
-    const navigate = useNavigate();
     const [orders, setOrders] = useState([]);
     const [user, setUser] = useState({
         name: "",
@@ -22,6 +21,7 @@ const Checkout = () => {
         if (orders) {
             setOrders(orders);
         }
+        // eslint-disable-next-line
     }, [added]);
     return (
         <div className="back">

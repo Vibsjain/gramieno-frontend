@@ -43,7 +43,7 @@ const Admin = () => {
                         />
                     </div>
                     <div className="flex w-8/12 justify-end items-center gap-12 px-4">
-                        <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl flex items-center font-bold h-12">
+                        <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl sm:flex hidden items-center font-bold h-12">
                             Vaibhav Gupta
                         </h1>
                         <HomeOutlined
@@ -60,14 +60,14 @@ const Admin = () => {
             </div>
 
             <div className="mt-12 mb-24 w-full">
-                <h1 className="text-white font-bold text-[70px] text-center about-font">
+                <h1 className="text-white font-bold sm:text-[70px] text-[40px] text-center about-font">
                     Hey, Gramien'O
                 </h1>
             </div>
 
             {/* Navigation Tabs */}
-            <div className="flex w-full px-36 justify-center items-center">
-                <ul class="flex gap-4">
+            <div className="flex w-full sm:px-36 px-2 justify-center items-center">
+                <ul class="flex flex-wrap justify-center w-full gap-4">
                     <li>
                         <button
                             class={`${navButtonStyle} ${
@@ -112,9 +112,9 @@ const Admin = () => {
                     </li>
                 </ul>
             </div>
-            {currentTab == 0 ? (
+            {currentTab === 0 ? (
                 <Orders />
-            ) : currentTab == 1 ? (
+            ) : currentTab === 1 ? (
                 <Product />
             ) : (
                 <Upload />
