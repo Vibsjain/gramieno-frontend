@@ -5,3 +5,7 @@ export { default as OurStory } from "./OurStory";
 export { default as Admin } from "./Admin";
 export { default as Cart } from "./Cart";
 export { default as Checkout } from "./Checkout";
+export { default as TermsConditions } from "./TermsConditions";
+export { default as CancellationRefundPolicy } from "./CancellationRefundPolicy";
+export { default as ShippingPolicy } from "./ShippingPolicy";
+export { default as PrivacyPolicy } from "./PrivacyPolicy";

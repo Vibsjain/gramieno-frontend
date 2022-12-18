@@ -10,6 +10,10 @@ import {
     Admin,
     Cart,
     Checkout,
+    CancellationRefundPolicy,
+    ShippingPolicy,
+    TermsConditions,
+    PrivacyPolicy,
 } from "./Pages";
 import ProductState from "./Context/ProductState";
 
@@ -25,6 +29,13 @@ render(
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/terms-conditions" element={<TermsConditions />} />
+                <Route
+                    path="/cancellation-refund-policy"
+                    element={<CancellationRefundPolicy />}
+                />
+                <Route path="/shipping-policy" element={<ShippingPolicy />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
         </BrowserRouter>
     </ProductState>,

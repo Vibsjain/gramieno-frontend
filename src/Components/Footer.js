@@ -30,7 +30,7 @@ const Footer = () => {
         { title: "Shipping Policy", path: "/shipping-policy" },
     ];
     return (
-        <div className="w-full py-4 sm:mt-10 mt-8">
+        <div className="w-full py-4 sm:mt-10 mt-8 ">
             <div className="w-full flex justify-center items-center">
                 <div className="sm:w-8/12 w-10/12 sm:h-[3px] h-[1px] bg-white rounded-xl"></div>
             </div>
@@ -52,6 +52,7 @@ const Footer = () => {
                             <button
                                 className="sm:text-[18px] text-[16px] text-white sm:text-left"
                                 key={index}
+                                onClick={() => navigate(link.path)}
                             >
                                 {link.title}
                             </button>
