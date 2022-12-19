@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { adminShowBtn, tableHeadStyle } from "../../Assets/Constants";
 import OrderModal from "./OrderModal";
+import ProductContext from "../../Context/ProductContext";
 
 const Orders = () => {
+    const { orders, getOrders, products, getProducts } =
+        useContext(ProductContext);
     const [open, setOpen] = useState(false);
+    const [id, setId] = useState("");
     const headStyle = tableHeadStyle;
     const data = [
         {
@@ -23,9 +27,13 @@ const Orders = () => {
             name: "John Dow",
         },
     ];
+    useEffect(() => {
+        getOrders();
+        getProducts();
+    }, []);
     return (
         <div className="sm:px-24 px-4 mt-12 about-font">
-            <OrderModal open={open} setOpen={setOpen} />
+            <OrderModal open={open} setOpen={setOpen} id={id} />
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-white  bg-[rgb(20,28,47)] py-2 px-2">
@@ -33,7 +41,10 @@ const Orders = () => {
                             <th scope="col" className={headStyle}>
                                 Person
                             </th>
-                            <th scope="col" className={`${headStyle} sm:flex hidden`}>
+                            <th
+                                scope="col"
+                                className={`${headStyle} sm:flex hidden`}
+                            >
                                 Product
                             </th>
                             <th
@@ -45,7 +56,7 @@ const Orders = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => (
+                        {orders.map((item, index) => (
                             <tr
                                 className={`text-white bg-[#192335] border-b ${
                                     index % 2 === 0
@@ -57,15 +68,24 @@ const Orders = () => {
                                     scope="row"
                                     className="py-4 px-8 font-medium whitespace-nowrap about-font text-[14px]"
                                 >
-                                    {item.name}
+                                    {item.shippingAddress.fullName}{" "}
                                 </th>
                                 <td className="py-4 px-8 about-font text-[14px] hidden sm:flex">
-                                    {item.product}
+                                    {
+                                        products.find(
+                                            (product) =>
+                                                product._id ===
+                                                item.orderItems[0].id
+                                        ).name
+                                    }
                                 </td>
                                 <td className="py-4 px-8 text-center">
                                     <button
                                         className={adminShowBtn}
-                                        onClick={() => setOpen(true)}
+                                        onClick={() => {
+                                            setId(item._id);
+                                            setOpen(true);
+                                        }}
                                     >
                                         Show More
                                     </button>

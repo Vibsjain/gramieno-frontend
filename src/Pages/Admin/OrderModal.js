@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-awesome-modal";
 import { CloseOutlined } from "@ant-design/icons";
-import table from "../../Assets/Images/table.png";
-import table1 from "../../Assets/Images/table1.jpeg";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { buyBtn } from "../../Assets/Constants";
+import ProductContext from "../../Context/ProductContext";
 
-const OrderModal = ({ open, setOpen }) => {
+const OrderModal = ({ open, setOpen, id }) => {
+    const { order, getOrder, products, getProducts } =
+        useContext(ProductContext);
+
     const responsive1 = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -27,6 +28,13 @@ const OrderModal = ({ open, setOpen }) => {
             items: 1,
         },
     };
+    useEffect(() => {
+        getOrder(id);
+        console.log(order);
+        getProducts();
+        // eslint-disable-next-line
+    }, []);
+
     const btnClass = buyBtn;
     return (
         <Modal
@@ -44,113 +52,27 @@ const OrderModal = ({ open, setOpen }) => {
                     />
                 </div>
                 <div className="sm:px-12 sm:py-12 px-2 py-8">
-                    <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
-                        <div className="sm:w-1/2 w-full flex gap-16 items-center ">
-                            <div className="flex flex-col w-full gap-4">
-                                <img
-                                    src={table}
-                                    alt="table"
-                                    className="w-full rounded-2xl"
-                                />
-                                <div className="flex w-full gap-4 justify-center">
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                    <img
-                                        src={table}
-                                        alt="table"
-                                        className="w-20 h-20 rounded-2xl"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 text-black">
-                            <h1 className="font-bold text-[20px]">
-                                Multipurpose Portable Table (Yellow-Orange)
-                            </h1>
-                            <div className="pl-4">
-                                <h1>
-                                    &bull; Ideal for professionals(WFH) &
-                                    College Students
-                                </h1>
-                                <h1>
-                                    &bull; Separate section for laptop, notepad
-                                    and mobile
-                                </h1>
-                                <h1>
-                                    &bull; Adjustable at 5 different angles for
-                                    ease of operation
-                                </h1>
-                                <h1>
-                                    &bull; Easy to carry (3.5 kgs) 25 inches (L)
-                                    x 14.5 inches (B) x 9.5 inches (H)
-                                </h1>
-                            </div>
-                            <h1 className="pl-4 font-bold text-[20px]">
-                                ₹ 2250.00
-                            </h1>
+                    <h1 className="text-center font-bold text-xl">
+                        Order Details
+                    </h1>
+                    <div className="my-2">
+                        <h1 className="italic font-bold">Customer's Details</h1>
+                        <div className="my-2">
+                            <h1>Name : {"Vaibhav"}</h1>
+                            <h1>Address : {"Vaibhav"}</h1>
+                            <h1>City : {"Vaibhav"}</h1>
+                            <h1>Postal Code : {"Vaibhav"}</h1>
+                            <h1>Email : {"Vaibhav"}</h1>
+                            <h1>Phone : {"Vaibhav"}</h1>
                         </div>
                     </div>
-                    <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
-                        <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap-8 text-black">
-                            <h1 className="font-bold text-[20px]">
-                                More Details About the Product
-                            </h1>
-                            <h1>
-                                Ideal for professionals(WFH) & College Students
-                            </h1>
-                            <div className="pl-4">
-                                <h1>
-                                    &bull; Separate section for laptop, notepad
-                                    and mobile
-                                </h1>
-                                <h1>
-                                    &bull; Adjustable at 5 different angles for
-                                    ease of operation
-                                </h1>
-                                <h1>
-                                    &bull; Easy to carry (3.5 kgs) 25 inches (L)
-                                    x 14.5 inches (B) x 9.5 inches (H)
-                                </h1>
-                                <h1>
-                                    &bull; Ghana Teak base for sturdiness and
-                                    durability{" "}
-                                </h1>
-                                <h1>
-                                    &bull; Recycled wood melamine coated top for
-                                    elegant finish
-                                </h1>
-                            </div>
-                        </div>
-                        <div className="sm:w-1/2 w-full">
-                            <Carousel
-                                responsive={responsive1}
-                                infinite={true}
-                                autoPlay={true}
-                                autoPlaySpeed={1000}
-                                transitionDuration={700}
-                                className="w-full"
-                                showDots={false}
-                                arrows={false}
-                            >
-                                <img
-                                    src={table}
-                                    alt="table"
-                                    className="w-96 h-72 rounded-2xl"
-                                />
-                                <img
-                                    src={table1}
-                                    alt="table"
-                                    className="w-96 h-72 rounded-2xl"
-                                />
-                            </Carousel>
+
+                    <div className="my-2">
+                        <h1 className="italic font-bold">Item's Details</h1>
+                        <div className="my-2">
+                            <h1>Item Name : {"Vaibhav"}</h1>
+                            <h1>Item Price : {"Vaibhav"}</h1>
+                            <h1>Item Quantity : {"Vaibhav"}</h1>    
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ const Upload = () => {
             price: 0,
             description: "",
             countInStock: 0,
-            images: [],
+            images: "",
             dimensions: [
                 {
                     length: 0,
@@ -23,13 +23,14 @@ const Upload = () => {
         },
     ]);
     const handleUpload = () => {
+        const multipleImages = imageData.join(",");
         setData([
             {
                 ...data,
-                images: imageData,
+                images: multipleImages,
             },
         ]);
-        console.log(imageData);
+        console.log(multipleImages);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
@@ -143,6 +144,19 @@ const Upload = () => {
                             setData({
                                 ...data,
                                 price: e.target.value,
+                            });
+                        }}
+                    />
+                    <label class={labelStyle}>Count In Stock</label>
+                    <input
+                        type="number"
+                        id="stock"
+                        class={inputStyle}
+                        placeholder="Number of Items in Stock"
+                        onChange={(e) => {
+                            setData({
+                                ...data,
+                                countInStock: e.target.value,
                             });
                         }}
                     />
