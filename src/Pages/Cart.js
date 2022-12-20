@@ -18,13 +18,14 @@ const Cart = () => {
         }
         getProducts();
         console.log(products);
+        window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, []);
     const buyBtn = `w-8 h-8 justify-center items-center border-2 border-white rounded-[6px] text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold`;
     const Card = ({ id, quantity }) => {
         const product = products.find((item) => item._id === id);
         return (
-            <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg " data-aos="zoom-in">
+            <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
                 <div className="sm:w-4/12 w-full flex gap-16">
                     <img
                         src={product.images[0]}
@@ -151,7 +152,7 @@ const Cart = () => {
                                 <Card id={item.id} quantity={item.quantity} />
                             ))}
                         </div>
-                        <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4" data-aos="zoom-in">
+                        <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4">
                             <div className="flex flex-col w-full justify-between min-h-[300px]  bg-white px-4 rounded-lg py-4 ">
                                 <div className="flex flex-col w-full ">
                                     <h1 className="text-center font-bold text-[18px]">

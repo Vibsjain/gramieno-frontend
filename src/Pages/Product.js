@@ -18,6 +18,7 @@ const Product = () => {
         getProduct(id);
         console.log(id);
         console.log(product);
+        window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, []);
     const responsive1 = {

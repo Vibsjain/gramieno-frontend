@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Footer, MobileTitle } from "../Components";
 
 const PrivacyPolicy = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     const divStyle = `flex flex-col text-justify text-white text-[16px] gap-8 my-12 about-font`;
     const boldFontStyle = `font-bold text-[20px] uppercase text-left`;
     const subHeadingStyle = `text-[18px] underline`;
@@ -416,7 +419,7 @@ const PrivacyPolicy = () => {
                         customer account information.
                     </h1>
                 </div>
-                <hr/>
+                <hr />
                 <div className={divStyle}>
                     <h1 className={boldFontStyle}>Reporting and Analytics</h1>
                     <h1 className="italic">

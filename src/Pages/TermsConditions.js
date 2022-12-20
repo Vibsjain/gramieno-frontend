@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Footer, MobileTitle } from "../Components";
 
 const TermsConditions = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     const divStyle = `flex flex-col text-justify text-white text-[18px] gap-8 my-12 text-left`;
     const boldFontStyle = `font-bold text-[22px] uppercase text-left`;
     return (

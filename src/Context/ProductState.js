@@ -23,7 +23,6 @@ const ProductState = (props) => {
         const res = await api.get(`/products/${id}`);
         setProduct(res.data[0]);
         setLoading(false);
-        console.log(product);
     };
 
     const addProduct = async (product) => {

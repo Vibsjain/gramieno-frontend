@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Logo from "../Assets/Images/logo.png";
 import { Navbar, Footer } from "../Components";
 import AOS from "aos";
@@ -6,6 +6,9 @@ import "aos/dist/aos.css";
 
 const OurStory = () => {
     AOS.init();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     const aboutText = `Logo 
     Gramien (Village) 'O (Global) : We bring products from the heartland which can have global appeal and acceptance.
     Diya is indicative of spreading the light and prosperity for all stakeholders associated with the brand.

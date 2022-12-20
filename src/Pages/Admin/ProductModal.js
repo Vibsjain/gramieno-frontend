@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-awesome-modal";
-import { CloseOutlined, EditFilled, PlusCircleOutlined } from "@ant-design/icons";
+import {
+    CloseOutlined,
+    EditFilled,
+    PlusCircleOutlined,
+} from "@ant-design/icons";
 import table from "../../Assets/Images/table.png";
 import table1 from "../../Assets/Images/table1.jpeg";
 import Carousel from "react-multi-carousel";
@@ -52,7 +56,10 @@ const ProductModal = ({ open, setOpen, id }) => {
                     <div className="flex w-full justify-end px-4 py-4">
                         <CloseOutlined
                             className="text-black hover:font-bold text-[20px]"
-                            onClick={() => setOpen(!open)}
+                            onClick={() => {
+                                setEdit(false);
+                                setOpen(!open);
+                            }}
                         />
                     </div>
                 </div>
@@ -65,7 +72,10 @@ const ProductModal = ({ open, setOpen, id }) => {
                         />
                         <CloseOutlined
                             className="text-black hover:font-bold text-[20px]"
-                            onClick={() => setOpen(!open)}
+                            onClick={() => {
+                                setEdit(false);
+                                setOpen(!open);
+                            }}
                         />
                     </div>
                     <div className="sm:px-12 sm:py-12 px-2 py-8">
@@ -108,14 +118,14 @@ const ProductModal = ({ open, setOpen, id }) => {
                                     </span>
                                     {product.category}
                                 </h1>
-                                <h1 className="pl-4 text-[20px]">
+                                {/* <h1 className="pl-4 text-[20px]">
                                     <span className="font-bold">
                                         Dimensions :{" "}
                                     </span>
                                     {product.dimensions[0]} x{" "}
                                     {product.dimensions[1]} x{" "}
                                     {product.dimensions[2]}
-                                </h1>
+                                </h1> */}
                                 <div className="sm:pl-4 px-2">
                                     <h1 className="text-justify">
                                         {product.description}

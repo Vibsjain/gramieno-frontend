@@ -4,16 +4,23 @@ import { Navbar, Footer } from "../Components";
 import ProductContext from "../Context/ProductContext";
 
 const Checkout = () => {
-    const { added, setAdded, products, getProducts } =
+    const { added, setAdded, products, getProducts, addOrder } =
         useContext(ProductContext);
     const [orders, setOrders] = useState([]);
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        state: "",
-        pincode: "",
+    const [order, setOrder] = useState({
+        orderItems: [],
+        shippingAddress: {
+            fullName: "",
+            email: "",
+            phone: "",
+            address: "",
+            city: "",
+            postalCode: "",
+        },
+        orderDate: "",
+        totalPrice: 0,
+        isDelivered: false,
+        deliveredAt: "",
     });
     useEffect(() => {
         getProducts();
@@ -21,6 +28,9 @@ const Checkout = () => {
         if (orders) {
             setOrders(orders);
         }
+        console.log(orders);
+        console.log(products);
+        window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, [added]);
     return (
@@ -49,12 +59,15 @@ const Checkout = () => {
                                     <input
                                         type="text"
                                         className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                        value={user.name}
+                                        value={order.shippingAddress.fullName}
                                         placeholder="Enter Your Name"
                                         onChange={(e) =>
-                                            setUser({
-                                                ...user,
-                                                name: e.target.value,
+                                            setOrder({
+                                                ...order,
+                                                shippingAddress: {
+                                                    ...order.shippingAddress,
+                                                    fullName: e.target.value,
+                                                },
                                             })
                                         }
                                     />
@@ -67,12 +80,15 @@ const Checkout = () => {
                                     <input
                                         type="email"
                                         className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                        value={user.email}
+                                        value={order.shippingAddress.email}
                                         placeholder="Enter Your Email"
                                         onChange={(e) =>
-                                            setUser({
-                                                ...user,
-                                                email: e.target.value,
+                                            setOrder({
+                                                ...order,
+                                                shippingAddress: {
+                                                    ...order.shippingAddress,
+                                                    email: e.target.value,
+                                                },
                                             })
                                         }
                                     />
@@ -85,12 +101,15 @@ const Checkout = () => {
                                     <input
                                         type="phone"
                                         className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                        value={user.phone}
+                                        value={order.shippingAddress.phone}
                                         placeholder="Enter Your Phone No."
                                         onChange={(e) =>
-                                            setUser({
-                                                ...user,
-                                                phone: e.target.value,
+                                            setOrder({
+                                                ...order,
+                                                shippingAddress: {
+                                                    ...order.shippingAddress,
+                                                    phone: e.target.value,
+                                                },
                                             })
                                         }
                                     />
@@ -103,12 +122,15 @@ const Checkout = () => {
                                     <textarea
                                         type="text"
                                         className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                        value={user.address}
+                                        value={order.shippingAddress.address}
                                         placeholder="Enter Your Address"
                                         onChange={(e) =>
-                                            setUser({
-                                                ...user,
-                                                address: e.target.value,
+                                            setOrder({
+                                                ...order,
+                                                shippingAddress: {
+                                                    ...order.shippingAddress,
+                                                    address: e.target.value,
+                                                },
                                             })
                                         }
                                         rows={5}
@@ -117,17 +139,20 @@ const Checkout = () => {
                                 <div className="flex gap-4 sm:flex-row flex-col w-full justify-between">
                                     <div className="my-4">
                                         <label className="text-[15px] pl-2">
-                                            State
+                                            City
                                         </label>
                                         <input
                                             type="text"
                                             className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                            value={user.state}
-                                            placeholder="Enter Your State"
+                                            value={order.shippingAddress.city}
+                                            placeholder="Enter Your City"
                                             onChange={(e) =>
-                                                setUser({
-                                                    ...user,
-                                                    state: e.target.value,
+                                                setOrder({
+                                                    ...order,
+                                                    shippingAddress: {
+                                                        ...order.shippingAddress,
+                                                        city: e.target.value,
+                                                    },
                                                 })
                                             }
                                         />
@@ -137,14 +162,20 @@ const Checkout = () => {
                                             Pincode
                                         </label>
                                         <input
-                                            type="pincode"
+                                            type="postalCode"
                                             className="w-full border-2 border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-[#FFC107]"
-                                            value={user.pincode}
+                                            value={
+                                                order.shippingAddress.postalCode
+                                            }
                                             placeholder="Enter Your Pincode"
                                             onChange={(e) =>
-                                                setUser({
-                                                    ...user,
-                                                    pincode: e.target.value,
+                                                setOrder({
+                                                    ...order,
+                                                    shippingAddress: {
+                                                        ...order.shippingAddress,
+                                                        postalCode:
+                                                            e.target.value,
+                                                    },
                                                 })
                                             }
                                         />
@@ -222,7 +253,7 @@ const Checkout = () => {
                             <button
                                 className="w-[100%] px-4 h-16 justify-center items-center border-2 border-white rounded-[6px] text-[20px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold"
                                 onClick={() => {
-                                    console.log(user);
+                                    // console.log(order);
                                     setAdded(true);
                                     localStorage.removeItem("orders");
                                     localStorage.removeItem("cart");
