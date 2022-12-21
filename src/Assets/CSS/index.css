@@ -102,3 +102,12 @@ li.hero:nth-child(1) {
     opacity:0;
   }
 }
+
+.input-file input[type="file" i]::-webkit-file-upload-button{
+  background-color: white;
+  border : 1px;
+  border-color: black;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: #1E293B;
+}

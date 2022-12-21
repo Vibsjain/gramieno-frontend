@@ -16,6 +16,7 @@ const Cart = () => {
         if (cart) {
             setCart(cart);
         }
+        console.log(cart);
         getProducts();
         console.log(products);
         window.scrollTo(0, 0);
@@ -28,7 +29,7 @@ const Cart = () => {
             <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
                 <div className="sm:w-4/12 w-full flex gap-16">
                     <img
-                        src={product.images[0]}
+                        src={product.image1}
                         alt="table"
                         className="w-96 rounded-tl-lg sm:rounded-bl-lg rounded-t-lg"
                     />

@@ -45,7 +45,7 @@ const Orders = () => {
                                 scope="col"
                                 className={`${headStyle} sm:flex hidden`}
                             >
-                                Product
+                                Delivery Status
                             </th>
                             <th
                                 scope="col"
@@ -71,13 +71,15 @@ const Orders = () => {
                                     {item.shippingAddress.fullName}{" "}
                                 </th>
                                 <td className="py-4 px-8 about-font text-[14px] hidden sm:flex">
-                                    {
-                                        products.find(
-                                            (product) =>
-                                                product._id ===
-                                                item.orderItems[0].id
-                                        ).name
-                                    }
+                                    {item.isDelivered ? (
+                                        <span className="font-bold text-green-500">
+                                            Delivered
+                                        </span>
+                                    ) : (
+                                        <span className="font-bold text-red-500">
+                                            Not Delivered
+                                        </span>
+                                    )}
                                 </td>
                                 <td className="py-4 px-8 text-center">
                                     <button

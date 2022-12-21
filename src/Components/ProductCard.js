@@ -3,14 +3,17 @@ import { buyBtn } from "../Assets/Constants";
 import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 
-const ProductCard = ({ image, item, description, price, id }) => {
-    const { added, setAdded } = useContext(ProductContext);
+const ProductCard = ({ image1, item, description, price, id }) => {
+    const { setAdded } = useContext(ProductContext);
     const navigate = useNavigate();
     const btnClass = buyBtn;
     return (
         <div className="w-[20rem] drop-shadow-2xl about-font rounded-2xl zoom ">
             <div className="w-[20rem] bg-white h-[18rem] rounded-t-2xl">
-                <img src={image} className="rounded-t-2xl h-full w-full "></img>
+                <img
+                    src={image1}
+                    className="rounded-t-2xl h-full w-full "
+                ></img>
             </div>
             <div className="flex flex-col gap-4 justify-between w-[20rem] min-h-[10rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
                 <div className="flex w-full justify-between">
@@ -44,7 +47,11 @@ const ProductCard = ({ image, item, description, price, id }) => {
                                         JSON.stringify(cart)
                                     );
                                 } else {
-                                    cart.push({ id, quantity: 1 });
+                                    cart.push({
+                                        id,
+                                        quantity: 1,
+                                        price: price,
+                                    });
                                     localStorage.setItem(
                                         "cart",
                                         JSON.stringify(cart)
@@ -53,7 +60,9 @@ const ProductCard = ({ image, item, description, price, id }) => {
                             } else {
                                 localStorage.setItem(
                                     "cart",
-                                    JSON.stringify([{ id, quantity: 1 }])
+                                    JSON.stringify([
+                                        { id, quantity: 1, price: price },
+                                    ])
                                 );
                             }
                             setAdded(true);

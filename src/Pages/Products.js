@@ -24,6 +24,7 @@ const Products = () => {
     useEffect(() => {
         getProducts();
         setData(products);
+        console.log(products);
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, []);
@@ -112,7 +113,7 @@ const Products = () => {
                                 key={index}
                                 item={product.name}
                                 price={product.price}
-                                image={product.images[0]}
+                                image1={product.image1}
                                 description={product.description}
                             />
                         </div>

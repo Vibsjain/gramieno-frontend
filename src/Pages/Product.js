@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Navbar, Footer, Slider } from "../Components";
 import table from "../Assets/Images/table.png";
 import table1 from "../Assets/Images/table1.jpeg";
@@ -13,12 +13,14 @@ import "aos/dist/aos.css";
 const Product = () => {
     AOS.init();
     const { id } = useParams();
+    const [image, setImage] = useState("");
     const { product, getProduct } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
         console.log(id);
         console.log(product);
         window.scrollTo(0, 0);
+        setImage(product.image1);
         // eslint-disable-next-line
     }, []);
     const responsive1 = {
@@ -49,25 +51,54 @@ const Product = () => {
                 <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
                     <div className="sm:w-1/2 w-full flex gap-16">
                         <div className="flex flex-col w-full gap-4 items-center">
-                            <img
-                                src={product.images ? product.images[0] : table}
-                                alt="table"
-                                className="w-96 rounded-2xl"
-                                data-aos="zoom-in"
-                            />
+                            <div className="w-96 h-84">
+                                <img
+                                    src={image}
+                                    alt="table"
+                                    className="w-96 h-80 rounded-2xl"
+                                    data-aos="zoom-in"
+                                />
+                            </div>
                             <div
                                 className="flex w-full gap-4 justify-center"
                                 data-aos="zoom-in"
                             >
-                                {product.images
-                                    ? product.images.map((image, index) => (
-                                          <img
-                                              src={image}
-                                              alt="table"
-                                              className="w-20 h-20 rounded-2xl"
-                                          />
-                                      ))
-                                    : null}
+                                <img
+                                    src={
+                                        product.image1 ? product.image1 : table
+                                    }
+                                    alt="table"
+                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    data-aos="zoom-in"
+                                    onClick={() => setImage(product.image1)}
+                                />
+                                <img
+                                    src={
+                                        product.image1 ? product.image2 : table
+                                    }
+                                    alt="table"
+                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    data-aos="zoom-in"
+                                    onClick={() => setImage(product.image2)}
+                                />
+                                <img
+                                    src={
+                                        product.image1 ? product.image3 : table
+                                    }
+                                    alt="table"
+                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    data-aos="zoom-in"
+                                    onClick={() => setImage(product.image3)}
+                                />
+                                <img
+                                    src={
+                                        product.image1 ? product.image4 : table
+                                    }
+                                    alt="table"
+                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    data-aos="zoom-in"
+                                    onClick={() => setImage(product.image4)}
+                                />
                             </div>
                         </div>
                     </div>
@@ -125,23 +156,30 @@ const Product = () => {
                             showDots={false}
                             arrows={false}
                         >
-                            {product.images ? (
-                                product.images.map((image, index) => (
-                                    <img
-                                        src={image}
-                                        alt="table"
-                                        className="w-96 h-72 rounded-lg"
-                                        data-aos="zoom-in"
-                                    />
-                                ))
-                            ) : (
-                                <img
-                                    src={table1}
-                                    alt="table"
-                                    className="w-96 h-72 rounded-2lg"
-                                    data-aos="zoom-in"
-                                />
-                            )}
+                            <img
+                                src={product.image1}
+                                alt="table"
+                                className="w-96 h-72 rounded-lg"
+                                data-aos="zoom-in"
+                            />
+                            <img
+                                src={product.image2}
+                                alt="table"
+                                className="w-96 h-72 rounded-lg"
+                                data-aos="zoom-in"
+                            />
+                            <img
+                                src={product.image3}
+                                alt="table"
+                                className="w-96 h-72 rounded-lg"
+                                data-aos="zoom-in"
+                            />
+                            <img
+                                src={product.image4}
+                                alt="table"
+                                className="w-96 h-72 rounded-lg"
+                                data-aos="zoom-in"
+                            />
                         </Carousel>
                     </div>
                 </div>

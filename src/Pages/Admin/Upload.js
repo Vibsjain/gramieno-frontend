@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { PlusCircleOutlined, CloseOutlined } from "@ant-design/icons";
 import "../../Assets/CSS/index.css";
 import FileBase64 from "react-file-base64";
+import ProductContext from "../../Context/ProductContext";
 
 const Upload = () => {
-    const [imageData, setImageData] = useState([]);
+    const { addProduct } = useContext(ProductContext);
+    // const [imageData, setImageData] = useState([]);
     const [data, setData] = useState([
         {
             name: "",
@@ -12,25 +14,17 @@ const Upload = () => {
             price: 0,
             description: "",
             countInStock: 0,
-            images: "",
-            dimensions: [
-                {
-                    length: 0,
-                    bredth: 0,
-                    height: 0,
-                },
-            ],
+            image1: "",
+            image2: "",
+            image3: "",
+            image4: "",
+            length: 0,
+            breadth: 0,
+            height: 0,
         },
     ]);
     const handleUpload = () => {
-        const multipleImages = imageData.join(",");
-        setData([
-            {
-                ...data,
-                images: multipleImages,
-            },
-        ]);
-        console.log(multipleImages);
+        addProduct(data);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
@@ -48,6 +42,7 @@ const Upload = () => {
                         id="category"
                         class={inputStyle}
                         placeholder="Category"
+                        value={data.category}
                         onChange={(e) => {
                             setData({
                                 ...data,
@@ -65,6 +60,7 @@ const Upload = () => {
                         id="title"
                         class={inputStyle}
                         placeholder="Name of the Product"
+                        value = {data.name}
                         onChange={(e) => {
                             setData({
                                 ...data,
@@ -78,14 +74,12 @@ const Upload = () => {
                             type="number"
                             id="length"
                             class={inputStyle}
-                            placeholder="Length"
+                            placeholder="Length" 
+                            value={data.length}
                             onChange={(e) => {
                                 setData({
                                     ...data,
-                                    dimensions: {
-                                        ...data.dimensions,
-                                        length: e.target.value,
-                                    },
+                                    length: e.target.value,
                                 });
                             }}
                         />
@@ -94,13 +88,11 @@ const Upload = () => {
                             id="bredth"
                             class={inputStyle}
                             placeholder="Breadth"
+                            value={data.breadth}
                             onChange={(e) => {
                                 setData({
                                     ...data,
-                                    dimensions: {
-                                        ...data.dimensions,
-                                        breadth: e.target.value,
-                                    },
+                                    breadth: e.target.value,
                                 });
                             }}
                         />
@@ -109,13 +101,11 @@ const Upload = () => {
                             id="height"
                             class={inputStyle}
                             placeholder="Height"
+                            value={data.height}
                             onChange={(e) => {
                                 setData({
                                     ...data,
-                                    dimensions: {
-                                        ...data.dimensions,
-                                        height: e.target.value,
-                                    },
+                                    height: e.target.value,
                                 });
                             }}
                         />
@@ -126,6 +116,7 @@ const Upload = () => {
                         id="desc"
                         class={inputStyle}
                         placeholder="Description"
+                        value={data.description}
                         rows={5}
                         onChange={(e) => {
                             setData({
@@ -140,6 +131,7 @@ const Upload = () => {
                         id="price"
                         class={inputStyle}
                         placeholder="₹ Price"
+                        value={data.price}
                         onChange={(e) => {
                             setData({
                                 ...data,
@@ -153,6 +145,7 @@ const Upload = () => {
                         id="stock"
                         class={inputStyle}
                         placeholder="Number of Items in Stock"
+                        value={data.countInStock}
                         onChange={(e) => {
                             setData({
                                 ...data,
@@ -161,65 +154,59 @@ const Upload = () => {
                         }}
                     />
 
-                    <label class={labelStyle}>Add Images</label>
-                    <div>
-                        <div className="flex gap-4 justify-center items-center bg-white w-36 h-12 rounded-xl">
-                            <h1 className="text-[#141C2F] uppercase font-extrabold">
-                                Add{" "}
-                            </h1>
-                            <PlusCircleOutlined
-                                className="text-[30px] text-[#141C2F] cursor pointer"
-                                onClick={() => {
-                                    document.getElementById("images").click();
-                                }}
-                            />
-                        </div>
-                        <input
+                    <label class={labelStyle}>Add Images (Max. 4)</label>
+                    <div className="input-file">
+                        <FileBase64
                             type="file"
-                            id="images"
-                            class={inputStyle}
-                            placeholder="Images"
-                            multiple
-                            className="hidden absolute"
-                            onChange={(e) => {
-                                const files = e.target.files;
-                                const fileArray = Array.from(files);
-                                fileArray.forEach((file) => {
-                                    const reader = new FileReader();
-                                    reader.onloadend = () => {
-                                        setImageData((prev) => [
-                                            ...prev,
-                                            reader.result,
-                                        ]);
-                                    };
-                                    reader.readAsDataURL(file);
+                            multiple={true}
+                            className="w-full bg-black"
+                            onDone={(files) => {
+                                setData({
+                                    ...data,
+                                    image1: files[0] ? files[0].base64 : "",
+                                    image2: files[1] ? files[1].base64 : "",
+                                    image3: files[2] ? files[2].base64 : "",
+                                    image4: files[3] ? files[3].base64 : "",
                                 });
                             }}
                         />
                     </div>
-                    <div className="flex gap-2 my-2">
-                        {imageData[0] &&
-                            imageData.map((image) => {
-                                return (
-                                    <div>
-                                        <CloseOutlined
-                                            className="mb-[-1rem] absolute bg-white rounded-full p-1 text-[10px] font-extrabold cursor-pointer"
-                                            onClick={() => {
-                                                setImageData(
-                                                    imageData.filter(
-                                                        (img) => img !== image
-                                                    )
-                                                );
-                                            }}
-                                        />
-                                        <img
-                                            src={image}
-                                            alt="image"
-                                            className="w-20 h-20 rounded-xl"
-                                        />
-                                    </div>
-                                );
-                            })}
+                    {/* Show Images */}
+                    <div>
+                        <div className="flex flex-wrap gap-4 mt-8">
+                            <div className="flex  gap-4 w-[150px] h-[150px] relative">
+                                {data.image1 !== "" && (
+                                    <img
+                                        src={data.image1}
+                                        alt="image1"
+                                        className="w-full h-full object-cover rounded-lg"
+                                    />
+                                )}
+
+                                {data.image2 !== "" && (
+                                    <img
+                                        src={data.image2}
+                                        alt="image2"
+                                        className="w-full h-full object-cover rounded-lg"
+                                    />
+                                )}
+
+                                {data.image3 !== "" && (
+                                    <img
+                                        src={data.image3}
+                                        alt="image3"
+                                        className="w-full h-full object-cover rounded-lg"
+                                    />
+                                )}
+                                {data.image4 !== "" && (
+                                    <img
+                                        src={data.image4}
+                                        alt="image4"
+                                        className="w-full h-full object-cover rounded-lg"
+                                    />
+                                )}
+                            </div>
+                        </div>
                     </div>
                     <button
                         className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"

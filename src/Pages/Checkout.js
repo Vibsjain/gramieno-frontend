@@ -27,12 +27,26 @@ const Checkout = () => {
         const orders = JSON.parse(localStorage.getItem("orders"));
         if (orders) {
             setOrders(orders);
+            setOrder({
+                ...order,
+                orderItems: orders,
+                totalPrice: orders.reduce(
+                    (acc, item) => acc + item.price * item.quantity * 1.18,
+                    0
+                ),
+            });
         }
-        console.log(orders);
+        console.log(order);
         console.log(products);
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, [added]);
+    const handlePayment = () => {
+        addOrder(order);
+        localStorage.removeItem("orders");
+        setAdded(true);
+        console.log(order);
+    };
     return (
         <div className="back">
             <Navbar />
@@ -254,10 +268,11 @@ const Checkout = () => {
                                 className="w-[100%] px-4 h-16 justify-center items-center border-2 border-white rounded-[6px] text-[20px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold"
                                 onClick={() => {
                                     // console.log(order);
+                                    handlePayment();
                                     setAdded(true);
-                                    localStorage.removeItem("orders");
-                                    localStorage.removeItem("cart");
-                                    setOrders([]);
+                                    // localStorage.removeItem("orders");
+                                    // localStorage.removeItem("cart");
+                                    // setOrders([]);
                                     setAdded(false);
                                 }}
                                 disabled={orders.length === 0}

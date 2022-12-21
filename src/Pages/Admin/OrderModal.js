@@ -8,28 +8,10 @@ import ProductContext from "../../Context/ProductContext";
 const OrderModal = ({ open, setOpen, id }) => {
     const { order, getOrder, products, getProducts } =
         useContext(ProductContext);
-
-    const responsive1 = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 1,
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 1,
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 1,
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-        },
-    };
+    const [data, setData] = useState([]);
     useEffect(() => {
         getOrder(id);
+        setData(order);
         console.log(order);
         getProducts();
         // eslint-disable-next-line
@@ -58,22 +40,72 @@ const OrderModal = ({ open, setOpen, id }) => {
                     <div className="my-2">
                         <h1 className="italic font-bold">Customer's Details</h1>
                         <div className="my-2">
-                            <h1>Name : {"Vaibhav"}</h1>
-                            <h1>Address : {"Vaibhav"}</h1>
-                            <h1>City : {"Vaibhav"}</h1>
-                            <h1>Postal Code : {"Vaibhav"}</h1>
-                            <h1>Email : {"Vaibhav"}</h1>
-                            <h1>Phone : {"Vaibhav"}</h1>
+                            <h1>
+                                Name :{" "}
+                                {data.shippingAddress
+                                    ? data.shippingAddress.fullName
+                                    : "Vaibhav"}
+                            </h1>
+                            <h1>
+                                Address :{" "}
+                                {data.shippingAddress
+                                    ? data.shippingAddress.address
+                                    : "Vaibhav"}
+                            </h1>
+                            <h1>
+                                City :
+                                {data.shippingAddress
+                                    ? data.shippingAddress.city
+                                    : "NEW YORK"}
+                            </h1>
+                            <h1>
+                                Postal Code :
+                                {data.shippingAddress
+                                    ? data.shippingAddress.postalCode
+                                    : "Vaibhav"}
+                            </h1>
+                            <h1>
+                                Email :
+                                {data.shippingAddress
+                                    ? data.shippingAddress.email
+                                    : "Vaibhav"}
+                            </h1>
+                            <h1>
+                                Phone :
+                                {data.shippingAddress
+                                    ? data.shippingAddress.phone
+                                    : "Vaibhav"}
+                            </h1>
                         </div>
                     </div>
 
                     <div className="my-2">
                         <h1 className="italic font-bold">Item's Details</h1>
-                        <div className="my-2">
-                            <h1>Item Name : {"Vaibhav"}</h1>
-                            <h1>Item Price : {"Vaibhav"}</h1>
-                            <h1>Item Quantity : {"Vaibhav"}</h1>    
-                        </div>
+
+                        {data.orderItems &&
+                            data.orderItems.map((item) => (
+                                <div className="my-2">
+                                    <h1>
+                                        Item Name :{" "}
+                                        {
+                                            products.find(
+                                                (product) =>
+                                                    product._id === item.id
+                                            ).name
+                                        }
+                                    </h1>
+                                    <h1>
+                                        Item Price :{" "}
+                                        {
+                                            products.find(
+                                                (product) =>
+                                                    product._id === item.id
+                                            ).price
+                                        }
+                                    </h1>
+                                    <h1>Item Quantity : {item.quantity}</h1>
+                                </div>
+                            ))}
                     </div>
                 </div>
             </div>
