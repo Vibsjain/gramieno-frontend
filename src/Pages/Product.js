@@ -13,8 +13,8 @@ import "aos/dist/aos.css";
 const Product = () => {
     AOS.init();
     const { id } = useParams();
-    const [image, setImage] = useState("");
-    const { product, getProduct } = useContext(ProductContext);
+    const [image, setImage] = useState(table1);
+    const { product, getProduct, setAdded } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
         console.log(id);
@@ -102,7 +102,7 @@ const Product = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-12 ">
+                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 ">
                         <h1
                             className="font-bold text-[20px]"
                             data-aos="zoom-in"
@@ -116,6 +116,15 @@ const Product = () => {
                                 {product.description}
                             </h1>
                         </div>
+                        <h1 className="pl-4  text-[20px]" data-aos="zoom-in">
+                            <span className="font-bold">Category : </span>{" "}
+                            {product.category}
+                        </h1>
+                        <h1 className="pl-4 text-[20px]" data-aos="zoom-in">
+                            <span className="font-bold">Dimensions : </span>{" "}
+                            {product.length} x {product.breadth} x{" "}
+                            {product.height}
+                        </h1>
                         <h1
                             className="pl-4 font-bold text-[20px]"
                             data-aos="zoom-in"
@@ -126,8 +135,63 @@ const Product = () => {
                             className="w-full flex gap-4 justify-center sm:justify-start"
                             data-aos="zoom-in"
                         >
-                            <button className={btnClass}>Add to Cart</button>
-                            <button className={btnClass}>Buy Now</button>
+                            <button
+                                className={btnClass}
+                                onClick={() => {
+                                    const cart = JSON.parse(
+                                        localStorage.getItem("cart")
+                                    );
+                                    if (cart) {
+                                        const index = cart.findIndex(
+                                            (item) => item.id === product._id
+                                        );
+                                        if (index !== -1) {
+                                            cart[index].quantity += 1;
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify(cart)
+                                            );
+                                        } else {
+                                            cart.push({
+                                                id,
+                                                quantity: 1,
+                                                price: product.price,
+                                            });
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify(cart)
+                                            );
+                                        }
+                                    } else {
+                                        localStorage.setItem(
+                                            "cart",
+                                            JSON.stringify([
+                                                {
+                                                    id,
+                                                    quantity: 1,
+                                                    price: product.price,
+                                                },
+                                            ])
+                                        );
+                                    }
+                                    setAdded(true);
+                                }}
+                            >
+                                Add to Cart
+                            </button>
+                            <button
+                                className={btnClass}
+                                onClick={() => {
+                                    const cart = JSON.parse(
+                                        localStorage.getItem("cart")
+                                    );
+                                    const orders = JSON.parse(
+                                        localStorage.getItem("orders")
+                                    );
+                                }}
+                            >
+                                Buy Now
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -41,6 +41,36 @@ function Home() {
             items: 1,
         },
     };
+    const testimonials = [
+        {
+            name: "Pankaj Kakkar (Global Leader, Delivery, Tech Mahindra)",
+            text: "“Laptop Table from Gramien’O was godsend for WFH(Work From Home). It helped me to do the work without risking my posture. It also helped me manage my Chai while I attended to my demanding work.Thoughtful design to adjust the table made it easier for me to work on same in bed or sofa and even in recliner. It has a place to keep my phone accessible and space for notepad.”",
+        },
+        {
+            name: "Rakhi Nayar (IT Professional, EY)",
+            text: " “I had previously ordered a laptop table from another E-commerce website, comparing the looks, features and prices, like we all do. That one looked nowhere close to the photos and was very fragile but the table I ordered from Gramien’O looks exactly the same like it does in the pictures on the website, the first thing that came to my mind when I saw the table in front of me  was Elegant and Sturdy.”",
+        },
+        {
+            name: " Dr Shilpi Singh (Physio and fitness expert)",
+            text: "“School from home calls for an elegant and productive set up! Loving the brilliant piece. Absolute charm for home School.”",
+        },
+        {
+            name: " Swati Chopra (Consultant, Xoriant)",
+            text: " “Earlier I was using a table and chair and that was comfortable but sitting like that for 7-8 hours was taking a toll on my back. I tried working sitting on my bed but that again was impacting my posture. This table by Gramien’O has been has been the solution to my problem. It is so portable, I can now work from anywhere.”",
+        },
+        {
+            name: " Vijay Kumar (Chief Development Officer, Saharanpur)",
+            text: "“I’d like to start with the finishing of this product, the tray and coasters are made with great finesse. It reciprocates the decades of experience the craftsmen have put into the making. The richness of this artwork reflects from both its look and the journey it has been through.”",
+        },
+        {
+            name: "Rajneesh",
+            text: "“The Ganesha idol(Blessing on Board) looks so adorable. I just can’t stop looking. I have kept it on my workstation, it helps me stay positive and productive throughout the day.”",
+        },
+        {
+            name: "Shruti Tyagi(Senior Analyst, Deutsche Bank)    ",
+            text: "“Every time someone notices these coasters, they ask me about them. The design and finishing just make it look so stunning. They just go so well with everything.”",
+        },
+    ];
     useEffect(() => {
         getProducts();
         console.log(products);
@@ -142,14 +172,12 @@ function Home() {
                     Testimonials
                 </h1>
                 <Carousel responsive={responsive} infinite={true}>
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
-                    <TestimonialCard text={text} />
+                    {testimonials.map((testimonial) => (
+                        <TestimonialCard
+                            name={testimonial.name}
+                            text={testimonial.text}
+                        />
+                    ))}
                 </Carousel>
             </div>
             <Footer />

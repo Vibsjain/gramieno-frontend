@@ -57,6 +57,7 @@ const Products = () => {
                                 onClick={() => {
                                     clearAll();
                                     setAllTab(true);
+                                    setData(products);
                                 }}
                             >
                                 All
@@ -70,6 +71,13 @@ const Products = () => {
                                 onClick={() => {
                                     clearAll();
                                     setWoodenTab(true);
+                                    setData(
+                                        products.filter(
+                                            (product) =>
+                                                product.category ===
+                                                "Wooden Works"
+                                        )
+                                    );
                                 }}
                             >
                                 Wooden Works
@@ -83,6 +91,13 @@ const Products = () => {
                                 onClick={() => {
                                     clearAll();
                                     setIncenseTab(true);
+                                    setData(
+                                        products.filter(
+                                            (product) =>
+                                                product.category ===
+                                                "Incense Sticks"
+                                        )
+                                    );
                                 }}
                             >
                                 Incense Sticks
@@ -96,6 +111,12 @@ const Products = () => {
                                 onClick={() => {
                                     clearAll();
                                     setRoseTab(true);
+                                    setData(
+                                        products.filter(
+                                            (product) =>
+                                                product.category === "Rose Pack"
+                                        )
+                                    );
                                 }}
                             >
                                 Rose Pack
