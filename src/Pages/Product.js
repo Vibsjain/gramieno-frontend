@@ -9,9 +9,11 @@ import { useParams } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
     AOS.init();
+    const navigate = useNavigate();
     const { id } = useParams();
     const [image, setImage] = useState(table1);
     const { product, getProduct, setAdded } = useContext(ProductContext);
@@ -185,9 +187,47 @@ const Product = () => {
                                     const cart = JSON.parse(
                                         localStorage.getItem("cart")
                                     );
-                                    const orders = JSON.parse(
-                                        localStorage.getItem("orders")
+                                    if (cart) {
+                                        const index = cart.findIndex(
+                                            (item) => item.id === product._id
+                                        );
+                                        if (index !== -1) {
+                                            cart[index].quantity += 1;
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify(cart)
+                                            );
+                                        } else {
+                                            cart.push({
+                                                id,
+                                                quantity: 1,
+                                                price: product.price,
+                                            });
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify(cart)
+                                            );
+                                        }
+                                    } else {
+                                        localStorage.setItem(
+                                            "cart",
+                                            JSON.stringify([
+                                                {
+                                                    id,
+                                                    quantity: 1,
+                                                    price: product.price,
+                                                },
+                                            ])
+                                        );
+                                    }
+                                    navigate("/checkout");
+                                    const orders = cart;
+                                    localStorage.setItem(
+                                        "orders",
+                                        JSON.stringify(orders)
                                     );
+                                    console.log(orders);
+                                    setAdded(true);
                                 }}
                             >
                                 Buy Now
