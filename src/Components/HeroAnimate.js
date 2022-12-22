@@ -10,16 +10,32 @@ const HeroAnimate = () => {
         <div className="flex w-full justify-center">
             <ul className="hero flex w-full justify-center">
                 <li className="hero">
-                    <img src={Main} alt = "hero" className="w-[90vw] h-[85vh]  rounded-2xl" />
+                    <img
+                        src={Main}
+                        alt="hero"
+                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                    />
                 </li>
                 <li className="hero">
-                    <img src={One} alt = "hero" className="w-[90vw] h-[85vh]  rounded-2xl" />
+                    <img
+                        src={One}
+                        alt="hero"
+                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                    />
                 </li>
                 <li className="hero">
-                    <img src={Two} alt = "hero" className="w-[90vw] h-[85vh]  rounded-2xl" />
+                    <img
+                        src={Two}
+                        alt="hero"
+                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                    />
                 </li>
                 <li className="hero">
-                    <img src={Three} alt = "hero" className="w-[90vw] h-[85vh]  rounded-2xl" />
+                    <img
+                        src={Three}
+                        alt="hero"
+                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                    />
                 </li>
             </ul>
         </div>
