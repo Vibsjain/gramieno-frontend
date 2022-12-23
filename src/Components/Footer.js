@@ -1,13 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { CloseOutlined } from "@ant-design/icons";
 import whatsapp from "../Assets/Images/whatsapp.png";
 import instagram from "../Assets/Images/instagram.webp";
 import facebook from "../Assets/Images/facebook.png";
 import { useNavigate } from "react-router-dom";
+import "../Assets/CSS/index.css";
+import Modal from "react-awesome-modal";
+import api from "../api/index";
+import swal from "sweetalert";
 
 const Footer = () => {
+    const [open, setOpen] = useState(false);
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await api.post("/contact", data);
+        console.log(res);
+        swal({
+            title: "Success",
+            text: "Message Sent",
+            icon: "success",
+        });
+        setData({
+            name: "",
+            email: "",
+            message: "",
+        });
+
+        setOpen(false);
+        console.log(data);
+    };
     const navigate = useNavigate();
     const socialIcons = [
-        { title: "whatsapp", icon: whatsapp },
+        {
+            title: "whatsapp",
+            icon: whatsapp,
+            path: "https://wa.me/919899866655",
+        },
         {
             title: "instagram",
             icon: instagram,
@@ -29,6 +62,8 @@ const Footer = () => {
         { title: "Terms & Conditions", path: "/terms-conditions" },
         { title: "Shipping Policy", path: "/shipping-policy" },
     ];
+    const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
+    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
     return (
         <div className="w-full py-4 sm:mt-10 mt-8 ">
             <div className="w-full flex justify-center items-center">
@@ -42,6 +77,7 @@ const Footer = () => {
                     <button
                         id="contact"
                         className="sm:mt-20 mt-8 flex py-4 px-8 border-2 border-white rounded-xl sm:text-[18px] text-[16px] text-white hover:text-black hover:bg-white"
+                        onClick={() => setOpen(!open)}
                     >
                         Contact Us
                     </button>
@@ -85,6 +121,82 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                visible={open}
+                width="70%"
+                height="90%"
+                effect="fadeInUp"
+                onClickAway={() => setOpen(!open)}
+            >
+                <div className="h-[100%] overflow-auto modals">
+                    <div className="flex w-full justify-end px-4 py-4 gap-4">
+                        <CloseOutlined
+                            className="text-black hover:font-bold text-[20px]"
+                            onClick={() => {
+                                setOpen(!open);
+                            }}
+                        />
+                    </div>
+                    <div className="w-full">
+                        <h1 className="text-black font-bold text-center text-[24px]">
+                            Contact Us
+                        </h1>
+                    </div>
+                    <div className="sm:px-28 px-4">
+                        <label class={labelStyle}>Name</label>
+                        <input
+                            type="text"
+                            id="title"
+                            class={inputStyle}
+                            placeholder="Name of the Product"
+                            value={data.name}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    name: e.target.value,
+                                });
+                            }}
+                        />
+
+                        <label class={labelStyle}>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            class={inputStyle}
+                            placeholder="Enter Your Email"
+                            value={data.email}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    email: e.target.value,
+                                });
+                            }}
+                        />
+
+                        <label class={labelStyle}>Message</label>
+                        <textarea
+                            type="text"
+                            id="message"
+                            class={inputStyle}
+                            placeholder="Write Your Message"
+                            value={data.message}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    message: e.target.value,
+                                });
+                            }}
+                            rows={5}
+                        />
+                        <button
+                            className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

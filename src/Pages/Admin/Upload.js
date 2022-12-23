@@ -3,10 +3,10 @@ import { PlusCircleOutlined, CloseOutlined } from "@ant-design/icons";
 import "../../Assets/CSS/index.css";
 import FileBase64 from "react-file-base64";
 import ProductContext from "../../Context/ProductContext";
+import swal from "sweetalert";
 
 const Upload = () => {
     const { addProduct } = useContext(ProductContext);
-    // const [imageData, setImageData] = useState([]);
     const [data, setData] = useState([
         {
             name: "",
@@ -24,7 +24,49 @@ const Upload = () => {
         },
     ]);
     const handleUpload = () => {
-        addProduct(data);
+        if (
+            !data.name ||
+            !data.category ||
+            !data.price ||
+            !data.description ||
+            !data.countInStock ||
+            !data.image1 ||
+            !data.image2 ||
+            !data.image3 ||
+            !data.image4 ||
+            !data.length ||
+            !data.breadth ||
+            !data.height
+        ) {
+            swal({
+                title: "Error",
+                text: "Please fill all the fields",
+                icon: "error",
+            });
+            return;
+        } else {
+            addProduct(data);
+            swal({
+                title: "Success",
+                text: "Product Added Successfully",
+                icon: "success",
+            });
+            setData({
+                name: "",
+                category: "",
+                price: 0,
+                description: "",
+                countInStock: 0,
+                image1: "",
+                image2: "",
+                image3: "",
+                image4: "",
+                length: 0,
+                breadth: 0,
+                height: 0,
+            });
+        }
+        // addProduct(data);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
@@ -60,7 +102,7 @@ const Upload = () => {
                         id="title"
                         class={inputStyle}
                         placeholder="Name of the Product"
-                        value = {data.name}
+                        value={data.name}
                         onChange={(e) => {
                             setData({
                                 ...data,
@@ -74,8 +116,7 @@ const Upload = () => {
                             type="number"
                             id="length"
                             class={inputStyle}
-                            placeholder="Length" 
-                            value={data.length}
+                            placeholder="Length"
                             onChange={(e) => {
                                 setData({
                                     ...data,
