@@ -6,6 +6,7 @@ import {
     Footer,
     TestimonialCard,
     HeroAnimate,
+    SnackBar,
 } from "../Components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -17,7 +18,7 @@ import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
 
 function Home() {
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, snack } = useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
     // const storyText = `text-[#836663]`;
@@ -79,6 +80,7 @@ function Home() {
     }, []);
     return (
         <div className="w-full back">
+            <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
             {/* Hero Section */}
             <div

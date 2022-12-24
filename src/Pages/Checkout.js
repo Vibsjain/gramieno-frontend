@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Navbar, Footer } from "../Components";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
+import swal from "sweetalert";
 
 const Checkout = () => {
+    const navigate = useNavigate();
     const { added, setAdded, products, getProducts, addOrder } =
         useContext(ProductContext);
     const [orders, setOrders] = useState([]);
@@ -42,10 +44,58 @@ const Checkout = () => {
         // eslint-disable-next-line
     }, [added]);
     const handlePayment = () => {
-        addOrder(order);
-        localStorage.removeItem("orders");
-        setAdded(true);
-        console.log(order);
+        if (
+            order.shippingAddress.fullName === "" ||
+            order.shippingAddress.email === "" ||
+            order.shippingAddress.phone === "" ||
+            order.shippingAddress.address === "" ||
+            order.shippingAddress.city === "" ||
+            order.shippingAddress.postalCode === ""
+        ) {
+            swal({
+                title: "Please fill all the details",
+                icon: "warning",
+                button: "OK",
+            });
+            return;
+        }
+
+        swal({
+            title: "Are you sure?",
+            text: "Once you pay, you will not be able to cancel the order!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willPay) => {
+            if (willPay) {
+                navigate("/");
+                swal("Payment Successful!", {
+                    icon: "success",
+                });
+                addOrder(order);
+                console.log(order);
+                localStorage.removeItem("orders");
+                localStorage.removeItem("cart");
+                setAdded(true);
+                setOrders({
+                    orderItems: [],
+                    shippingAddress: {
+                        fullName: "",
+                        email: "",
+                        phone: "",
+                        address: "",
+                        city: "",
+                        postalCode: "",
+                    },
+                    orderDate: "",
+                    totalPrice: 0,
+                    isDelivered: false,
+                    deliveredAt: "",
+                });
+            } else {
+                swal("Payment Cancelled!");
+            }
+        });
     };
     return (
         <div className="back">

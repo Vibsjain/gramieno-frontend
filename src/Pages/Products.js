@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navbar, Footer, ProductCard, ProductAnimate } from "../Components";
+import {
+    Navbar,
+    Footer,
+    ProductCard,
+    ProductAnimate,
+    SnackBar,
+} from "../Components";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
 
 const Products = () => {
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, snack } = useContext(ProductContext);
     AOS.init();
     const navButtonStyle = `sm:min-w-36 min-w-64 text-center border border-white rounded py-2 px-4`;
     const navChosesStyle = `bg-white text-black`;
@@ -30,6 +36,7 @@ const Products = () => {
     }, []);
     return (
         <div className="back">
+            <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
             {/* Product Hero Section */}
             <div className="sm:hidden flex py-2 " data-aos="zoom-in">

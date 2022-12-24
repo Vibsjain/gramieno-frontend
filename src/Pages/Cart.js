@@ -31,7 +31,7 @@ const Cart = () => {
                     <img
                         src={product.image1}
                         alt="table"
-                        className="w-96 rounded-tl-lg sm:rounded-bl-lg rounded-t-lg"
+                        className="w-96 rounded-tl-lg sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
                     />
                 </div>
                 <div className="flex flex-col sm:w-6/12 w-full pl-4 py-2 justify-between">

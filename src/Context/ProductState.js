@@ -3,6 +3,7 @@ import ProductContext from "./ProductContext";
 import api from "../api";
 
 const ProductState = (props) => {
+    const [snack, setSnack] = useState({ text: "", visible: false });
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
     const [orders, setOrders] = useState([]);
@@ -84,6 +85,12 @@ const ProductState = (props) => {
         setLoading(false);
     };
 
+    const handleSnack = (text) => {
+        setSnack({ text, visible: true });
+        setTimeout(() => {
+            setSnack({ text: "", visible: false });
+        }, 3000);
+    };
     return (
         <div>
             <ProductContext.Provider
@@ -104,6 +111,8 @@ const ProductState = (props) => {
                     addOrder,
                     editOrder,
                     deleteOrder,
+                    snack,
+                    handleSnack,
                 }}
             >
                 {props.children}

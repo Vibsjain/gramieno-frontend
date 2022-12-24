@@ -111,3 +111,28 @@ li.hero:nth-child(1) {
   padding: 10px 20px;
   color: #1E293B;
 }
+
+.container {
+  /* max-width: 250px; */
+  /* padding: 2px; */
+  position: fixed;
+  z-index:10;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); 
+  /* margin-right:25px; */
+  filter: brightness(120%);
+  border-radius: 10px;
+}
+
+.container:before {
+  z-index:-1;
+  position: absolute;
+  content:"";
+  width:230px;
+  height:230px;
+  left:10px;
+  top:0;
+  background-image: linear-gradient(43deg, #000208 0%, #E08849 46%, #FFCC70 100%); 
+  filter: blur(20px);
+  
+}

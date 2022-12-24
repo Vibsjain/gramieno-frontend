@@ -7,3 +7,4 @@ export { default as Slider } from "./Slider";
 export { default as HeroAnimate } from "./HeroAnimate";
 export { default as ProductAnimate } from "./ProductAnimate";
 export { default as MobileTitle } from "./MobileTitle";
+export { default as SnackBar } from "./SnackBar";

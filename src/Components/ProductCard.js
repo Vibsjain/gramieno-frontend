@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 
 const ProductCard = ({ image1, item, description, price, id }) => {
-    const { setAdded } = useContext(ProductContext);
+    const { setAdded, handleSnack } = useContext(ProductContext);
     const navigate = useNavigate();
     const btnClass = buyBtn;
     return (
@@ -33,6 +33,7 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                     <div
                         className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black"
                         onClick={() => {
+                            handleSnack("Your Item is Added to Cart");
                             const cart = JSON.parse(
                                 localStorage.getItem("cart")
                             );
@@ -71,7 +72,57 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                         <button className={btnClass}>Add to Cart</button>
                     </div>
                     <div className="w-6/12 flex justify-center items-center">
-                        <button className={btnClass}>Buy Now</button>
+                        <button
+                            className={btnClass}
+                            onClick={() => {
+                                const cart = JSON.parse(
+                                    localStorage.getItem("cart")
+                                );
+                                if (cart) {
+                                    const index = cart.findIndex(
+                                        (item) => item.id === id
+                                    );
+                                    if (index !== -1) {
+                                        cart[index].quantity += 1;
+                                        localStorage.setItem(
+                                            "cart",
+                                            JSON.stringify(cart)
+                                        );
+                                    } else {
+                                        cart.push({
+                                            id,
+                                            quantity: 1,
+                                            price: price,
+                                        });
+                                        localStorage.setItem(
+                                            "cart",
+                                            JSON.stringify(cart)
+                                        );
+                                    }
+                                } else {
+                                    localStorage.setItem(
+                                        "cart",
+                                        JSON.stringify([
+                                            {
+                                                id,
+                                                quantity: 1,
+                                                price: price,
+                                            },
+                                        ])
+                                    );
+                                }
+                                navigate("/checkout");
+                                const orders = cart;
+                                localStorage.setItem(
+                                    "orders",
+                                    JSON.stringify(orders)
+                                );
+                                console.log(orders);
+                                setAdded(true);
+                            }}
+                        >
+                            Buy Now
+                        </button>
                     </div>
                 </div>
                 <button
