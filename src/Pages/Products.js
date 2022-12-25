@@ -121,7 +121,7 @@ const Products = () => {
                                     setData(
                                         products.filter(
                                             (product) =>
-                                                product.category === "Rose Pack"
+                                                product.category === "Rose"
                                         )
                                     );
                                 }}

@@ -15,7 +15,6 @@ const ProductState = (props) => {
         setLoading(true);
         const res = await api.get("/products");
         setProducts(res.data);
-        console.log(res.data);
         setLoading(false);
     };
 
@@ -48,7 +47,6 @@ const ProductState = (props) => {
         setLoading(true);
         const res = await api.get("/orders");
         setOrders(res.data);
-        console.log(res.data);
         setLoading(false);
     };
 
@@ -57,7 +55,6 @@ const ProductState = (props) => {
         const res = await api.get(`/orders/${id}`);
         setOrder(res.data[0]);
         setLoading(false);
-        console.log(order);
     };
 
     const addOrder = async (order) => {

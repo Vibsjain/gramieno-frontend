@@ -16,7 +16,6 @@ import {
     PrivacyPolicy,
 } from "./Pages";
 import ProductState from "./Context/ProductState";
-import ProductContext from "./Context/ProductContext";
 
 const rootElement = document.getElementById("root");
 render(

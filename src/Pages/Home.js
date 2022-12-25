@@ -18,7 +18,8 @@ import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
 
 function Home() {
-    const { products, getProducts, snack } = useContext(ProductContext);
+    const { products, getProducts, snack, setAdded, added } =
+        useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
     // const storyText = `text-[#836663]`;
@@ -75,6 +76,7 @@ function Home() {
     useEffect(() => {
         getProducts();
         console.log(products);
+        setAdded(!added);
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, []);

@@ -8,29 +8,12 @@ const Product = () => {
     const [open, setOpen] = useState(false);
     const [id, setId] = useState("");
     const headStyle = tableHeadStyle;
-    const [data, setData] = useState([
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-        {
-            name: "Apple MacBook Pro 17",
-            price: "$2999",
-        },
-    ]);
+    const [data, setData] = useState([]);
     useEffect(() => {
         getProducts();
         setData(products);
         // eslint-disable-next-line
-    },[]);
+    }, []);
     return (
         <div className="sm:px-24 px-4 mt-12">
             <ProductModal open={open} setOpen={setOpen} id={id} />
@@ -41,7 +24,10 @@ const Product = () => {
                             <th scope="col" className={headStyle}>
                                 Product
                             </th>
-                            <th scope="col" className={`${headStyle} sm:flex hidden`}>
+                            <th
+                                scope="col"
+                                className={`${headStyle} sm:flex hidden`}
+                            >
                                 Price
                             </th>
                             <th

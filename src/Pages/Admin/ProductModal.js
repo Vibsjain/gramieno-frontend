@@ -7,10 +7,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductContext from "../../Context/ProductContext";
 import FileBase64 from "react-file-base64";
+import swal from "sweetalert";
 
 const ProductModal = ({ open, setOpen, id }) => {
     const [dataOld, setDataOld] = useState({});
     const [edit, setEdit] = useState(false);
+    const [image, setImage] = useState(table1);
     const { getProduct, product, editProduct } = useContext(ProductContext);
 
     const responsive1 = {
@@ -50,14 +52,41 @@ const ProductModal = ({ open, setOpen, id }) => {
         getProduct(id);
         setDataOld(product);
         setData(product);
+        console.log(data);
         // eslint-disable-next-line
-    }, []);
+    }, [id]);
     const handleUpload = () => {
+        if (
+            data.image1 === "" ||
+            data.image2 === "" ||
+            data.image3 === "" ||
+            data.image4 === "" ||
+            data.name === "" ||
+            data.category === "" ||
+            data.price === 0 ||
+            data.description === "" ||
+            data.length === 0 ||
+            data.breadth === 0 ||
+            data.height === 0
+        ) {
+            swal({
+                title: "Error",
+                text: "Please fill all the fields",
+                icon: "error",
+            });
+            return;
+        }
+        console.log("upload");
         editProduct(id, data);
+        swal({
+            title: "Success",
+            text: "Product Edited Successfully",
+            icon: "success",
+        });
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
-    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
+    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
     return (
         <Modal
             visible={open}
@@ -125,7 +154,6 @@ const ProductModal = ({ open, setOpen, id }) => {
                                 id="length"
                                 class={inputStyle}
                                 placeholder="Length"
-                                value={data.length}
                                 onChange={(e) => {
                                     setData({
                                         ...data,
@@ -262,7 +290,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                             className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
                             onClick={handleUpload}
                         >
-                            Save Changes
+                            Upload
                         </button>
                     </div>
                 </div>
@@ -271,7 +299,10 @@ const ProductModal = ({ open, setOpen, id }) => {
                     <div className="flex w-full justify-end px-4 py-4 gap-4">
                         <EditFilled
                             className="text-black hover:font-bold text-[20px]"
-                            onClick={() => setEdit(!edit)}
+                            onClick={() => {
+                                setEdit(!edit);
+                                setData(product);
+                            }}
                         />
                         <CloseOutlined
                             className="text-black hover:font-bold text-[20px]"
@@ -281,20 +312,22 @@ const ProductModal = ({ open, setOpen, id }) => {
                             }}
                         />
                     </div>
-                    <div className="sm:px-12 sm:py-12 px-2 py-8">
+                    <div className="w-full flex flex-col sm:px-24 px-4 my-8">
                         <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
                             <div className="sm:w-1/2 w-full flex gap-16">
                                 <div className="flex flex-col w-full gap-4 items-center">
-                                    <img
-                                        src={
-                                            dataOld.image1
-                                                ? dataOld.image1
-                                                : table
-                                        }
-                                        alt="table"
-                                        className="w-96 rounded-2xl"
-                                    />
-                                    <div className="flex w-full gap-4 justify-center">
+                                    <div className="w-96 h-84">
+                                        <img
+                                            src={image}
+                                            alt="table"
+                                            className="w-96 h-80 rounded-2xl"
+                                            data-aos="zoom-in"
+                                        />
+                                    </div>
+                                    <div
+                                        className="flex w-full gap-4 justify-center"
+                                        data-aos="zoom-in"
+                                    >
                                         <img
                                             src={
                                                 product.image1
@@ -304,6 +337,9 @@ const ProductModal = ({ open, setOpen, id }) => {
                                             alt="table"
                                             className="w-20 h-20 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.image1)
+                                            }
                                         />
                                         <img
                                             src={
@@ -314,6 +350,9 @@ const ProductModal = ({ open, setOpen, id }) => {
                                             alt="table"
                                             className="w-20 h-20 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.image2)
+                                            }
                                         />
                                         <img
                                             src={
@@ -324,6 +363,9 @@ const ProductModal = ({ open, setOpen, id }) => {
                                             alt="table"
                                             className="w-20 h-20 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.image3)
+                                            }
                                         />
                                         <img
                                             src={
@@ -334,52 +376,67 @@ const ProductModal = ({ open, setOpen, id }) => {
                                             alt="table"
                                             className="w-20 h-20 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.image4)
+                                            }
                                         />
                                     </div>
                                 </div>
                             </div>
-                            <div className="sm:w-1/2 w-full flex flex-col text-white gap-4 justify-between text-black">
-                                <h1 className="font-bold text-[20px]">
+                            <div className="sm:w-1/2 w-full flex flex-col text-black gap-6 ">
+                                <h1
+                                    className="font-bold text-[20px]"
+                                    data-aos="zoom-in"
+                                >
                                     {product.name
                                         ? product.name
                                         : "Multipurpose Portable Table (Yellow-Orange)"}
                                 </h1>
-                                <h1 className="pl-4 text-[20px]">
-                                    <span className="font-bold">
-                                        Category :{" "}
-                                    </span>
-                                    {product.category}
-                                </h1>
-                                <h1 className="pl-4 text-[20px]">
-                                    <span className="font-bold">
-                                        Dimensions :{" "}
-                                    </span>
-                                    {product.length} x {product.breadth} x{" "}
-                                    {product.height}
-                                </h1>
-                                <div className="sm:pl-4 px-2">
+                                <div className="" data-aos="zoom-in">
                                     <h1 className="text-justify">
                                         {product.description}
                                     </h1>
                                 </div>
-                                <h1 className="pl-4 text-[20px]">
+                                <h1
+                                    className="pl-4  text-[20px]"
+                                    data-aos="zoom-in"
+                                >
                                     <span className="font-bold">
-                                        Count In Stock :{" "}
-                                    </span>
-                                    {product.countInStock}
+                                        Category :{" "}
+                                    </span>{" "}
+                                    {product.category}
                                 </h1>
-                                <h1 className="pl-4 font-bold text-[20px]">
+                                <h1
+                                    className="pl-4 text-[20px]"
+                                    data-aos="zoom-in"
+                                >
+                                    <span className="font-bold">
+                                        Dimensions :{" "}
+                                    </span>{" "}
+                                    {product.length} x {product.breadth} x{" "}
+                                    {product.height}
+                                </h1>
+                                <h1
+                                    className="pl-4 font-bold text-[20px]"
+                                    data-aos="zoom-in"
+                                >
                                     ₹ {product.price}
                                 </h1>
                             </div>
                         </div>
                         <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
-                            <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap-8 text-black">
-                                <h1 className="font-bold text-[20px]">
+                            <div className="sm:w-1/2 w-full flex flex-col text-black sm:gap-12 gap:8">
+                                <h1
+                                    className="font-bold text-[20px]"
+                                    data-aos="zoom-in"
+                                >
                                     More Details About the Product
                                 </h1>
                                 <div className="px-4">
-                                    <h1 className="text-justify">
+                                    <h1
+                                        className="text-justify"
+                                        data-aos="zoom-in"
+                                    >
                                         {product.description}
                                     </h1>
                                 </div>
@@ -389,9 +446,9 @@ const ProductModal = ({ open, setOpen, id }) => {
                                     responsive={responsive1}
                                     infinite={true}
                                     autoPlay={true}
-                                    autoPlaySpeed={1000}
+                                    autoPlaySpeed={2000}
                                     transitionDuration={700}
-                                    className="w-full "
+                                    className="w-full"
                                     showDots={false}
                                     arrows={false}
                                 >
