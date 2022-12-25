@@ -123,13 +123,13 @@ const Footer = () => {
             </div>
             <Modal
                 visible={open}
-                width="70%"
+                width="90%"
                 height="90%"
                 effect="fadeInUp"
                 onClickAway={() => setOpen(!open)}
             >
                 <div className="h-[100%] overflow-auto modals">
-                    <div className="flex w-full justify-end px-4 py-4 gap-4">
+                    <div className="flex w-full justify-end px-4 py-4 sm:gap-4 gap-2">
                         <CloseOutlined
                             className="text-black hover:font-bold text-[20px]"
                             onClick={() => {

@@ -186,18 +186,20 @@ const Cart = () => {
                                         <h1 className="font-bold">Tax</h1>
                                         <h1>
                                             ₹{" "}
-                                            {cart.reduce(
-                                                (acc, item) =>
-                                                    acc +
-                                                    products.find(
-                                                        (product) =>
-                                                            product._id ===
-                                                            item.id
-                                                    ).price *
-                                                        item.quantity *
-                                                        0.18,
-                                                0
-                                            )}
+                                            {cart
+                                                .reduce(
+                                                    (acc, item) =>
+                                                        acc +
+                                                        products.find(
+                                                            (product) =>
+                                                                product._id ===
+                                                                item.id
+                                                        ).price *
+                                                            item.quantity *
+                                                            0.18,
+                                                    0
+                                                )
+                                                .toFixed(0)}
                                         </h1>
                                     </div>
                                 </div>
@@ -206,17 +208,20 @@ const Cart = () => {
                                     <h1 className="font-bold">Total</h1>
                                     <h1>
                                         ₹{" "}
-                                        {cart.reduce(
-                                            (acc, item) =>
-                                                acc +
-                                                products.find(
-                                                    (product) =>
-                                                        product._id === item.id
-                                                ).price *
-                                                    item.quantity *
-                                                    1.18,
-                                            0
-                                        )}
+                                        {cart
+                                            .reduce(
+                                                (acc, item) =>
+                                                    acc +
+                                                    products.find(
+                                                        (product) =>
+                                                            product._id ===
+                                                            item.id
+                                                    ).price *
+                                                        item.quantity *
+                                                        1.18,
+                                                0
+                                            )
+                                            .toFixed(0)}
                                     </h1>
                                 </div>
                             </div>
