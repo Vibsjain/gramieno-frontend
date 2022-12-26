@@ -36,11 +36,11 @@ function Home() {
             items: 3,
         },
         tablet: {
-            breakpoint: { max: 1024, min: 464 },
+            breakpoint: { max: 1024, min: 690 },
             items: 2,
         },
         mobile: {
-            breakpoint: { max: 464, min: 0 },
+            breakpoint: { max: 690, min: 0 },
             items: 1,
         },
     };
@@ -121,19 +121,19 @@ function Home() {
             </div>
             {/* Artisians Section */}
             <div
-                className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-12 px-8 gap-16 mt-24 justify-center items-center"
+                className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-12 px-2 gap-16 mt-24 justify-center items-center"
                 data-aos="fade-up"
             >
                 <div className="w-[90%] min-h-[75vh] bg-[#545454] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
-                    <div className="px-12 py-12">
+                    <div className="sm:p-12 p-2">
                         <img src={art} className="rounded-xl" />
                     </div>
-                    <div className="flex w-full gap-4 px-8 py-12 justify-around items-center">
-                        <div className="w-1/3 h-[80%] flex flex-col justify-between items-center">
+                    <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
+                        <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
                             <h1 className="text-center font-bold text-white text-2xl">
                                 The Woodwork Artisans
                             </h1>
-                            <h1 className="text-center py-4 text-center text-white">
+                            <h1 className="text-center py-4 sm:text-center text-justify text-white">
                                 Chhotu, Rakesh & Buddhu are excellent craftsmen
                                 and their Ability to convert an idea into
                                 finished products is unmatched. But what is most
@@ -142,12 +142,12 @@ function Home() {
                                 pandemic. Gramien’O brings to you their creation
                             </h1>
                         </div>
-                        <div className="w-1/3 h-[80%] flex flex-col justify-between items-center">
+                        <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
                             <h1 className="text-center font-bold text-white text-2xl">
                                 Brajgandha - An Initiative empowering the Matas
                                 of Vrindavan
                             </h1>
-                            <h1 className="text-center py-4 text-center text-white">
+                            <h1 className="text-center py-4 sm:text-center text-justify text-white">
                                 A unique initiative by Destitute Matas of
                                 Vrindavan, creating floral products (Incense
                                 sticks, Rose Pack, Gulal) from the flowers

@@ -19,20 +19,20 @@ const OrderModal = ({ open, setOpen, id }) => {
         // eslint-disable-next-line
     }, [open]);
 
-    const infoDiv = `flex justify-center px-36`;
-    const infoHead1 = `w-1/3 text-left text-white`;
-    const infoHead2 = `w-1/3 text-right text-white`;
-    const infoHead = `w-1/3 text-center text-white`;
+    const infoDiv = `flex justify-center sm:px-36 px-2`;
+    const infoHead1 = `w-1/3 text-left text-black font-bold`;
+    const infoHead2 = `w-1/3 sm:text-right text-left text-black`;
+    const infoHead = `w-1/3 text-center text-black`;
     const Card = ({ __id, quantity }) => {
         const product = products.find((item) => item._id === __id);
         return (
-            <div className="w-full border h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
+            <div className="w-full border border-2 border-black sm:h-[12rem] min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
                 <div className="sm:w-4/12 w-full flex gap-16">
                     {product && (
                         <img
                             src={product.image1 ? product.image1 : table}
                             alt="table"
-                            className="w-96 rounded-tl-lg sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
+                            className="w-96 rounded-tl-lg border-r-[1px] border-black sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
                         />
                     )}
                 </div>
@@ -94,11 +94,11 @@ const OrderModal = ({ open, setOpen, id }) => {
                     Order Details
                 </h1>
                 {data.shippingAddress && (
-                    <div className="flex flex-col gap-2 px-36">
-                        <h1 className="font-bold py-8 text-center ">
+                    <div className="flex flex-col gap-2 sm:px-36 px-2">
+                        <h1 className="font-bold py-8 text-center text-[20px]">
                             Customer's Details
                         </h1>
-                        <div className="flex flex-col gap-2 bg-[#1E293B] py-16 rounded-xl">
+                        <div className="flex flex-col gap-2 bg-[#FFF]  border border-2 border-black py-16 rounded-xl">
                             <div className={infoDiv}>
                                 <h1 className={infoHead1}>Name</h1>
                                 <h1 className={infoHead}>:</h1>
@@ -146,10 +146,10 @@ const OrderModal = ({ open, setOpen, id }) => {
                 )}
 
                 <div className="flex flex-col gap-2 py-8">
-                    <h1 className="font-bold py-12 text-center ">
+                    <h1 className="font-bold py-12 text-center text-[20px]">
                         Purchase Details
                     </h1>
-                    <div className="flex flex-col gap-8 w-full px-36">
+                    <div className="flex flex-col gap-8 w-full sm:px-36 px-2 ">
                         {data.orderItems &&
                             data.orderItems.map((item) => (
                                 <Card __id={item.id} quantity={item.quantity} />

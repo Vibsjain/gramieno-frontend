@@ -3,6 +3,7 @@ import ProductContext from "./ProductContext";
 import api from "../api";
 
 const ProductState = (props) => {
+    const [isLogged, setIsLogged] = useState(false);
     const [snack, setSnack] = useState({ text: "", visible: false });
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
@@ -110,6 +111,8 @@ const ProductState = (props) => {
                     deleteOrder,
                     snack,
                     handleSnack,
+                    isLogged,
+                    setIsLogged,
                 }}
             >
                 {props.children}

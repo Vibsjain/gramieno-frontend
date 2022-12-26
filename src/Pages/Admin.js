@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Footer } from "../Components";
 import Logo from "../Assets/Images/logo.png";
 import Orders from "./Admin/Orders";
@@ -6,12 +6,14 @@ import Product from "./Admin/Product";
 import Upload from "./Admin/Upload";
 import {
     LogoutOutlined,
-    SettingOutlined,
     HomeOutlined,
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import ProductContext from "../Context/ProductContext";
+import swal from "sweetalert";
 
 const Admin = () => {
+    const { setIsLogged } = useContext(ProductContext);
     const navigate = useNavigate();
     const navButtonStyle = `min-w-48 text-center blok border border-[#141C2F] rounded py-2 px-4 about-font`;
     const navChosesStyle = `bg-[#fff] text-[#141C2F]`;
@@ -50,10 +52,30 @@ const Admin = () => {
                             className={iconStyle}
                             onClick={() => navigate("/")}
                         />
-                        <SettingOutlined className={iconStyle} spin />
                         <LogoutOutlined
                             className={iconStyle}
-                            onClick={() => navigate("/")}
+                            onClick={() => {
+                                swal({
+                                    title: "Are you sure want to logout?",
+                                    icon: "warning",
+                                    buttons: true,
+                                    dangerMode: true,
+                                }).then((res) => {
+                                    if (res) {
+                                        setIsLogged(false);
+                                        localStorage.removeItem("token");
+                                        swal("Logout Successful!", {
+                                            icon: "success",
+                                        });
+                                        navigate("/");
+                                    } else {
+                                        swal("Logout Failed", {
+                                            icon: "error",
+                                        });
+                                    }
+                                });
+                                // window.location.reload();
+                            }}
                         />
                     </div>
                 </div>

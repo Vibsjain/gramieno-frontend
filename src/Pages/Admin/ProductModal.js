@@ -83,6 +83,7 @@ const ProductModal = ({ open, setOpen, id }) => {
             text: "Product Edited Successfully",
             icon: "success",
         });
+        setOpen(!open);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
@@ -112,7 +113,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                             }}
                         />
                     </div>
-                    <div className="sm:px-36 px-4">
+                    <div className="sm:px-24 px-4">
                         <label className={labelStyle}>Category</label>
                         <select
                             name="category"
@@ -312,11 +313,11 @@ const ProductModal = ({ open, setOpen, id }) => {
                             }}
                         />
                     </div>
-                    <div className="w-full flex flex-col sm:px-24 px-4 my-8">
-                        <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
+                    <div className="w-full flex flex-col sm:px-12 px-2 my-8">
+                        <div className="w-full flex sm:flex-row flex-col sm:gap-4 gap-8">
                             <div className="sm:w-1/2 w-full flex gap-16">
                                 <div className="flex flex-col w-full gap-4 items-center">
-                                    <div className="w-96 h-84">
+                                    <div className="max-w-96 max-h-84">
                                         <img
                                             src={image}
                                             alt="table"
@@ -325,7 +326,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                         />
                                     </div>
                                     <div
-                                        className="flex w-full gap-4 justify-center"
+                                        className="flex max-w-full gap-4 justify-center"
                                         data-aos="zoom-in"
                                     >
                                         <img
@@ -335,7 +336,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                                     : table
                                             }
                                             alt="table"
-                                            className="w-20 h-20 rounded-lg cursor-pointer"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
                                             onClick={() =>
                                                 setImage(product.image1)
@@ -348,7 +349,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                                     : table
                                             }
                                             alt="table"
-                                            className="w-20 h-20 rounded-lg cursor-pointer"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
                                             onClick={() =>
                                                 setImage(product.image2)
@@ -361,7 +362,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                                     : table
                                             }
                                             alt="table"
-                                            className="w-20 h-20 rounded-lg cursor-pointer"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
                                             onClick={() =>
                                                 setImage(product.image3)
@@ -374,7 +375,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                                                     : table
                                             }
                                             alt="table"
-                                            className="w-20 h-20 rounded-lg cursor-pointer"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
                                             data-aos="zoom-in"
                                             onClick={() =>
                                                 setImage(product.image4)
