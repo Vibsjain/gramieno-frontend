@@ -111,10 +111,11 @@ function Home() {
                 data-aos="fade-up"
             >
                 <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
-                    <div className="w-1/2 flex justify-start">
+                    <div className="w-1/2 flex flex-col justify-start">
                         <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
                             Our Products
                         </h1>
+                        <h1 className="text-[12px] sm:hidden flex text-white" >(Swipe to See More)</h1>
                     </div>
                     <div className="w-1/2 flex justify-end">
                         <button

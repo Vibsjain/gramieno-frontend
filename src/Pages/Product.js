@@ -10,12 +10,15 @@ import ProductContext from "../Context/ProductContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
+import Modal from "react-awesome-modal";
+import { CloseOutlined } from "@ant-design/icons";
 
 const Product = () => {
     AOS.init();
     const navigate = useNavigate();
     const { id } = useParams();
     const [image, setImage] = useState("");
+    const [open, setOpen] = useState(false);
     const { product, getProduct, setAdded } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
@@ -47,11 +50,34 @@ const Product = () => {
     return (
         <div className="back">
             <Navbar />
+            <Modal
+                visible={open}
+                width="90%"
+                height="90%"
+                effect="fadeInUp"
+                onClickAway={() => setOpen(!open)}
+            >
+                <div className="w-full flex flex-col justify-center items-center h-full gap-2">
+                    <div className="w-full px-4 flex justify-end items-center">
+                        <CloseOutlined
+                            className="text-black hover:font-bold text-[20px]"
+                            onClick={() => {
+                                setOpen(!open);
+                            }}
+                        />
+                    </div>
+
+                    <img src={image} className="w-[90%] h-[85%] rounded-xl" />
+                </div>
+            </Modal>
             <div className="w-full flex flex-col sm:px-24 px-4">
                 <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
                     <div className="sm:w-1/2 w-full flex gap-16 px-4">
                         <div className="flex flex-col w-full gap-4 items-center">
-                            <div className="min-w-96 min-h-84">
+                            <div
+                                className="min-w-96 min-h-84"
+                                onClick={() => setOpen(!open)}
+                            >
                                 <img
                                     src={image ? image : product.image1}
                                     alt="table"
@@ -288,7 +314,7 @@ const Product = () => {
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    className="font-bold text-white my-12 px-20 text-[26px]"
                     data-aos="zoom-in"
                 >
                     Woodwork Products
@@ -297,19 +323,19 @@ const Product = () => {
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    className="font-bold text-white my-12 px-20 text-[26px]"
                     data-aos="zoom-in"
                 >
-                    Woodwork Products
+                    Incense Sticks
                 </h1>
                 <Slider data-aos="zoom-in" />
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-12 text-[26px]"
+                    className="font-bold text-white my-12 px-20 text-[26px]"
                     data-aos="zoom-in"
                 >
-                    Woodwork Products
+                    Rose Pack
                 </h1>
                 <Slider data-aos="zoom-in" />
             </div>
