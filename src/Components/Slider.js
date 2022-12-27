@@ -7,8 +7,15 @@ import productContext from "../Context/ProductContext";
 
 const Slider = ({ data }) => {
     const { products, getProducts } = useContext(productContext);
+    const [ar, setAr] = React.useState(true);
     useEffect(() => {
         getProducts();
+        const width = window.innerWidth;
+        if (width <= 680) {
+            setAr(false);
+        } else {
+            setAr(true);
+        }
     }, []);
     const responsive = {
         superLargeDesktop: {
@@ -31,7 +38,7 @@ const Slider = ({ data }) => {
     };
     return (
         <div>
-            <Carousel responsive={responsive} infinite={true}>
+            <Carousel responsive={responsive} infinite={true} arrows={ar}>
                 {products.map((product, index) => (
                     <ProductCard
                         key={index}

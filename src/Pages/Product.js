@@ -15,12 +15,10 @@ const Product = () => {
     AOS.init();
     const navigate = useNavigate();
     const { id } = useParams();
-    const [image, setImage] = useState(table1);
+    const [image, setImage] = useState("");
     const { product, getProduct, setAdded } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
-        console.log(id);
-        console.log(product);
         window.scrollTo(0, 0);
         setImage(product.image1);
         // eslint-disable-next-line
@@ -51,11 +49,11 @@ const Product = () => {
             <Navbar />
             <div className="w-full flex flex-col sm:px-24 px-4">
                 <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
-                    <div className="sm:w-1/2 w-full flex gap-16">
+                    <div className="sm:w-1/2 w-full flex gap-16 px-4">
                         <div className="flex flex-col w-full gap-4 items-center">
-                            <div className="w-96 h-84">
+                            <div className="min-w-96 min-h-84">
                                 <img
-                                    src={image}
+                                    src={image ? image : product.image1}
                                     alt="table"
                                     className="w-96 h-80 rounded-2xl"
                                     data-aos="zoom-in"
@@ -70,7 +68,7 @@ const Product = () => {
                                         product.image1 ? product.image1 : table
                                     }
                                     alt="table"
-                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    className="w-16 h-16 rounded-lg cursor-pointer"
                                     data-aos="zoom-in"
                                     onClick={() => setImage(product.image1)}
                                 />
@@ -79,7 +77,7 @@ const Product = () => {
                                         product.image1 ? product.image2 : table
                                     }
                                     alt="table"
-                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    className="w-16 h-16 rounded-lg cursor-pointer"
                                     data-aos="zoom-in"
                                     onClick={() => setImage(product.image2)}
                                 />
@@ -88,7 +86,7 @@ const Product = () => {
                                         product.image1 ? product.image3 : table
                                     }
                                     alt="table"
-                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    className="w-16 h-16 rounded-lg cursor-pointer"
                                     data-aos="zoom-in"
                                     onClick={() => setImage(product.image3)}
                                 />
@@ -97,14 +95,14 @@ const Product = () => {
                                         product.image1 ? product.image4 : table
                                     }
                                     alt="table"
-                                    className="w-20 h-20 rounded-lg cursor-pointer"
+                                    className="w-16 h-16 rounded-lg cursor-pointer"
                                     data-aos="zoom-in"
                                     onClick={() => setImage(product.image4)}
                                 />
                             </div>
                         </div>
                     </div>
-                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 ">
+                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 px-4">
                         <h1
                             className="font-bold text-[20px]"
                             data-aos="zoom-in"
@@ -113,22 +111,22 @@ const Product = () => {
                                 ? product.name
                                 : "Multipurpose Portable Table (Yellow-Orange)"}
                         </h1>
-                        <div className="pl-4" data-aos="zoom-in">
+                        <div className="" data-aos="zoom-in">
                             <h1 className="text-justify">
                                 {product.description}
                             </h1>
                         </div>
-                        <h1 className="pl-4  text-[20px]" data-aos="zoom-in">
+                        <h1 className="  text-[20px]" data-aos="zoom-in">
                             <span className="font-bold">Category : </span>{" "}
                             {product.category}
                         </h1>
-                        <h1 className="pl-4 text-[20px]" data-aos="zoom-in">
+                        <h1 className=" text-[20px]" data-aos="zoom-in">
                             <span className="font-bold">Dimensions : </span>{" "}
                             {product.length} x {product.breadth} x{" "}
                             {product.height}
                         </h1>
                         <h1
-                            className="pl-4 font-bold text-[20px]"
+                            className=" font-bold text-[20px]"
                             data-aos="zoom-in"
                         >
                             ₹ {product.price}
@@ -236,14 +234,14 @@ const Product = () => {
                     </div>
                 </div>
                 <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
-                    <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap:8">
+                    <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap-8 px-4">
                         <h1
                             className="font-bold text-[20px]"
                             data-aos="zoom-in"
                         >
                             More Details About the Product
                         </h1>
-                        <div className="px-4">
+                        <div className="">
                             <h1 className="text-justify" data-aos="zoom-in">
                                 {product.description}
                             </h1>

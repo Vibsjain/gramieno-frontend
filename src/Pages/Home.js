@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
     Slider,
     Artisians,
@@ -19,6 +19,7 @@ import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
 
 function Home() {
+    const [ar, setAr] = useState(true);
     const { products, getProducts, snack, setAdded, added } =
         useContext(ProductContext);
     AOS.init();
@@ -79,6 +80,13 @@ function Home() {
         console.log(products);
         setAdded(!added);
         window.scrollTo(0, 0);
+        const width = window.innerWidth;
+
+        if (width <= 680) {
+            setAr(false);
+        } else {
+            setAr(true);
+        }
         // eslint-disable-next-line
     }, []);
     return (
@@ -206,7 +214,7 @@ function Home() {
                 <h1 className="text-center my-12 font-bold text-[30px] text-white">
                     Testimonials
                 </h1>
-                <Carousel responsive={responsive} infinite={true}>
+                <Carousel responsive={responsive} infinite={true} arrows={ar}>
                     {testimonials.map((testimonial) => (
                         <TestimonialCard
                             name={testimonial.name}
