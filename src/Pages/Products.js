@@ -55,10 +55,10 @@ const Products = () => {
                     className="flex w-full sm:px-36 px-12 justify-center items-center"
                     data-aos="zoom-in"
                 >
-                    <ul class="flex flex-wrap gap-4 justify-center">
+                    <ul className="flex flex-wrap gap-4 justify-center">
                         <li>
                             <button
-                                class={`${navButtonStyle} ${
+                                className={`${navButtonStyle} ${
                                     allTab ? navChosesStyle : navHoverStyle
                                 }`}
                                 onClick={() => {
@@ -72,7 +72,7 @@ const Products = () => {
                         </li>
                         <li>
                             <button
-                                class={`${navButtonStyle} ${
+                                className={`${navButtonStyle} ${
                                     woodenTab ? navChosesStyle : navHoverStyle
                                 }`}
                                 onClick={() => {
@@ -92,7 +92,7 @@ const Products = () => {
                         </li>
                         <li>
                             <button
-                                class={`${navButtonStyle} ${
+                                className={`${navButtonStyle} ${
                                     incenseTab ? navChosesStyle : navHoverStyle
                                 }`}
                                 onClick={() => {
@@ -112,7 +112,7 @@ const Products = () => {
                         </li>
                         <li>
                             <button
-                                class={`${navButtonStyle} ${
+                                className={`${navButtonStyle} ${
                                     roseTab ? navChosesStyle : navHoverStyle
                                 }`}
                                 onClick={() => {

@@ -5,6 +5,7 @@ import api from "../api";
 const ProductState = (props) => {
     const [isLogged, setIsLogged] = useState(false);
     const [snack, setSnack] = useState({ text: "", visible: false });
+    const [data, setData] = useState({});
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
     const [orders, setOrders] = useState([]);
@@ -65,9 +66,9 @@ const ProductState = (props) => {
         setLoading(false);
     };
 
-    const editOrder = async (id, order) => {
+    const updateDeliveryStatus = async (id) => {
         setLoading(true);
-        const res = await api.put(`/orders/${id}`, order);
+        const res = await api.put(`/orders/status/${id}`);
         setOrders(
             orders.map((order) =>
                 order._id === id ? { ...order, ...res.data } : order
@@ -107,7 +108,7 @@ const ProductState = (props) => {
                     order,
                     getOrder,
                     addOrder,
-                    editOrder,
+                    updateDeliveryStatus,
                     deleteOrder,
                     snack,
                     handleSnack,

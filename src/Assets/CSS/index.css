@@ -37,6 +37,15 @@
     display: none;
   }
 
+  .wrapper{
+    background: rgba(255, 255, 255, 0.192);
+    backdrop-filter: blur(10px);
+    height: 250px;
+    width: 600px;
+    border-radius: 15px;
+    border: 1px solid rgba(43, 43, 43, 0.568);
+  }
+
 .home-story{
   background-image: url("../Images/homeStory.jpeg");
   background-size: cover;

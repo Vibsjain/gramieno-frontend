@@ -18,7 +18,7 @@ const Upload = () => {
             image2: "",
             image3: "",
             image4: "",
-            length: 0,
+            len: 0,
             breadth: 0,
             height: 0,
         },
@@ -34,7 +34,7 @@ const Upload = () => {
             !data.image2 ||
             !data.image3 ||
             !data.image4 ||
-            !data.length ||
+            !data.len ||
             !data.breadth ||
             !data.height
         ) {
@@ -45,6 +45,10 @@ const Upload = () => {
             });
             return;
         } else {
+            data.length = parseInt(data.len);
+            data.breadth = parseInt(data.breadth);
+            data.height = parseInt(data.height);
+            // console.log(data);
             addProduct(data);
             swal({
                 title: "Success",
@@ -57,11 +61,11 @@ const Upload = () => {
                 price: 0,
                 description: "",
                 countInStock: 0,
-                image1: "",
-                image2: "",
-                image3: "",
-                image4: "",
-                length: 0,
+                image1: null,
+                image2: null,
+                image3: null,
+                image4: null,
+                len: 0,
                 breadth: 0,
                 height: 0,
             });
@@ -82,7 +86,7 @@ const Upload = () => {
                     <select
                         name="category"
                         id="category"
-                        class={inputStyle}
+                        className={inputStyle}
                         placeholder="Category"
                         value={data.category}
                         onChange={(e) => {
@@ -96,11 +100,11 @@ const Upload = () => {
                         <option value="Incense Sticks">Incense Sticks</option>
                         <option value="Rose">Rose</option>
                     </select>
-                    <label class={labelStyle}>Product Name</label>
+                    <label className={labelStyle}>Product Name</label>
                     <input
                         type="text"
                         id="title"
-                        class={inputStyle}
+                        className={inputStyle}
                         placeholder="Name of the Product"
                         value={data.name}
                         onChange={(e) => {
@@ -110,24 +114,25 @@ const Upload = () => {
                             });
                         }}
                     />
-                    <label class={labelStyle}>Dimensions of Product</label>
+                    <label className={labelStyle}>Dimensions of Product</label>
                     <div className="flex w-full gap-8">
                         <input
                             type="number"
                             id="length"
-                            class={inputStyle}
+                            className={inputStyle}
+                            value={data.len}
                             placeholder="Length"
                             onChange={(e) => {
                                 setData({
                                     ...data,
-                                    length: e.target.value,
+                                    len: e.target.value,
                                 });
                             }}
                         />
                         <input
                             type="number"
                             id="bredth"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Breadth"
                             value={data.breadth}
                             onChange={(e) => {
@@ -140,7 +145,7 @@ const Upload = () => {
                         <input
                             type="number"
                             id="height"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Height"
                             value={data.height}
                             onChange={(e) => {
@@ -151,11 +156,11 @@ const Upload = () => {
                             }}
                         />
                     </div>
-                    <label class={labelStyle}>Description of Product</label>
+                    <label className={labelStyle}>Description of Product</label>
                     <textarea
                         type="text"
                         id="desc"
-                        class={inputStyle}
+                        className={inputStyle}
                         placeholder="Description"
                         value={data.description}
                         rows={5}
@@ -166,11 +171,11 @@ const Upload = () => {
                             });
                         }}
                     />
-                    <label class={labelStyle}>Price of Product</label>
+                    <label className={labelStyle}>Price of Product</label>
                     <input
                         type="number"
                         id="price"
-                        class={inputStyle}
+                        className={inputStyle}
                         placeholder="₹ Price"
                         value={data.price}
                         onChange={(e) => {
@@ -180,11 +185,11 @@ const Upload = () => {
                             });
                         }}
                     />
-                    <label class={labelStyle}>Count In Stock</label>
+                    <label className={labelStyle}>Count In Stock</label>
                     <input
                         type="number"
                         id="stock"
-                        class={inputStyle}
+                        className={inputStyle}
                         placeholder="Number of Items in Stock"
                         value={data.countInStock}
                         onChange={(e) => {
@@ -195,7 +200,7 @@ const Upload = () => {
                         }}
                     />
 
-                    <label class={labelStyle}>Add Images (Max. 4)</label>
+                    <label className={labelStyle}>Add Images (Max. 4)</label>
                     <div className="input-file">
                         <FileBase64
                             type="file"

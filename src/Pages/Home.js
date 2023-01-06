@@ -95,10 +95,10 @@ function Home() {
             <Navbar />
             {/* Hero Section */}
             <div
-                className="flex w-full sm:flex hidden justify-center"
+                className="flex w-full sm:flex hidden justify-center h-0"
                 data-aos="fade-up"
             >
-                <HeroAnimate />
+                <HeroAnimate className="mt-[-20px]" />
             </div>
             <div className="sm:hidden flex py-2 ">
                 <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
@@ -115,7 +115,9 @@ function Home() {
                         <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
                             Our Products
                         </h1>
-                        <h1 className="text-[12px] sm:hidden flex text-white" >(Swipe to See More)</h1>
+                        <h1 className="text-[12px] sm:hidden flex text-white">
+                            (Swipe to See More)
+                        </h1>
                     </div>
                     <div className="w-1/2 flex justify-end">
                         <button

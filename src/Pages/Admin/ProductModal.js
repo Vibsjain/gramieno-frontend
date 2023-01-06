@@ -118,7 +118,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                         <select
                             name="category"
                             id="category"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Category"
                             value={data.category}
                             onChange={(e) => {
@@ -134,11 +134,11 @@ const ProductModal = ({ open, setOpen, id }) => {
                             </option>
                             <option value="Rose">Rose</option>
                         </select>
-                        <label class={labelStyle}>Product Name</label>
+                        <label className={labelStyle}>Product Name</label>
                         <input
                             type="text"
                             id="title"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Name of the Product"
                             value={data.name}
                             onChange={(e) => {
@@ -148,12 +148,14 @@ const ProductModal = ({ open, setOpen, id }) => {
                                 });
                             }}
                         />
-                        <label class={labelStyle}>Dimensions of Product</label>
+                        <label className={labelStyle}>
+                            Dimensions of Product
+                        </label>
                         <div className="flex w-full gap-8">
                             <input
                                 type="number"
                                 id="length"
-                                class={inputStyle}
+                                className={inputStyle}
                                 placeholder="Length"
                                 onChange={(e) => {
                                     setData({
@@ -165,7 +167,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                             <input
                                 type="number"
                                 id="bredth"
-                                class={inputStyle}
+                                className={inputStyle}
                                 placeholder="Breadth"
                                 value={data.breadth}
                                 onChange={(e) => {
@@ -178,7 +180,7 @@ const ProductModal = ({ open, setOpen, id }) => {
                             <input
                                 type="number"
                                 id="height"
-                                class={inputStyle}
+                                className={inputStyle}
                                 placeholder="Height"
                                 value={data.height}
                                 onChange={(e) => {
@@ -189,11 +191,13 @@ const ProductModal = ({ open, setOpen, id }) => {
                                 }}
                             />
                         </div>
-                        <label class={labelStyle}>Description of Product</label>
+                        <label className={labelStyle}>
+                            Description of Product
+                        </label>
                         <textarea
                             type="text"
                             id="desc"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Description"
                             value={data.description}
                             rows={5}
@@ -204,11 +208,11 @@ const ProductModal = ({ open, setOpen, id }) => {
                                 });
                             }}
                         />
-                        <label class={labelStyle}>Price of Product</label>
+                        <label className={labelStyle}>Price of Product</label>
                         <input
                             type="number"
                             id="price"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="₹ Price"
                             value={data.price}
                             onChange={(e) => {
@@ -218,11 +222,11 @@ const ProductModal = ({ open, setOpen, id }) => {
                                 });
                             }}
                         />
-                        <label class={labelStyle}>Count In Stock</label>
+                        <label className={labelStyle}>Count In Stock</label>
                         <input
                             type="number"
                             id="stock"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Number of Items in Stock"
                             value={data.countInStock}
                             onChange={(e) => {
@@ -233,7 +237,9 @@ const ProductModal = ({ open, setOpen, id }) => {
                             }}
                         />
 
-                        <label class={labelStyle}>Add Images (Max. 4)</label>
+                        <label className={labelStyle}>
+                            Add Images (Max. 4)
+                        </label>
                         <div className="input-file">
                             <FileBase64
                                 type="file"
@@ -442,14 +448,14 @@ const ProductModal = ({ open, setOpen, id }) => {
                                     </h1>
                                 </div>
                             </div>
-                            <div className="sm:w-1/2 w-full">
+                            <div className="sm:w-1/2 w-full flex justify-center items-center">
                                 <Carousel
                                     responsive={responsive1}
                                     infinite={true}
                                     autoPlay={true}
                                     autoPlaySpeed={2000}
                                     transitionDuration={700}
-                                    className="w-full"
+                                    className="w-96"
                                     showDots={false}
                                     arrows={false}
                                 >

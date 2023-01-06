@@ -33,7 +33,14 @@ const Orders = () => {
     }, []);
     return (
         <div className="sm:px-24 px-4 mt-12 about-font">
-            {orders[0] && <OrderModal open={open} setOpen={setOpen} id={id} data = {orders} />}
+            {orders[0] && (
+                <OrderModal
+                    open={open}
+                    setOpen={setOpen}
+                    id={id}
+                    data={orders}
+                />
+            )}
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-white  bg-[rgb(20,28,47)] py-2 px-2">
@@ -64,6 +71,7 @@ const Orders = () => {
                                             ? "bg-[#F9FAFB]"
                                             : "bg-white"
                                     }}`}
+                                    key={index}
                                 >
                                     <th
                                         scope="row"

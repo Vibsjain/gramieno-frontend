@@ -2,77 +2,103 @@ import React, { useState, useEffect, useContext } from "react";
 import Modal from "react-awesome-modal";
 import { CloseOutlined } from "@ant-design/icons";
 import "react-multi-carousel/lib/styles.css";
-import { buyBtn } from "../../Assets/Constants";
 import ProductContext from "../../Context/ProductContext";
-import table from "../../Assets/Images/table.png";
+import "../../Assets/CSS/index.css";
+import swal from "sweetalert";
 
 const OrderModal = ({ open, setOpen, id }) => {
-    const { order, getOrder, products, getProducts } =
+    const { order, getOrder, products, getProducts, updateDeliveryStatus } =
         useContext(ProductContext);
     const [data, setData] = useState({});
     useEffect(() => {
         getOrder(id);
         setData(order);
-        console.log(order);
+        console.log(id, data);
         getProducts();
-        console.log(products);
         // eslint-disable-next-line
-    }, [open]);
+    }, [id]);
 
-    const infoDiv = `flex justify-center sm:px-36 px-2`;
-    const infoHead1 = `w-1/3 text-left text-black font-bold`;
-    const infoHead2 = `w-1/3 sm:text-right text-left text-black`;
-    const infoHead = `w-1/3 text-center text-black`;
-    const Card = ({ __id, quantity }) => {
-        const product = products.find((item) => item._id === __id);
+    const CustomerCard = ({ title, value }) => {
         return (
-            <div className="w-full border border-2 border-black sm:h-[12rem] min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
-                <div className="sm:w-4/12 w-full flex gap-16">
-                    {product && (
+            <div className="flex w-full">
+                <div className="flex w-1/4 justify-between">
+                    <h1>{title}</h1>
+                    <h1>:</h1>
+                </div>
+                <div className="flex w-3/4 px-12">
+                    <h1>{value}</h1>
+                </div>
+            </div>
+        );
+    };
+
+    const ItemCard = ({ item, index }) => {
+        const product = products.find((product) => product._id === item.id);
+        return (
+            <div className="flex flex-col gap-4 w-full shadow-2xl rounded-xl border border-[#1E293B]">
+                {/* Product Info Part */}
+                <div className="w-full flex-col sm:flex-row flex py-4">
+                    <div className="flex sm:w-1/4 w-full justify-center items-center">
                         <img
-                            src={product.image1 ? product.image1 : table}
-                            alt="table"
-                            className="w-96 rounded-tl-lg border-r-[1px] border-black sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
+                            src={product.image1}
+                            className="w-11/12 h-11/12 rounded-xl shadow-2xl"
                         />
-                    )}
-                </div>
-                <div className="flex flex-col sm:w-6/12 w-full pl-4 py-2 justify-between">
-                    <h1 className="font-bold ">{product && product.name}</h1>
-                    <div className="flex flex-col gap-2 mt-2 text-[14px]">
-                        {product && (
-                            <h1>
-                                {product.description.length > 100
-                                    ? product.description.slice(0, 100) + "..."
-                                    : product.description}
-                            </h1>
-                        )}
+                    </div>
+                    <div className="w-full sm:w-3/4 flex flex-col p-4">
                         <h1>
-                            Price : ₹{" "}
-                            <span className="font-bold">
-                                {product && product.price}
+                            <span className="font-bold text-lg">
+                                {product.name}{" "}
                             </span>
+                            ({product.category})
                         </h1>
-                    </div>
-                </div>
-                <div className="flex flex-col sm:w-2/12 w-full pl-4 py-2 px-6 sm:items-end items-start justify-between ">
-                    <div className="flex flex-row sm:flex-col justify-between w-full ">
-                        <h1 className="font-bold sm:text-right text-left">
-                            Total
+                        <h1 className="text-sm py-4 text-justify pr-0 sm:pr-24">
+                            {product.description}
                         </h1>
-                        <div className="flex flex-col items-end">
-                            <h1>{product && product.price}</h1>
-                            <h1>x {quantity}</h1>
-                        </div>
-                    </div>
-                    <div className="w-full flex flex-col items-end ">
-                        <h1 className="font-bold">
-                            ₹ {product && product.price * quantity}
+
+                        <h1>
+                            Dimensions : {product.length}cm x {product.breadth}
+                            cm x {product.height}cm
+                        </h1>
+                        <h1>Price : &#8377; {product.price}</h1>
+                        <h1>Quantity Ordered : {item.quantity}</h1>
+                        <h1>
+                            Total Price : &#8377;{" "}
+                            <span className="font-bold">
+                                {item.quantity *
+                                    product.price *
+                                    (1.18).toFixed(0)}
+                            </span>
                         </h1>
                     </div>
                 </div>
             </div>
         );
     };
+
+    const updateOrder = () => {
+        swal({
+            title: "Are you sure?",
+            text: "Once changed, you will not be able to revert this!",
+            icon: "warning",
+        }).then((res) => {
+            if (res) {
+                const res1 = updateDeliveryStatus(id);
+                swal({
+                    title: "Success",
+                    text: "Order Status Updated",
+                    icon: "success",
+                });
+                setOpen(!open);
+            } else {
+                swal({
+                    title: "Cancelled",
+                    text: "Order Status Not Updated",
+                    icon: "error",
+                });
+            }
+        });
+    };
+
     return (
         <Modal
             visible={open}
@@ -82,77 +108,110 @@ const OrderModal = ({ open, setOpen, id }) => {
             onClickAway={() => {
                 setOpen(!open);
             }}
+            // styles={bg}
         >
-            <div className="h-[100%] overflow-auto modals">
+            <div className="h-[100%] overflow-auto modals  text-[#1E293B]">
                 <div className="flex w-full justify-end px-4 py-4">
                     <CloseOutlined
                         className="text-black hover:font-bold text-[20px]"
                         onClick={() => setOpen(!open)}
                     />
                 </div>
-                <h1 className="py-4 font-bold text-[24px] underline text-center ">
+                <div className="px-8 flex flex-col sm:flex-row gap-4 sm:items-center items-start w-full ">
+                    <h1>
+                        Delivery Status :{" "}
+                        <span className="font-bold">
+                            {data.isDelivered ? "Delivered" : "Not Delivered"}
+                        </span>
+                    </h1>
+                    <button
+                        className="w-full sm:w-auto border border-[#1E293B] bg-[#1E293B] text-white px-6 py-2 rounded-xl shadow-2xl hover:bg-white hover:text-[#1E293B]"
+                        onClick={updateOrder}
+                    >
+                        Change
+                    </button>
+                </div>
+                <h1 className="py-4 font-extrabold text-[24px] underline text-center ">
                     Order Details
                 </h1>
-                {data.shippingAddress && (
-                    <div className="flex flex-col gap-2 sm:px-36 px-2">
-                        <h1 className="font-bold py-8 text-center text-[20px]">
-                            Customer's Details
-                        </h1>
-                        <div className="flex flex-col gap-2 bg-[#FFF]  border border-2 border-black py-16 rounded-xl">
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>Name</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.fullName}
-                                </h1>
-                            </div>
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>Email</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.email}
-                                </h1>
-                            </div>
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>Phone</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.phone}
-                                </h1>
-                            </div>
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>Address</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.address}
-                                </h1>
-                            </div>
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>City</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.city}
-                                </h1>
-                            </div>
-                            <div className={infoDiv}>
-                                <h1 className={infoHead1}>Postal Code</h1>
-                                <h1 className={infoHead}>:</h1>
-                                <h1 className={infoHead2}>
-                                    {data.shippingAddress.postalCode}
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                )}
-
-                <div className="flex flex-col gap-2 py-8">
-                    <h1 className="font-bold py-12 text-center text-[20px]">
-                        Purchase Details
+                {/* Customer Details */}
+                <div className="px-8 flex flex-col gap-2">
+                    <h1 className="text-xl py-4 font-bold">
+                        Customer's Details
                     </h1>
-                    <div className="flex flex-col gap-8 w-full sm:px-36 px-2 ">
+                    <CustomerCard
+                        title="Name"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.fullName
+                                : ""
+                        }
+                    />
+                    <CustomerCard
+                        title="Email"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.email
+                                : ""
+                        }
+                    />
+                    <CustomerCard
+                        title="Phone"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.phone
+                                : ""
+                        }
+                    />
+                    <CustomerCard
+                        title="Address"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.address
+                                : ""
+                        }
+                    />
+                    <CustomerCard
+                        title="City"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.city
+                                : ""
+                        }
+                    />
+                    <CustomerCard
+                        title="Postal Code"
+                        value={
+                            data.shippingAddress
+                                ? data.shippingAddress.postalCode
+                                : ""
+                        }
+                    />
+                </div>
+                <div className="py-12 px-12">
+                    <hr
+                        className="py-4 px-12 text-[#1E293B]
+                        "
+                    />
+                </div>
+                {/* Order Details */}
+                <div className="px-2 sm:px-8 flex flex-col gap-2 pb-8">
+                    <h1 className="py-4">
+                        <span className="text-xl  font-bold">
+                            Purchase Item's Details (Total Purchase Amount :
+                            &#8377; {data.totalPrice ? data.totalPrice : 0}
+                        </span>
+                        <br />
+                        (Inclusive of all Taxes)
+                    </h1>
+                    <div className="flex flex-wrap gap-4">
                         {data.orderItems &&
-                            data.orderItems.map((item) => (
-                                <Card __id={item.id} quantity={item.quantity} />
+                            data.orderItems.map((item, index) => (
+                                <ItemCard
+                                    item={item}
+                                    index={index}
+                                    key={index}
+                                />
                             ))}
                     </div>
                 </div>

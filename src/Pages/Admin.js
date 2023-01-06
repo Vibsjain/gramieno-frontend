@@ -111,10 +111,10 @@ const Admin = () => {
 
                     {/* Navigation Tabs */}
                     <div className="flex w-full sm:px-36 px-2 justify-center items-center">
-                        <ul class="flex flex-wrap justify-center w-full gap-4">
+                        <ul className="flex flex-wrap justify-center w-full gap-4">
                             <li>
                                 <button
-                                    class={`${navButtonStyle} ${
+                                    className={`${navButtonStyle} ${
                                         orderDetails
                                             ? navChosesStyle
                                             : navHoverStyle
@@ -130,7 +130,7 @@ const Admin = () => {
                             </li>
                             <li>
                                 <button
-                                    class={`${navButtonStyle} ${
+                                    className={`${navButtonStyle} ${
                                         productDetails
                                             ? navChosesStyle
                                             : navHoverStyle
@@ -146,7 +146,7 @@ const Admin = () => {
                             </li>
                             <li>
                                 <button
-                                    class={`${navButtonStyle} ${
+                                    className={`${navButtonStyle} ${
                                         upload ? navChosesStyle : navHoverStyle
                                     }`}
                                     onClick={() => {

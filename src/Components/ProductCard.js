@@ -8,14 +8,14 @@ const ProductCard = ({ image1, item, description, price, id }) => {
     const navigate = useNavigate();
     const btnClass = buyBtn;
     return (
-        <div className="w-[20rem] drop-shadow-2xl about-font rounded-2xl zoom ">
-            <div className="w-[20rem] bg-white h-[18rem] rounded-t-2xl">
+        <div className="w-[23rem] drop-shadow-2xl about-font rounded-2xl zoom ">
+            <div className="w-[23rem] bg-white h-[18rem] rounded-t-2xl">
                 <img
                     src={image1}
                     className="rounded-t-2xl h-full w-full "
                 ></img>
             </div>
-            <div className="flex flex-col gap-4 justify-between w-[20rem] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
+            <div className="flex flex-col gap-4 justify-between w-[23rem] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
                 <div className="flex w-full justify-between">
                     <h1 className="w-1/2 px-2 text-center font-bold about-font">
                         {item}

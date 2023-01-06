@@ -67,7 +67,7 @@ const Product = () => {
                         />
                     </div>
 
-                    <img src={image} className="w-[90%] h-[85%] rounded-xl" />
+                    <img src={image ? image : product.image1} className="w-[90%] h-[85%] rounded-xl cursor-pointer"  title = "Click to zoom"/>
                 </div>
             </Modal>
             <div className="w-full flex flex-col sm:px-24 px-4">
@@ -273,14 +273,14 @@ const Product = () => {
                             </h1>
                         </div>
                     </div>
-                    <div className="sm:w-1/2 w-full">
+                    <div className="sm:w-1/2 w-full flex justify-center items-center">
                         <Carousel
                             responsive={responsive1}
                             infinite={true}
                             autoPlay={true}
                             autoPlaySpeed={2000}
                             transitionDuration={700}
-                            className="w-full"
+                            className="w-96"
                             showDots={false}
                             arrows={false}
                         >

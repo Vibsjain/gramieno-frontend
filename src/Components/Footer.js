@@ -143,11 +143,11 @@ const Footer = () => {
                         </h1>
                     </div>
                     <div className="sm:px-28 px-4">
-                        <label class={labelStyle}>Name</label>
+                        <label className={labelStyle}>Name</label>
                         <input
                             type="text"
                             id="title"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Name of the Product"
                             value={data.name}
                             onChange={(e) => {
@@ -158,11 +158,11 @@ const Footer = () => {
                             }}
                         />
 
-                        <label class={labelStyle}>Email</label>
+                        <label className={labelStyle}>Email</label>
                         <input
                             type="email"
                             id="email"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Enter Your Email"
                             value={data.email}
                             onChange={(e) => {
@@ -173,11 +173,11 @@ const Footer = () => {
                             }}
                         />
 
-                        <label class={labelStyle}>Message</label>
+                        <label className={labelStyle}>Message</label>
                         <textarea
                             type="text"
                             id="message"
-                            class={inputStyle}
+                            className={inputStyle}
                             placeholder="Write Your Message"
                             value={data.message}
                             onChange={(e) => {

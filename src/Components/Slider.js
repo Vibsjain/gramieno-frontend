@@ -24,15 +24,15 @@ const Slider = ({ data }) => {
             items: 5,
         },
         desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 3000, min: 1175 },
             items: 3,
         },
         tablet: {
-            breakpoint: { max: 1024, min: 680 },
+            breakpoint: { max: 1175, min: 775 },
             items: 2,
         },
         mobile: {
-            breakpoint: { max: 680, min: 0 },
+            breakpoint: { max: 775, min: 0 },
             items: 1,
         },
     };

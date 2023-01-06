@@ -31,7 +31,7 @@ function Navbar() {
     }, [added]);
     return (
         <div className="flex w-full  back  z-[10]">
-            <div className="flex sm:w-9/12 w-3/12 sm:pb-0  pt-12 sm:px-12 px-4 py-4 sm:items-center ">
+            <div className="flex sm:w-9/12 w-3/12 sm:py-12 sm:px-12 px-4 py-4 sm:items-center ">
                 <img
                     className="sm:h-[60px] h-[50px] cursor-pointer"
                     src={Logo}
