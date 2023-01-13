@@ -7,7 +7,7 @@ const TestimonialCard = ({ text, name }) => {
             <div className="flex flex-col justify-center h-[90%]">
                 <h1 className="text-center text-white">{text}</h1>
             </div>
-            <h1 className="mt-12 text-white font-bold text-right italic underline">
+            <h1 className="mt-12 text-white font-bold text-right italic">
                 {" "}
                 - {name}
             </h1>

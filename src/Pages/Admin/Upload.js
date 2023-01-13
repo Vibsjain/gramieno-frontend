@@ -14,26 +14,28 @@ const Upload = () => {
             price: 0,
             description: "",
             countInStock: 0,
-            image1: "",
-            image2: "",
-            image3: "",
-            image4: "",
+            images: [],
             len: 0,
             breadth: 0,
             height: 0,
         },
     ]);
     const handleUpload = () => {
+        if (data.images && data.images.length < 4) {
+            swal({
+                title: "Error",
+                text: "Please upload atleast 4 images",
+                icon: "error",
+            });
+            return;
+        }
         if (
             !data.name ||
             !data.category ||
             !data.price ||
             !data.description ||
             !data.countInStock ||
-            !data.image1 ||
-            !data.image2 ||
-            !data.image3 ||
-            !data.image4 ||
+            !data.images ||
             !data.len ||
             !data.breadth ||
             !data.height
@@ -61,16 +63,13 @@ const Upload = () => {
                 price: 0,
                 description: "",
                 countInStock: 0,
-                image1: null,
-                image2: null,
-                image3: null,
-                image4: null,
+                images: [],
                 len: 0,
                 breadth: 0,
                 height: 0,
             });
         }
-        // addProduct(data);
+        addProduct(data);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
@@ -200,19 +199,21 @@ const Upload = () => {
                         }}
                     />
 
-                    <label className={labelStyle}>Add Images (Max. 4)</label>
+                    <label className={labelStyle}>Add Images </label>
                     <div className="input-file">
                         <FileBase64
-                            type="file"
                             multiple={true}
-                            className="w-full bg-black"
                             onDone={(files) => {
+                                let images = [];
+                                files.map((file) => {
+                                    images.push(file.base64);
+                                });
+                                for (let i = 0; i < data.images; i++) {
+                                    images.push(data.images[i]);
+                                }
                                 setData({
                                     ...data,
-                                    image1: files[0] ? files[0].base64 : "",
-                                    image2: files[1] ? files[1].base64 : "",
-                                    image3: files[2] ? files[2].base64 : "",
-                                    image4: files[3] ? files[3].base64 : "",
+                                    images: images,
                                 });
                             }}
                         />
@@ -220,38 +221,42 @@ const Upload = () => {
                     {/* Show Images */}
                     <div>
                         <div className="flex flex-wrap gap-4 mt-8">
-                            <div className="flex  gap-4 w-[150px] h-[150px] relative">
-                                {data.image1 !== "" && (
-                                    <img
-                                        src={data.image1}
-                                        alt="image1"
-                                        className="w-full h-full object-cover rounded-lg"
-                                    />
-                                )}
-
-                                {data.image2 !== "" && (
-                                    <img
-                                        src={data.image2}
-                                        alt="image2"
-                                        className="w-full h-full object-cover rounded-lg"
-                                    />
-                                )}
-
-                                {data.image3 !== "" && (
-                                    <img
-                                        src={data.image3}
-                                        alt="image3"
-                                        className="w-full h-full object-cover rounded-lg"
-                                    />
-                                )}
-                                {data.image4 !== "" && (
-                                    <img
-                                        src={data.image4}
-                                        alt="image4"
-                                        className="w-full h-full object-cover rounded-lg"
-                                    />
-                                )}
-                            </div>
+                            {data.images &&
+                                data.images.map((image, index) => {
+                                    return (
+                                        <div key={index} className="relative">
+                                            <img
+                                                src={image}
+                                                alt="Product"
+                                                className="w-[150px] h-[150px] object-cover"
+                                            />
+                                            <div
+                                                className="absolute top-0 right-0 bg-red-500 rounded-full w-6 h-6 flex items-center justify-center cursor-pointer"
+                                                onClick={() => {
+                                                    let images = data.images;
+                                                    images.splice(index, 1);
+                                                    setData({
+                                                        ...data,
+                                                        images: images,
+                                                    });
+                                                }}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="h-4 w-4 text-white"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
                         </div>
                     </div>
                     <button

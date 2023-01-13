@@ -9,7 +9,10 @@ const ProductCard = ({ image1, item, description, price, id }) => {
     const btnClass = buyBtn;
     return (
         <div className="w-[23rem] drop-shadow-2xl about-font rounded-2xl zoom ">
-            <div className="w-[23rem] bg-white h-[18rem] rounded-t-2xl">
+            <div
+                className="w-[23rem] bg-white h-[18rem] rounded-t-2xl cursor-pointer"
+                onClick={() => navigate(`/products/${id}`)}
+            >
                 <img
                     src={image1}
                     className="rounded-t-2xl h-full w-full "
@@ -125,12 +128,6 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                         </button>
                     </div>
                 </div>
-                <button
-                    className="text-right text-[12px] px-4 about-font"
-                    onClick={() => navigate(`/products/${id}`)}
-                >
-                    View More Details
-                </button>
             </div>
         </div>
     );

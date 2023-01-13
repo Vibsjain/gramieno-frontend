@@ -42,7 +42,7 @@ const Slider = ({ data }) => {
                 {products.map((product, index) => (
                     <ProductCard
                         key={index}
-                        image1={product.image1}
+                        image1={product.images[0]}
                         item={product.name}
                         description={product.description}
                         price={product.price}

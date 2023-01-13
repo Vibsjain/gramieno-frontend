@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import {
     Slider,
-    Artisians,
     Navbar,
     Footer,
     TestimonialCard,
@@ -13,7 +12,7 @@ import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
 import artisan1 from "../Assets/Images/artisan1.jpeg";
 import artisan2 from "../Assets/Images/artisan2.jpeg";
-import art from "../Assets/Images/art.png";
+// import art from "../Assets/Images/art.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
@@ -26,6 +25,8 @@ function Home() {
     const navigate = useNavigate();
     // const storyText = `text-[#836663]`;
     const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+    const art =
+        "https://res.cloudinary.com/dumgn8uvd/image/upload/v1672390075/Main_ait5dc.jpg";
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -136,15 +137,15 @@ function Home() {
                 data-aos="fade-up"
             >
                 <div className="w-[90%] min-h-[75vh] bg-[#545454] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
-                    <div className="sm:p-12 p-2">
-                        <img src={art} className="rounded-xl" />
+                    <div className="sm:p-12 p-2 flex w-full justify-center items-center ">
+                        <img src={art} className="rounded-xl w-[80%] h-[70%]" />
                     </div>
                     <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
                         <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
                             <h1 className="text-center font-bold text-white text-2xl">
                                 The Woodwork Artisans
                             </h1>
-                            <h1 className="text-center py-4 sm:text-center text-justify text-white">
+                            <h1 className="text-center py-4 px-6 text-justify text-white">
                                 Chhotu, Rakesh & Buddhu are excellent craftsmen
                                 and their Ability to convert an idea into
                                 finished products is unmatched. But what is most
@@ -158,7 +159,7 @@ function Home() {
                                 Brajgandha - An Initiative empowering the Matas
                                 of Vrindavan
                             </h1>
-                            <h1 className="text-center py-4 sm:text-center text-justify text-white">
+                            <h1 className="text-center py-4 px-6 text-justify text-white">
                                 A unique initiative by Destitute Matas of
                                 Vrindavan, creating floral products (Incense
                                 sticks, Rose Pack, Gulal) from the flowers

@@ -30,8 +30,8 @@ function Navbar() {
         // eslint-disable-next-line
     }, [added]);
     return (
-        <div className="flex w-full  back  z-[10]">
-            <div className="flex sm:w-9/12 w-3/12 sm:py-12 sm:px-12 px-4 py-4 sm:items-center ">
+        <div className="flex w-full  back  z-[10] pt-4">
+            <div className="flex sm:w-9/12 w-3/12  sm:px-12 px-4 py-4 sm:items-center ">
                 <img
                     className="sm:h-[60px] h-[50px] cursor-pointer"
                     src={Logo}
@@ -58,7 +58,7 @@ function Navbar() {
                     })}
                 </ul>
             </div>
-            <div className="flex sm:w-3/12 w-9/12 sm:pb-0 pt-12 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
+            <div className="flex sm:w-3/12 w-9/12 sm:pb-0 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
                 <div>
                     <div className="flex justify-end relative z-4">
                         <div className="w-4 h-4 rounded-full bg-[#FF0000] text-white font-bold text-[12px] absolute ml-[-4px]">
@@ -99,12 +99,23 @@ function Navbar() {
                         <ul className="flex flex-col mt-12 gap-4 justify-center items-center">
                             {navLinks.map((link) => {
                                 return (
-                                    <button
-                                        className="text-black text-lg"
-                                        onClick={() => navigate(`${link.path}`)}
-                                    >
-                                        {link.title}
-                                    </button>
+                                    link.title === "Contact" ? (
+                                        <a
+                                            href={link.path}
+                                            className="text-black text-lg"
+                                        >
+                                            {link.title}
+                                        </a>
+                                    ) : (
+                                        <button
+                                            className="text-black text-lg"
+                                            onClick={() =>
+                                                navigate(`${link.path}`)
+                                            }
+                                        >
+                                            {link.title}
+                                        </button>
+                                    )
                                 );
                             })}
                             <i

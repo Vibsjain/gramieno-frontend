@@ -65,7 +65,7 @@ const Footer = () => {
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
     return (
-        <div className="w-full py-4 sm:mt-10 mt-8 ">
+        <div className="w-full py-4 sm:mt-10 mt-8 " id="contact">
             <div className="w-full flex justify-center items-center">
                 <div className="sm:w-8/12 w-10/12 sm:h-[3px] h-[1px] bg-white rounded-xl"></div>
             </div>
@@ -148,7 +148,7 @@ const Footer = () => {
                             type="text"
                             id="title"
                             className={inputStyle}
-                            placeholder="Name of the Product"
+                            placeholder="Full Name"
                             value={data.name}
                             onChange={(e) => {
                                 setData({

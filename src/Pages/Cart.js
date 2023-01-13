@@ -5,6 +5,7 @@ import ProductContext from "../Context/ProductContext";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import swal from "sweetalert";
 
 const Cart = () => {
     AOS.init();
@@ -27,14 +28,16 @@ const Cart = () => {
         const product = products.find((item) => item._id === id);
         return (
             <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
-                <div className="sm:w-4/12 w-full flex gap-16">
-                    <img
-                        src={product.image1}
-                        alt="table"
-                        className="w-96 rounded-tl-lg sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
-                    />
+                <div className="sm:w-3/12 w-full flex gap-16 justify-center items-center">
+                    <div className="w-[9rem] h-[9rem] flex justify-center items-center">
+                        <img
+                            src={product.image1}
+                            alt="table"
+                            className="w-full h-full rounded-tl-lg sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
+                        />
+                    </div>
                 </div>
-                <div className="flex flex-col sm:w-6/12 w-full pl-4 py-2 justify-between">
+                <div className="flex flex-col sm:w-7/12 w-full pl-4 py-2 justify-between">
                     <h1 className="font-bold ">{product.name}</h1>
                     <div className="flex flex-col gap-2 mt-2 text-[14px]">
                         <h1>
@@ -229,13 +232,29 @@ const Cart = () => {
                                 <button
                                     className="w-[100%] px-4 h-16 justify-center items-center border-2 border-white rounded-[6px] text-[20px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold"
                                     onClick={() => {
-                                        navigate("/checkout");
-                                        const orders = cart;
-                                        localStorage.setItem(
-                                            "orders",
-                                            JSON.stringify(orders)
-                                        );
-                                        console.log(orders);
+                                        swal({
+                                            title: "Are you sure",
+                                            text: "Are you sure you want to proceed to checkout ?",
+                                            icon: "warning",
+                                            buttons: true,
+                                            dangerMode: true,
+                                        }).then((res) => {
+                                            if (res) {
+                                                navigate("/checkout");
+                                                const orders = cart;
+                                                localStorage.setItem(
+                                                    "orders",
+                                                    JSON.stringify(orders)
+                                                );
+                                                console.log(orders);
+                                            } else {
+                                                swal({
+                                                    title: "Cancelled",
+                                                    text: "Checkout Cancelled",
+                                                    icon: "error",
+                                                });
+                                            }
+                                        });
                                     }}
                                 >
                                     Proceed to Checkout

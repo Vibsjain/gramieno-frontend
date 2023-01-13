@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Navbar, Footer, Slider } from "../Components";
+import { Navbar, Footer, Slider, SnackBar } from "../Components";
 import table from "../Assets/Images/table.png";
-import table1 from "../Assets/Images/table1.jpeg";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { buyBtn } from "../Assets/Constants";
@@ -19,7 +18,7 @@ const Product = () => {
     const { id } = useParams();
     const [image, setImage] = useState("");
     const [open, setOpen] = useState(false);
-    const { product, getProduct, setAdded } = useContext(ProductContext);
+    const { product, getProduct, setAdded, snack } = useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
         window.scrollTo(0, 0);
@@ -49,6 +48,7 @@ const Product = () => {
     const btnClass = buyBtn;
     return (
         <div className="back">
+            <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
             <Modal
                 visible={open}
@@ -67,198 +67,222 @@ const Product = () => {
                         />
                     </div>
 
-                    <img src={image ? image : product.image1} className="w-[90%] h-[85%] rounded-xl cursor-pointer"  title = "Click to zoom"/>
+                    <img
+                        src={image ? image : product.image1}
+                        className="w-[90%] h-[85%] rounded-xl cursor-pointer"
+                        title="Click to zoom"
+                    />
                 </div>
             </Modal>
             <div className="w-full flex flex-col sm:px-24 px-4">
-                <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
-                    <div className="sm:w-1/2 w-full flex gap-16 px-4">
-                        <div className="flex flex-col w-full gap-4 items-center">
-                            <div
-                                className="min-w-96 min-h-84"
-                                onClick={() => setOpen(!open)}
-                            >
-                                <img
-                                    src={image ? image : product.image1}
-                                    alt="table"
-                                    className="w-96 h-80 rounded-2xl"
+                {product.name && (
+                    <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
+                        <div className="sm:w-1/2 w-full flex gap-16 px-4">
+                            <div className="flex flex-col w-full gap-4 items-center">
+                                <div
+                                    className="min-w-96 min-h-84"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    <img
+                                        src={image ? image : product.images[0]}
+                                        alt="table"
+                                        className="w-96 h-80 rounded-2xl"
+                                        data-aos="zoom-in"
+                                    />
+                                </div>
+                                <div
+                                    className="flex w-full gap-4 justify-center"
                                     data-aos="zoom-in"
-                                />
+                                >
+                                    <img
+                                        src={
+                                            product.images[0]
+                                                ? product.images[0]
+                                                : table
+                                        }
+                                        alt="table"
+                                        className="w-16 h-16 rounded-lg cursor-pointer"
+                                        data-aos="zoom-in"
+                                        onClick={() =>
+                                            setImage(product.images[0])
+                                        }
+                                    />
+                                    <img
+                                        src={
+                                            product.images[1]
+                                                ? product.images[1]
+                                                : table
+                                        }
+                                        alt="table"
+                                        className="w-16 h-16 rounded-lg cursor-pointer"
+                                        data-aos="zoom-in"
+                                        onClick={() =>
+                                            setImage(product.images[1])
+                                        }
+                                    />
+                                    <img
+                                        src={
+                                            product.images[2]
+                                                ? product.images[2]
+                                                : table
+                                        }
+                                        alt="table"
+                                        className="w-16 h-16 rounded-lg cursor-pointer"
+                                        data-aos="zoom-in"
+                                        onClick={() =>
+                                            setImage(product.images[2])
+                                        }
+                                    />
+                                    <img
+                                        src={
+                                            product.images[3]
+                                                ? product.images[3]
+                                                : table
+                                        }
+                                        alt="table"
+                                        className="w-16 h-16 rounded-lg cursor-pointer"
+                                        data-aos="zoom-in"
+                                        onClick={() =>
+                                            setImage(product.images[3])
+                                        }
+                                    />
+                                </div>
                             </div>
-                            <div
-                                className="flex w-full gap-4 justify-center"
+                        </div>
+                        <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 px-4">
+                            <h1
+                                className="font-bold text-[20px]"
                                 data-aos="zoom-in"
                             >
-                                <img
-                                    src={
-                                        product.image1 ? product.image1 : table
-                                    }
-                                    alt="table"
-                                    className="w-16 h-16 rounded-lg cursor-pointer"
-                                    data-aos="zoom-in"
-                                    onClick={() => setImage(product.image1)}
-                                />
-                                <img
-                                    src={
-                                        product.image1 ? product.image2 : table
-                                    }
-                                    alt="table"
-                                    className="w-16 h-16 rounded-lg cursor-pointer"
-                                    data-aos="zoom-in"
-                                    onClick={() => setImage(product.image2)}
-                                />
-                                <img
-                                    src={
-                                        product.image1 ? product.image3 : table
-                                    }
-                                    alt="table"
-                                    className="w-16 h-16 rounded-lg cursor-pointer"
-                                    data-aos="zoom-in"
-                                    onClick={() => setImage(product.image3)}
-                                />
-                                <img
-                                    src={
-                                        product.image1 ? product.image4 : table
-                                    }
-                                    alt="table"
-                                    className="w-16 h-16 rounded-lg cursor-pointer"
-                                    data-aos="zoom-in"
-                                    onClick={() => setImage(product.image4)}
-                                />
+                                {product.name
+                                    ? product.name
+                                    : "Multipurpose Portable Table (Yellow-Orange)"}
+                            </h1>
+                            <div className="" data-aos="zoom-in">
+                                <h1 className="text-justify">
+                                    {product.description}
+                                </h1>
+                            </div>
+                            <h1 className="  text-[20px]" data-aos="zoom-in">
+                                <span className="font-bold">Category : </span>{" "}
+                                {product.category}
+                            </h1>
+                            <h1 className=" text-[20px]" data-aos="zoom-in">
+                                <span className="font-bold">Dimensions : </span>{" "}
+                                {product.length} x {product.breadth} x{" "}
+                                {product.height}
+                            </h1>
+                            <h1
+                                className=" font-bold text-[20px]"
+                                data-aos="zoom-in"
+                            >
+                                ₹ {product.price}
+                            </h1>
+                            <div
+                                className="w-full flex gap-4 justify-center sm:justify-start"
+                                data-aos="zoom-in"
+                            >
+                                <button
+                                    className={btnClass}
+                                    onClick={() => {
+                                        const cart = JSON.parse(
+                                            localStorage.getItem("cart")
+                                        );
+                                        if (cart) {
+                                            const index = cart.findIndex(
+                                                (item) =>
+                                                    item.id === product._id
+                                            );
+                                            if (index !== -1) {
+                                                cart[index].quantity += 1;
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify(cart)
+                                                );
+                                            } else {
+                                                cart.push({
+                                                    id,
+                                                    quantity: 1,
+                                                    price: product.price,
+                                                });
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify(cart)
+                                                );
+                                            }
+                                        } else {
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify([
+                                                    {
+                                                        id,
+                                                        quantity: 1,
+                                                        price: product.price,
+                                                    },
+                                                ])
+                                            );
+                                        }
+                                        setAdded(true);
+                                    }}
+                                >
+                                    Add to Cart
+                                </button>
+                                <button
+                                    className={btnClass}
+                                    onClick={() => {
+                                        const cart = JSON.parse(
+                                            localStorage.getItem("cart")
+                                        );
+                                        if (cart) {
+                                            const index = cart.findIndex(
+                                                (item) =>
+                                                    item.id === product._id
+                                            );
+                                            if (index !== -1) {
+                                                cart[index].quantity += 1;
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify(cart)
+                                                );
+                                            } else {
+                                                cart.push({
+                                                    id,
+                                                    quantity: 1,
+                                                    price: product.price,
+                                                });
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify(cart)
+                                                );
+                                            }
+                                        } else {
+                                            localStorage.setItem(
+                                                "cart",
+                                                JSON.stringify([
+                                                    {
+                                                        id,
+                                                        quantity: 1,
+                                                        price: product.price,
+                                                    },
+                                                ])
+                                            );
+                                        }
+                                        navigate("/checkout");
+                                        const orders = cart;
+                                        localStorage.setItem(
+                                            "orders",
+                                            JSON.stringify(orders)
+                                        );
+                                        console.log(orders);
+                                        setAdded(true);
+                                    }}
+                                >
+                                    Buy Now
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 px-4">
-                        <h1
-                            className="font-bold text-[20px]"
-                            data-aos="zoom-in"
-                        >
-                            {product.name
-                                ? product.name
-                                : "Multipurpose Portable Table (Yellow-Orange)"}
-                        </h1>
-                        <div className="" data-aos="zoom-in">
-                            <h1 className="text-justify">
-                                {product.description}
-                            </h1>
-                        </div>
-                        <h1 className="  text-[20px]" data-aos="zoom-in">
-                            <span className="font-bold">Category : </span>{" "}
-                            {product.category}
-                        </h1>
-                        <h1 className=" text-[20px]" data-aos="zoom-in">
-                            <span className="font-bold">Dimensions : </span>{" "}
-                            {product.length} x {product.breadth} x{" "}
-                            {product.height}
-                        </h1>
-                        <h1
-                            className=" font-bold text-[20px]"
-                            data-aos="zoom-in"
-                        >
-                            ₹ {product.price}
-                        </h1>
-                        <div
-                            className="w-full flex gap-4 justify-center sm:justify-start"
-                            data-aos="zoom-in"
-                        >
-                            <button
-                                className={btnClass}
-                                onClick={() => {
-                                    const cart = JSON.parse(
-                                        localStorage.getItem("cart")
-                                    );
-                                    if (cart) {
-                                        const index = cart.findIndex(
-                                            (item) => item.id === product._id
-                                        );
-                                        if (index !== -1) {
-                                            cart[index].quantity += 1;
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify(cart)
-                                            );
-                                        } else {
-                                            cart.push({
-                                                id,
-                                                quantity: 1,
-                                                price: product.price,
-                                            });
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify(cart)
-                                            );
-                                        }
-                                    } else {
-                                        localStorage.setItem(
-                                            "cart",
-                                            JSON.stringify([
-                                                {
-                                                    id,
-                                                    quantity: 1,
-                                                    price: product.price,
-                                                },
-                                            ])
-                                        );
-                                    }
-                                    setAdded(true);
-                                }}
-                            >
-                                Add to Cart
-                            </button>
-                            <button
-                                className={btnClass}
-                                onClick={() => {
-                                    const cart = JSON.parse(
-                                        localStorage.getItem("cart")
-                                    );
-                                    if (cart) {
-                                        const index = cart.findIndex(
-                                            (item) => item.id === product._id
-                                        );
-                                        if (index !== -1) {
-                                            cart[index].quantity += 1;
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify(cart)
-                                            );
-                                        } else {
-                                            cart.push({
-                                                id,
-                                                quantity: 1,
-                                                price: product.price,
-                                            });
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify(cart)
-                                            );
-                                        }
-                                    } else {
-                                        localStorage.setItem(
-                                            "cart",
-                                            JSON.stringify([
-                                                {
-                                                    id,
-                                                    quantity: 1,
-                                                    price: product.price,
-                                                },
-                                            ])
-                                        );
-                                    }
-                                    navigate("/checkout");
-                                    const orders = cart;
-                                    localStorage.setItem(
-                                        "orders",
-                                        JSON.stringify(orders)
-                                    );
-                                    console.log(orders);
-                                    setAdded(true);
-                                }}
-                            >
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                )}
                 <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
                     <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap-8 px-4">
                         <h1
@@ -273,43 +297,29 @@ const Product = () => {
                             </h1>
                         </div>
                     </div>
-                    <div className="sm:w-1/2 w-full flex justify-center items-center">
-                        <Carousel
-                            responsive={responsive1}
-                            infinite={true}
-                            autoPlay={true}
-                            autoPlaySpeed={2000}
-                            transitionDuration={700}
-                            className="w-96"
-                            showDots={false}
-                            arrows={false}
-                        >
-                            <img
-                                src={product.image1}
-                                alt="table"
-                                className="w-96 h-72 rounded-lg"
-                                data-aos="zoom-in"
-                            />
-                            <img
-                                src={product.image2}
-                                alt="table"
-                                className="w-96 h-72 rounded-lg"
-                                data-aos="zoom-in"
-                            />
-                            <img
-                                src={product.image3}
-                                alt="table"
-                                className="w-96 h-72 rounded-lg"
-                                data-aos="zoom-in"
-                            />
-                            <img
-                                src={product.image4}
-                                alt="table"
-                                className="w-96 h-72 rounded-lg"
-                                data-aos="zoom-in"
-                            />
-                        </Carousel>
-                    </div>
+                    {product.name && (
+                        <div className="sm:w-1/2 w-full flex justify-center items-center">
+                            <Carousel
+                                responsive={responsive1}
+                                infinite={true}
+                                autoPlay={true}
+                                autoPlaySpeed={2000}
+                                transitionDuration={700}
+                                className="w-96"
+                                showDots={false}
+                                arrows={false}
+                            >
+                                {product.images.map((image) => (
+                                    <img
+                                        src={image}
+                                        alt="table"
+                                        className="w-96 h-72 rounded-lg"
+                                        data-aos="zoom-in"
+                                    />
+                                ))}
+                            </Carousel>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="flex flex-col w-full mt-24 min-h-[100vh]">
