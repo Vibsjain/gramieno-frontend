@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { ProductCard } from "../Components";
-import table from "../Assets/Images/table.png";
 import productContext from "../Context/ProductContext";
+import "../Assets/CSS/index.css"
 
 const Slider = ({ data }) => {
     const { products, getProducts } = useContext(productContext);

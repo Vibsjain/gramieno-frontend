@@ -63,6 +63,7 @@ const Product = () => {
                 text: "Please fill all the fields",
                 icon: "error",
             });
+            setEdit(false);
             return;
         }
         console.log("upload");
@@ -73,6 +74,7 @@ const Product = () => {
             icon: "success",
         });
         setOpen(!open);
+        setEdit(false);
         console.log(data);
     };
     return (
@@ -87,12 +89,6 @@ const Product = () => {
                 {edit ? (
                     <div className="h-[100%] overflow-auto modals">
                         <div className="flex w-full justify-end px-4 py-4 gap-4">
-                            <CheckOutlined
-                                className="text-black hover:font-bold text-[20px]"
-                                onClick={() => {
-                                    setEdit(!edit);
-                                }}
-                            />
                             <CloseOutlined
                                 className="text-black hover:font-bold text-[20px]"
                                 onClick={() => {
@@ -101,7 +97,7 @@ const Product = () => {
                                 }}
                             />
                         </div>
-                        <div className="sm:px-24 px-4">
+                        <div className="sm:px-36 px-4">
                             <label className={labelStyle}>Category</label>
                             <select
                                 name="category"
@@ -146,12 +142,12 @@ const Product = () => {
                                     type="number"
                                     id="length"
                                     className={inputStyle}
-                                    placeholder="Length"
                                     value={editData.length}
+                                    placeholder="Length"
                                     onChange={(e) => {
                                         setEditData({
                                             ...editData,
-                                            length: e.target.value,
+                                            len: e.target.value,
                                         });
                                     }}
                                 />
@@ -230,26 +226,30 @@ const Product = () => {
                                 }}
                             />
 
-                            <label className={labelStyle}>
-                                Add Images (Max. 4)
-                            </label>
+                            <label className={labelStyle}>Add Images </label>
                             <div className="input-file">
                                 <FileBase64
-                                    type="file"
                                     multiple={true}
-                                    onDone={({ base64 }) =>
+                                    onDone={(files) => {
+                                        let images = [];
+                                        files.map((file) => {
+                                            images.push(file.base64);
+                                        });
+                                        for (let i = 0; i < editData.images; i++) {
+                                            images.push(editData.images[i]);
+                                        }
                                         setEditData({
                                             ...editData,
-                                            image1: base64,
-                                        })
-                                    }
+                                            images: images,
+                                        });
+                                    }}
                                 />
                             </div>
                             {/* Show Images */}
                             <div>
                                 <div className="flex flex-wrap gap-4 mt-8">
-                                    {data.images &&
-                                        data.images.map((image, index) => {
+                                    {editData.images &&
+                                        editData.images.map((image, index) => {
                                             return (
                                                 <div
                                                     key={index}
@@ -263,16 +263,15 @@ const Product = () => {
                                                     <div
                                                         className="absolute top-0 right-0 bg-red-500 rounded-full w-6 h-6 flex items-center justify-center cursor-pointer"
                                                         onClick={() => {
-                                                            let images = [
-                                                                ...data.images,
-                                                            ];
+                                                            let images =
+                                                                editData.images;
                                                             images.splice(
                                                                 index,
                                                                 1
                                                             );
                                                             setData({
-                                                                ...data,
-                                                                images,
+                                                                ...editData,
+                                                                images: images,
                                                             });
                                                         }}
                                                     >
@@ -333,7 +332,7 @@ const Product = () => {
                                                             : product.images[0]
                                                     }
                                                     alt="table"
-                                                    className="w-96 h-80 rounded-2xl"
+                                                    className="w-96 h-80 rounded-2xl shadow-2xl"
                                                     data-aos="zoom-in"
                                                 />
                                             </div>

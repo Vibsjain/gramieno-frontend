@@ -6,11 +6,14 @@ import ProductContext from "../Context/ProductContext";
 const ProductCard = ({ image1, item, description, price, id }) => {
     const { setAdded, handleSnack } = useContext(ProductContext);
     const navigate = useNavigate();
-    const btnClass = buyBtn;
+    const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold text-sm`;
+    const widthBox = "20rem";
     return (
-        <div className="w-[23rem] drop-shadow-2xl about-font rounded-2xl zoom ">
+        <div
+            className={`w-[${widthBox}] drop-shadow-2xl about-font rounded-2xl zoom `}
+        >
             <div
-                className="w-[23rem] bg-white h-[18rem] rounded-t-2xl cursor-pointer"
+                className={`w-[${widthBox}] bg-white h-[12rem] rounded-t-2xl cursor-pointer`}
                 onClick={() => navigate(`/products/${id}`)}
             >
                 <img
@@ -18,9 +21,11 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                     className="rounded-t-2xl h-full w-full "
                 ></img>
             </div>
-            <div className="flex flex-col gap-4 justify-between w-[23rem] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8">
-                <div className="flex w-full justify-between">
-                    <h1 className="w-1/2 px-2 text-center font-bold about-font">
+            <div
+                className={`flex flex-col gap-4 justify-between w-[${widthBox}] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8`}
+            >
+                <div className="flex w-full justify-between text-sm">
+                    <h1 className="w-1/2 px-2 text-center font-bold about-font ">
                         {item}
                     </h1>
                     <h1 className="w-1/2 px-2 text-center font-bold about-font">

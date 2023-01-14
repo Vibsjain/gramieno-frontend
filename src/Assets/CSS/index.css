@@ -145,3 +145,14 @@ li.hero:nth-child(1) {
   filter: blur(20px);
   
 }
+
+@media screen and (max-width : 1600px) {
+  .react-multiple-carousel__arrow--left{
+    margin-left : -3rem;
+  }
+  
+  
+  .react-multiple-carousel__arrow--right{
+    margin-right : -3rem;
+  }
+}

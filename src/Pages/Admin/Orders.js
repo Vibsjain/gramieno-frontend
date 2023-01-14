@@ -36,7 +36,7 @@ const Orders = () => {
                     <div className="w-full flex-col sm:flex-row flex py-4">
                         <div className="flex sm:w-1/4 w-full justify-center items-center">
                             <img
-                                src={product.image1}
+                                src={product.images[0]}
                                 className="w-11/12 h-11/12 rounded-xl shadow-2xl"
                             />
                         </div>
@@ -202,7 +202,7 @@ const Orders = () => {
                     <div className="px-2 sm:px-8 flex flex-col gap-2 pb-8">
                         <h1 className="py-4">
                             <span className="text-xl  font-bold">
-                                Purchase Item's Details (Total Purchase Amount :
+                                Purchase Item's Details - Total Purchase Amount :
                                 &#8377; {data.totalPrice ? data.totalPrice : 0}
                             </span>
                             <br />

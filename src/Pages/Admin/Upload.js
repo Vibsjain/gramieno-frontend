@@ -69,7 +69,6 @@ const Upload = () => {
                 height: 0,
             });
         }
-        addProduct(data);
         console.log(data);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-white mt-8 about-font`;
