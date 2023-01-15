@@ -141,7 +141,7 @@ const Products = () => {
                                 key={index}
                                 item={product.name}
                                 price={product.price}
-                                image1={product.image1}
+                                image1={product.images[0]}
                                 description={product.description}
                             />
                         </div>

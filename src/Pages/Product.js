@@ -22,7 +22,7 @@ const Product = () => {
     useEffect(() => {
         getProduct(id);
         window.scrollTo(0, 0);
-        setImage(product.image1);
+        // setImage(product.images[0]);
         // eslint-disable-next-line
     }, []);
     const responsive1 = {
@@ -68,7 +68,7 @@ const Product = () => {
                     </div>
 
                     <img
-                        src={image ? image : product.image1}
+                        src={image ? image : table}
                         className="w-[90%] h-[85%] rounded-xl cursor-pointer"
                         title="Click to zoom"
                     />
@@ -81,7 +81,10 @@ const Product = () => {
                             <div className="flex flex-col w-full gap-4 items-center">
                                 <div
                                     className="min-w-96 min-h-84"
-                                    onClick={() => setOpen(!open)}
+                                    onClick={() => {
+                                        setImage(image);
+                                        setOpen(!open);
+                                    }}
                                 >
                                     <img
                                         src={image ? image : product.images[0]}
@@ -169,8 +172,8 @@ const Product = () => {
                             </h1>
                             <h1 className=" text-[20px]" data-aos="zoom-in">
                                 <span className="font-bold">Dimensions : </span>{" "}
-                                {product.length} x {product.breadth} x{" "}
-                                {product.height}
+                                {product.length}" x {product.breadth}" x{" "}
+                                {product.height}"
                             </h1>
                             <h1
                                 className=" font-bold text-[20px]"

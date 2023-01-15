@@ -111,7 +111,7 @@ const Upload = () => {
                             id="length"
                             className={inputStyle}
                             value={data.len}
-                            placeholder="Length"
+                            placeholder="Length (inches)"
                             onChange={(e) => {
                                 setData({
                                     ...data,
@@ -123,7 +123,7 @@ const Upload = () => {
                             type="number"
                             id="bredth"
                             className={inputStyle}
-                            placeholder="Breadth"
+                            placeholder="Breadth (inches)"
                             value={data.breadth}
                             onChange={(e) => {
                                 setData({
@@ -136,7 +136,7 @@ const Upload = () => {
                             type="number"
                             id="height"
                             className={inputStyle}
-                            placeholder="Height"
+                            placeholder="Height (inches)"
                             value={data.height}
                             onChange={(e) => {
                                 setData({
