@@ -31,9 +31,9 @@ const Cart = () => {
                 <div className="sm:w-3/12 w-full flex gap-16 justify-center items-center">
                     <div className="w-[9rem] h-[9rem] flex justify-center items-center">
                         <img
-                            src={product.image1}
+                            src={product.images[0]}
                             alt="table"
-                            className="w-full h-full rounded-tl-lg sm:rounded-bl-lg sm:rounded-tr-none rounded-tr-lg sm:rounded-br-none"
+                            className="w-full h-full rounded-lg"
                         />
                     </div>
                 </div>

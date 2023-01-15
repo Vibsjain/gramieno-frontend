@@ -5,6 +5,7 @@ import ProductContext from "../../Context/ProductContext";
 import { CloseOutlined } from "@ant-design/icons";
 import swal from "sweetalert";
 import Modal from "react-awesome-modal";
+import Void from "../../Assets/Images/Void.svg";
 
 const Orders = () => {
     const { orders, getOrders, products, getProducts, updateDeliveryStatus } =
@@ -202,8 +203,9 @@ const Orders = () => {
                     <div className="px-2 sm:px-8 flex flex-col gap-2 pb-8">
                         <h1 className="py-4">
                             <span className="text-xl  font-bold">
-                                Purchase Item's Details - Total Purchase Amount :
-                                &#8377; {data.totalPrice ? data.totalPrice : 0}
+                                Purchase Item's Details - Total Purchase Amount
+                                : &#8377;{" "}
+                                {data.totalPrice ? data.totalPrice : 0}
                             </span>
                             <br />
                             (Inclusive of all Taxes)
@@ -242,6 +244,7 @@ const Orders = () => {
                             </th>
                         </tr>
                     </thead>
+
                     <tbody>
                         {orders[0] &&
                             orders.map((item, index) => (

@@ -4,6 +4,7 @@ import Logo from "../Assets/Images/logo.png";
 import Orders from "./Admin/Orders";
 import Product from "./Admin/Product";
 import Upload from "./Admin/Upload";
+import Discount from "./Admin/Discount";
 import { LogoutOutlined, HomeOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
@@ -20,6 +21,7 @@ const Admin = () => {
     const [orderDetails, setOrderDetails] = useState(true);
     const [productDetails, setProductDetails] = useState(false);
     const [upload, setUpload] = useState(false);
+    const [discount, setDiscount] = useState(false);
     const [currentTab, setCurrentTab] = useState(0);
     const [data, setData] = useState({
         username: "",
@@ -46,6 +48,7 @@ const Admin = () => {
         setOrderDetails(false);
         setUpload(false);
         setProductDetails(false);
+        setDiscount(false); 
         setCurrentTab(0);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
@@ -158,14 +161,32 @@ const Admin = () => {
                                     Upload Product
                                 </button>
                             </li>
+                            <li>
+                                <button
+                                    className={`${navButtonStyle} ${
+                                        discount
+                                            ? navChosesStyle
+                                            : navHoverStyle
+                                    }`}
+                                    onClick={() => {
+                                        clearAll();
+                                        setDiscount(true);
+                                        setCurrentTab(3);
+                                    }}
+                                >
+                                    Discount
+                                </button>
+                            </li>
                         </ul>
                     </div>
                     {currentTab === 0 ? (
                         <Orders />
                     ) : currentTab === 1 ? (
                         <Product />
-                    ) : (
+                    ) : currentTab === 2 ? (
                         <Upload />
+                    ) : (
+                        <Discount />
                     )}
                 </div>
             ) : (

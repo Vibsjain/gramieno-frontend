@@ -21,14 +21,6 @@ const Upload = () => {
         },
     ]);
     const handleUpload = () => {
-        if (data.images && data.images.length < 4) {
-            swal({
-                title: "Error",
-                text: "Please upload atleast 4 images",
-                icon: "error",
-            });
-            return;
-        }
         if (
             !data.name ||
             !data.category ||

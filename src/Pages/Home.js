@@ -108,7 +108,7 @@ function Home() {
             </div>
             {/* Products Section */}
             <div
-                className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[100vh]"
+                className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[10vh]"
                 data-aos="fade-up"
             >
                 <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
