@@ -6,6 +6,7 @@ import {
     TestimonialCard,
     HeroAnimate,
     SnackBar,
+    DiscountNotice,
 } from "../Components";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -78,7 +79,6 @@ function Home() {
     ];
     useEffect(() => {
         getProducts();
-        console.log(products);
         setAdded(!added);
         window.scrollTo(0, 0);
         const width = window.innerWidth;
@@ -94,6 +94,7 @@ function Home() {
         <div className="w-full back">
             <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
+            <DiscountNotice />
             {/* Hero Section */}
             <div
                 className="flex w-full sm:flex hidden justify-center h-0"

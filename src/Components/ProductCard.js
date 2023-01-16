@@ -3,7 +3,7 @@ import { buyBtn } from "../Assets/Constants";
 import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 
-const ProductCard = ({ image1, item, description, price, id }) => {
+const ProductCard = ({ image1, item, description, price, id, stock }) => {
     const { setAdded, handleSnack } = useContext(ProductContext);
     const navigate = useNavigate();
     const btnClass = `flex w-32 py-2 px-4 h-[50px] justify-center items-center border-2 border-white rounded-xl text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold text-sm`;
@@ -41,6 +41,11 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                     <div
                         className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black"
                         onClick={() => {
+                            //check out of stock condition
+                            if (stock === 0) {
+                                handleSnack("Out of Stock");
+                                return;
+                            }
                             handleSnack("Your Item is Added to Cart");
                             const cart = JSON.parse(
                                 localStorage.getItem("cart")
@@ -83,6 +88,10 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                         <button
                             className={btnClass}
                             onClick={() => {
+                                if (stock === 0) {
+                                    handleSnack("Out of Stock");
+                                    return;
+                                }
                                 const cart = JSON.parse(
                                     localStorage.getItem("cart")
                                 );
@@ -125,7 +134,6 @@ const ProductCard = ({ image1, item, description, price, id }) => {
                                     "orders",
                                     JSON.stringify(orders)
                                 );
-                                console.log(orders);
                                 setAdded(true);
                             }}
                         >

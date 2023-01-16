@@ -18,7 +18,8 @@ const Product = () => {
     const { id } = useParams();
     const [image, setImage] = useState("");
     const [open, setOpen] = useState(false);
-    const { product, getProduct, setAdded, snack } = useContext(ProductContext);
+    const { product, getProduct, setAdded, snack, handleSnack } =
+        useContext(ProductContext);
     useEffect(() => {
         getProduct(id);
         window.scrollTo(0, 0);
@@ -175,11 +176,22 @@ const Product = () => {
                                 {product.length}" x {product.breadth}" x{" "}
                                 {product.height}"
                             </h1>
+                            {product.countInStock === 0 && (
+                                <h1 className=" text-[20px]" data-aos="zoom-in">
+                                    <span className="font-bold text-[#FF0000]">
+                                        Out of Stock
+                                    </span>{" "}
+                                </h1>
+                            )}
                             <h1
                                 className=" font-bold text-[20px]"
                                 data-aos="zoom-in"
                             >
-                                ₹ {product.price}
+                                {product.price.toLocaleString("en-IN", {
+                                    maximumFractionDigits: 2,
+                                    style: "currency",
+                                    currency: "INR",
+                                })}
                             </h1>
                             <div
                                 className="w-full flex gap-4 justify-center sm:justify-start"
@@ -187,52 +199,64 @@ const Product = () => {
                             >
                                 <button
                                     className={btnClass}
+                                    disabled={product.countInStock === 0}
                                     onClick={() => {
-                                        const cart = JSON.parse(
-                                            localStorage.getItem("cart")
-                                        );
-                                        if (cart) {
-                                            const index = cart.findIndex(
-                                                (item) =>
-                                                    item.id === product._id
-                                            );
-                                            if (index !== -1) {
-                                                cart[index].quantity += 1;
-                                                localStorage.setItem(
-                                                    "cart",
-                                                    JSON.stringify(cart)
-                                                );
-                                            } else {
-                                                cart.push({
-                                                    id,
-                                                    quantity: 1,
-                                                    price: product.price,
-                                                });
-                                                localStorage.setItem(
-                                                    "cart",
-                                                    JSON.stringify(cart)
-                                                );
-                                            }
+                                        //check out of stock condition
+                                        if (product.countInStock === 0) {
+                                            handleSnack("Out of Stock");
                                         } else {
-                                            localStorage.setItem(
-                                                "cart",
-                                                JSON.stringify([
-                                                    {
+                                            handleSnack("Added to Cart");
+                                            const cart = JSON.parse(
+                                                localStorage.getItem("cart")
+                                            );
+                                            if (cart) {
+                                                const index = cart.findIndex(
+                                                    (item) =>
+                                                        item.id === product._id
+                                                );
+                                                if (index !== -1) {
+                                                    cart[index].quantity += 1;
+                                                    localStorage.setItem(
+                                                        "cart",
+                                                        JSON.stringify(cart)
+                                                    );
+                                                } else {
+                                                    cart.push({
                                                         id,
                                                         quantity: 1,
                                                         price: product.price,
-                                                    },
-                                                ])
-                                            );
+                                                    });
+                                                    localStorage.setItem(
+                                                        "cart",
+                                                        JSON.stringify(cart)
+                                                    );
+                                                }
+                                            } else {
+                                                localStorage.setItem(
+                                                    "cart",
+                                                    JSON.stringify([
+                                                        {
+                                                            id,
+                                                            quantity: 1,
+                                                            price: product.price,
+                                                        },
+                                                    ])
+                                                );
+                                            }
+                                            setAdded(true);
                                         }
-                                        setAdded(true);
                                     }}
                                 >
                                     Add to Cart
                                 </button>
                                 <button
                                     className={btnClass}
+                                    disabled={product.countInStock === 0}
                                     onClick={() => {
+                                        if (product.countInStock === 0) {
+                                            handleSnack("Out of Stock");
+                                            return;
+                                        }
                                         const cart = JSON.parse(
                                             localStorage.getItem("cart")
                                         );
@@ -276,7 +300,6 @@ const Product = () => {
                                             "orders",
                                             JSON.stringify(orders)
                                         );
-                                        console.log(orders);
                                         setAdded(true);
                                     }}
                                 >
@@ -312,8 +335,9 @@ const Product = () => {
                                 showDots={false}
                                 arrows={false}
                             >
-                                {product.images.map((image) => (
+                                {product.images.map((image, index) => (
                                     <img
+                                        key={index}
                                         src={image}
                                         alt="table"
                                         className="w-96 h-72 rounded-lg"

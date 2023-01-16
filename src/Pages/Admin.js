@@ -69,7 +69,7 @@ const Admin = () => {
                             </div>
                             <div className="flex w-8/12 justify-end items-center gap-12 px-4">
                                 <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl sm:flex hidden items-center font-bold h-12">
-                                    Vaibhav Gupta
+                                    Ankit Anand
                                 </h1>
                                 <HomeOutlined
                                     className={iconStyle}

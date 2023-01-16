@@ -17,9 +17,7 @@ const Cart = () => {
         if (cart) {
             setCart(cart);
         }
-        console.log(cart);
         getProducts();
-        console.log(products);
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, []);
@@ -246,7 +244,6 @@ const Cart = () => {
                                                     "orders",
                                                     JSON.stringify(orders)
                                                 );
-                                                console.log(orders);
                                             } else {
                                                 swal({
                                                     title: "Cancelled",

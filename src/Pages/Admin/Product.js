@@ -66,7 +66,7 @@ const Product = () => {
             setEdit(false);
             return;
         }
-        console.log("upload");
+        
         editProduct(editData._id, editData);
         swal({
             title: "Success",
@@ -75,7 +75,6 @@ const Product = () => {
         });
         setOpen(!open);
         setEdit(false);
-        console.log(data);
     };
     return (
         <div className="sm:px-24 px-4 mt-12">
@@ -534,7 +533,6 @@ const Product = () => {
                                         className={adminShowBtn}
                                         onClick={() => {
                                             setProduct(item);
-                                            console.log(product);
                                             // setImage(product.images[0]);
                                             setOpen(!open);
                                         }}

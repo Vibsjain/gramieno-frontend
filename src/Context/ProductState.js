@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../Assets/Images/logo.png";
 import ProductContext from "./ProductContext";
 import api from "../api";
 
@@ -90,6 +91,46 @@ const ProductState = (props) => {
             setSnack({ text: "", visible: false });
         }, 3000);
     };
+
+    const checkoutHandle = async (data) => {
+        const res = await api.post("/payment/checkout", data);
+        const res1 = await api.get("/payment/key");
+        const key = res1.data.key;
+        const { amount, id, currency } = res.data.message;
+        var options = {
+            key: key,
+            amount: amount,
+            currency: currency,
+            name: "Ankit Anand",
+            description: "Test Transaction",
+            image: logo,
+            order_id: id,
+            handler: function (response) {
+                // alert(response.razorpay_payment_id);
+                // alert(response.razorpay_order_id);
+                // alert(response.razorpay_signature);
+                const verify = api.post("/payment/verification", {
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature,
+                });
+                console.log(verify);
+                if (verify.success) {
+                    alert("Payment Successful");
+                } else {
+                    alert("Payment Failed");
+                }
+            },
+            notes: {
+                address: "Razorpay Corporate Office",
+            },
+            theme: {
+                color: "#583400",
+            },
+        };
+        const razor = new window.Razorpay(options);
+        razor.open();
+    };
     return (
         <div>
             <ProductContext.Provider
@@ -114,6 +155,7 @@ const ProductState = (props) => {
                     handleSnack,
                     isLogged,
                     setIsLogged,
+                    checkoutHandle,
                 }}
             >
                 {props.children}

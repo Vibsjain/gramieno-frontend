@@ -19,7 +19,6 @@ const Footer = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await api.post("/contact", data);
-        console.log(res);
         swal({
             title: "Success",
             text: "Message Sent",
@@ -32,7 +31,6 @@ const Footer = () => {
         });
 
         setOpen(false);
-        console.log(data);
     };
     const navigate = useNavigate();
     const socialIcons = [

@@ -4,9 +4,21 @@ import swal from "sweetalert";
 
 const Discount = () => {
     const [data, setData] = useState([]);
-    const [woodDiscount, setWoodDiscount] = useState(10);
-    const [incenseDiscount, setIncenseDiscount] = useState(10);
-    const [roseDiscount, setRoseDiscount] = useState(10);
+    const [woodData, setWoodData] = useState({
+        discountPercent: 0,
+        minPurchase: 0,
+        active: false,
+    });
+    const [incenseData, setIncenseData] = useState({
+        discountPercent: 0,
+        minPurchase: 0,
+        active: false,
+    });
+    const [roseData, setRoseData] = useState({
+        discountPercent: 0,
+        minPurchase: 0,
+        active: false,
+    });
     const [woodEdit, setWoodEdit] = useState(false);
     const [incenseEdit, setIncenseEdit] = useState(false);
     const [roseEdit, setRoseEdit] = useState(false);
@@ -15,24 +27,36 @@ const Discount = () => {
         await api
             .get("/discounts")
             .then((res) => {
-                console.log(res.data[0]);
                 setData(res.data);
-                setWoodDiscount(res.data[0].discountPercent);
-                setIncenseDiscount(res.data[1].discountPercent);
-                setRoseDiscount(res.data[2].discountPercent);
+                setWoodData({
+                    discountPercent: res.data[0].discountPercent,
+                    minPurchase: res.data[0].minPurchase,
+                    active: res.data[0].active,
+                });
+                setIncenseData({
+                    discountPercent: res.data[1].discountPercent,
+                    minPurchase: res.data[1].minPurchase,
+                    active: res.data[1].active,
+                });
+                setRoseData({
+                    discountPercent: res.data[2].discountPercent,
+                    minPurchase: res.data[2].minPurchase,
+                    active: res.data[2].active,
+                });
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch((err) => {});
     };
-    const changeDiscount = async (id, discount) => {
+    const changeDiscount = async (id, editData) => {
         await api.put(`/discounts/${id}`, {
-            discountPercent: discount,
+            discountPercent: editData.discountPercent,
+            minPurchase: editData.minPurchase,
         });
     };
 
     const toggleActive = async (id) => {
-        await api.put(`/toggle/discounts/${id}`);
+        await api.put(`/discounts/toggle/${id}`);
+        data[id].active = !data[id].active;
+        setChanged(!changed);
     };
 
     useEffect(() => {
@@ -63,6 +87,9 @@ const Discount = () => {
                                         Discount %
                                     </th>
                                     <th scope="col" className="px-6 py-3">
+                                        Min. Purchase Amount (Rs.)
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
                                         Action
                                     </th>
                                 </tr>
@@ -73,7 +100,7 @@ const Discount = () => {
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
-                                                    data[0].active === true
+                                                    woodData.active === true
                                                         ? "008000"
                                                         : "FF0000"
                                                 }]`}
@@ -86,6 +113,8 @@ const Discount = () => {
                                                     }).then((willDelete) => {
                                                         if (willDelete) {
                                                             toggleActive(0);
+                                                            woodData.active =
+                                                                !woodData.active;
                                                             swal(
                                                                 "Status Changed",
                                                                 {
@@ -109,16 +138,49 @@ const Discount = () => {
                                         </th>
                                         <td className="px-6 py-4">
                                             {woodEdit === false ? (
-                                                <p>{woodDiscount}%</p>
+                                                <p>
+                                                    {woodData.discountPercent}%
+                                                </p>
                                             ) : (
                                                 <input
                                                     type="text"
                                                     className="w-20 px-2 py-1 rounded-md text-black"
-                                                    value={woodDiscount}
+                                                    value={
+                                                        woodData.discountPercent
+                                                    }
                                                     onChange={(e) => {
-                                                        setWoodDiscount(
-                                                            e.target.value
-                                                        );
+                                                        setWoodData({
+                                                            ...woodData,
+                                                            discountPercent:
+                                                                e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            )}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {woodEdit === false ? (
+                                                <p>
+                                                    ₹
+                                                    {woodData.minPurchase.toLocaleString(
+                                                        {
+                                                            maximumFractionDigits: 2,
+                                                            style: "currency",
+                                                            currency: "INR",
+                                                        }
+                                                    )}
+                                                </p>
+                                            ) : (
+                                                <input
+                                                    type="text"
+                                                    className="w-20 px-2 py-1 rounded-md text-black"
+                                                    value={woodData.minPurchase}
+                                                    onChange={(e) => {
+                                                        setWoodData({
+                                                            ...woodData,
+                                                            minPurchase:
+                                                                e.target.value,
+                                                        });
                                                     }}
                                                 />
                                             )}
@@ -188,7 +250,7 @@ const Discount = () => {
                                                                     ) {
                                                                         changeDiscount(
                                                                             0,
-                                                                            woodDiscount
+                                                                            woodData
                                                                         );
                                                                         swal({
                                                                             title: "Changes Saved!",
@@ -218,10 +280,34 @@ const Discount = () => {
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
-                                                    data[1].active === true
+                                                    incenseData.active === true
                                                         ? "008000"
                                                         : "FF0000"
                                                 }]`}
+                                                onClick={() => {
+                                                    swal({
+                                                        title: "Are you sure you want to change the status?",
+                                                        icon: "warning",
+                                                        buttons: true,
+                                                        dangerMode: true,
+                                                    }).then((willDelete) => {
+                                                        if (willDelete) {
+                                                            toggleActive(1);
+                                                            incenseData.active =
+                                                                !incenseData.active;
+                                                            swal(
+                                                                "Status Changed",
+                                                                {
+                                                                    icon: "success",
+                                                                }
+                                                            );
+                                                        } else {
+                                                            swal(
+                                                                "Status not changed"
+                                                            );
+                                                        }
+                                                    });
+                                                }}
                                             ></div>
                                         </td>
                                         <th
@@ -232,16 +318,48 @@ const Discount = () => {
                                         </th>
                                         <td className="px-6 py-4">
                                             {incenseEdit === false ? (
-                                                <p>{incenseDiscount}%</p>
+                                                <p>
+                                                    {
+                                                        incenseData.discountPercent
+                                                    }
+                                                    %
+                                                </p>
                                             ) : (
                                                 <input
                                                     type="text"
                                                     className="w-20 px-2 py-1 rounded-md text-black"
-                                                    value={incenseDiscount}
+                                                    value={
+                                                        incenseData.discountPercent
+                                                    }
                                                     onChange={(e) => {
-                                                        setIncenseDiscount(
-                                                            e.target.value
-                                                        );
+                                                        setIncenseData({
+                                                            ...incenseData,
+                                                            discountPercent:
+                                                                e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            )}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {incenseEdit === false ? (
+                                                <p>
+                                                    ₹
+                                                    {incenseData.minPurchase.toLocaleString()}
+                                                </p>
+                                            ) : (
+                                                <input
+                                                    type="text"
+                                                    className="w-20 px-2 py-1 rounded-md text-black"
+                                                    value={
+                                                        incenseData.minPurchase
+                                                    }
+                                                    onChange={(e) => {
+                                                        setIncenseData({
+                                                            ...incenseData,
+                                                            minPurchase:
+                                                                e.target.value,
+                                                        });
                                                     }}
                                                 />
                                             )}
@@ -313,7 +431,7 @@ const Discount = () => {
                                                                     ) {
                                                                         changeDiscount(
                                                                             1,
-                                                                            incenseDiscount
+                                                                            incenseData
                                                                         );
                                                                         swal({
                                                                             title: "Changes Saved!",
@@ -343,10 +461,34 @@ const Discount = () => {
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
-                                                    data[2].active === true
+                                                    roseData.active === true
                                                         ? "008000"
                                                         : "FF0000"
                                                 }]`}
+                                                onClick={() => {
+                                                    swal({
+                                                        title: "Are you sure you want to change the status?",
+                                                        icon: "warning",
+                                                        buttons: true,
+                                                        dangerMode: true,
+                                                    }).then((willDelete) => {
+                                                        if (willDelete) {
+                                                            toggleActive(2);
+                                                            roseData.active =
+                                                                !roseData.active;
+                                                            swal(
+                                                                "Status Changed",
+                                                                {
+                                                                    icon: "success",
+                                                                }
+                                                            );
+                                                        } else {
+                                                            swal(
+                                                                "Status not changed"
+                                                            );
+                                                        }
+                                                    });
+                                                }}
                                             ></div>
                                         </td>
                                         <th
@@ -357,16 +499,40 @@ const Discount = () => {
                                         </th>
                                         <td className="px-6 py-4">
                                             {roseEdit === false ? (
-                                                <p>{roseDiscount}%</p>
+                                                <p>
+                                                    {roseData.discountPercent}%
+                                                </p>
                                             ) : (
                                                 <input
                                                     type="text"
                                                     className="w-20 px-2 py-1 rounded-md text-black"
-                                                    value={roseDiscount}
+                                                    value={
+                                                        roseData.discountPercent
+                                                    }
                                                     onChange={(e) => {
-                                                        setRoseDiscount(
-                                                            e.target.value
-                                                        );
+                                                        setRoseData({
+                                                            ...roseData,
+                                                            discountPercent:
+                                                                e.target.value,
+                                                        });
+                                                    }}
+                                                />
+                                            )}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {roseEdit === false ? (
+                                                <p>₹{roseData.minPurchase}</p>
+                                            ) : (
+                                                <input
+                                                    type="text"
+                                                    className="w-20 px-2 py-1 rounded-md text-black"
+                                                    value={roseData.minPurchase}
+                                                    onChange={(e) => {
+                                                        setRoseData({
+                                                            ...roseData,
+                                                            minPurchase:
+                                                                e.target.value,
+                                                        });
                                                     }}
                                                 />
                                             )}
@@ -436,7 +602,7 @@ const Discount = () => {
                                                                     ) {
                                                                         changeDiscount(
                                                                             2,
-                                                                            roseEdit
+                                                                            roseData
                                                                         );
                                                                         swal({
                                                                             title: "Changes Saved!",
