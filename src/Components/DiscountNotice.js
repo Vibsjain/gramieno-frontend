@@ -34,9 +34,9 @@ const DiscountNotice = () => {
                                     {discounts[0].active ||
                                     discounts[1].active ||
                                     discounts[2].active ? (
-                                        discounts.map((discount) => {
+                                        discounts.map((discount, index) => {
                                             return (
-                                                <div>
+                                                <div key = {index}>
                                                     {discount.active && (
                                                         <div className="flex items-center">
                                                             <div className="w-2 h-2 bg-[#F2C94C] rounded-full"></div>

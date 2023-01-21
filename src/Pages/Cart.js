@@ -10,7 +10,8 @@ import swal from "sweetalert";
 const Cart = () => {
     AOS.init();
     const navigate = useNavigate();
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, discounts, getDiscounts } =
+        useContext(ProductContext);
     const [cart, setCart] = useState([]);
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart"));
@@ -18,9 +19,10 @@ const Cart = () => {
             setCart(cart);
         }
         getProducts();
+        getDiscounts();
         window.scrollTo(0, 0);
         // eslint-disable-next-line
-    }, []);
+    }, [discounts]);
     const buyBtn = `w-8 h-8 justify-center items-center border-2 border-white rounded-[6px] text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold`;
     const Card = ({ id, quantity }) => {
         const product = products.find((item) => item._id === id);
@@ -150,8 +152,12 @@ const Cart = () => {
                     </div>
                     <div className="flex flex-col md:flex-row w-full min-h-[100vh] sm:gap-0 gap-12">
                         <div className="flex flex-col gap-12 sm:w-2/3 w-full sm:px-8 px-4">
-                            {cart.map((item) => (
-                                <Card id={item.id} quantity={item.quantity} />
+                            {cart.map((item, index) => (
+                                <Card
+                                    id={item.id}
+                                    key={index}
+                                    quantity={item.quantity}
+                                />
                             ))}
                         </div>
                         <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4">
@@ -163,26 +169,29 @@ const Cart = () => {
                                 </div>
                                 <hr />
                                 <div>
-                                    {cart.map((item) => (
-                                        <div className="flex justify-between px-4">
-                                            <h1 className="font-bold">
-                                                {
-                                                    products.find(
+                                    {cart[0] &&
+                                        products[0] &&
+                                        cart.map((item, index) => (
+                                            <div className="flex justify-between px-4" key = {index}>
+                                                <h1 className="font-bold">
+                                                    {
+                                                        products.find(
+                                                            (product) =>
+                                                                product._id ===
+                                                                item.id
+                                                        ).name
+                                                    }
+                                                </h1>
+                                                <h1>
+                                                    ₹{" "}
+                                                    {products.find(
                                                         (product) =>
                                                             product._id ===
                                                             item.id
-                                                    ).name
-                                                }
-                                            </h1>
-                                            <h1>
-                                                ₹{" "}
-                                                {products.find(
-                                                    (product) =>
-                                                        product._id === item.id
-                                                ).price * item.quantity}
-                                            </h1>
-                                        </div>
-                                    ))}
+                                                    ).price * item.quantity}
+                                                </h1>
+                                            </div>
+                                        ))}
                                     <div className="flex px-4 justify-between mt-4">
                                         <h1 className="font-bold">Tax</h1>
                                         <h1>

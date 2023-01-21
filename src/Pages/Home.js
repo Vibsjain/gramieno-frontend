@@ -220,8 +220,9 @@ function Home() {
                     Testimonials
                 </h1>
                 <Carousel responsive={responsive} infinite={true} arrows={ar}>
-                    {testimonials.map((testimonial) => (
+                    {testimonials.map((testimonial, index) => (
                         <TestimonialCard
+                            key = {index}
                             name={testimonial.name}
                             text={testimonial.text}
                         />

@@ -6,8 +6,16 @@ import swal from "sweetalert";
 
 const Checkout = () => {
     const navigate = useNavigate();
-    const { added, setAdded, products, getProducts, addOrder, checkoutHandle } =
-        useContext(ProductContext);
+    const {
+        added,
+        setAdded,
+        products,
+        getProducts,
+        addOrder,
+        checkoutHandle,
+        discounts,
+        getDiscounts,
+    } = useContext(ProductContext);
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState({
         orderItems: [],
@@ -23,9 +31,11 @@ const Checkout = () => {
         totalPrice: 0,
         isDelivered: false,
         deliveredAt: "",
+        discount: 0,
     });
     useEffect(() => {
         getProducts();
+        getDiscounts();
         const orders = JSON.parse(localStorage.getItem("orders"));
         if (orders) {
             setOrders(orders);
@@ -38,10 +48,19 @@ const Checkout = () => {
                 ),
             });
         }
+
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, [added]);
     const handlePayment = () => {
+        if (discounts[0].minPurchase <= order.totalPrice) {
+            setOrder({
+                ...order,
+                discount: discounts[0].discountPercent,
+                totalPrice:
+                    (1 - discounts[0].discountPercent / 100) * order.totalPrice,
+            });
+        }
         if (
             order.shippingAddress.fullName === "" ||
             order.shippingAddress.email === "" ||
@@ -67,11 +86,6 @@ const Checkout = () => {
         }).then((willPay) => {
             if (willPay) {
                 checkoutHandle(order);
-                // navigate("/");
-                // swal("Payment Successful!", {
-                //     icon: "success",
-                // });
-                // addOrder(order);
                 localStorage.removeItem("orders");
                 localStorage.removeItem("cart");
                 setAdded(true);
@@ -255,8 +269,11 @@ const Checkout = () => {
                             </div>
                             <hr />
                             <div>
-                                {orders.map((item) => (
-                                    <div className="flex justify-between px-4">
+                                {orders.map((item, index) => (
+                                    <div
+                                        className="flex justify-between px-4"
+                                        key={index}
+                                    >
                                         <h1 className="font-bold">
                                             {
                                                 products.find(
@@ -294,6 +311,15 @@ const Checkout = () => {
                                             .toFixed(0)}
                                     </h1>
                                 </div>
+                                <div className="flex px-4 justify-between mt-4">
+                                    <h1 className="font-bold">Discount</h1>
+                                    <h1>
+                                        - ₹{" "}
+                                        {order.totalPrice *
+                                            order.discount *
+                                            0.01}
+                                    </h1>
+                                </div>
                             </div>
                             <hr />
                             <div className="flex px-4 justify-between ">
@@ -309,6 +335,8 @@ const Checkout = () => {
                                                         product._id === item.id
                                                 ).price *
                                                     item.quantity *
+                                                    (1 -
+                                                        order.discount * 0.01) *
                                                     1.18,
                                             0
                                         )

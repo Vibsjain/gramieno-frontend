@@ -13,6 +13,7 @@ const ProductState = (props) => {
     const [order, setOrder] = useState({});
     const [loading, setLoading] = useState(false);
     const [added, setAdded] = useState(false);
+    const [discounts, setDiscounts] = useState([]);
 
     const getProducts = async () => {
         setLoading(true);
@@ -92,7 +93,20 @@ const ProductState = (props) => {
         }, 3000);
     };
 
+    const getDiscounts = async () => {
+        setLoading(true);
+        const res = await api.get("/discounts");
+        setDiscounts(res.data);
+        setLoading(false);
+    };
+
+    const verifyPayment = async (data) => {
+        const res = await api.post("/payment/verification", data);
+        return res;
+    };
+
     const checkoutHandle = async (data) => {
+        console.log(data);
         const res = await api.post("/payment/checkout", data);
         const res1 = await api.get("/payment/key");
         const key = res1.data.key;
@@ -109,11 +123,7 @@ const ProductState = (props) => {
                 // alert(response.razorpay_payment_id);
                 // alert(response.razorpay_order_id);
                 // alert(response.razorpay_signature);
-                const verify = api.post("/payment/verification", {
-                    razorpay_payment_id: response.razorpay_payment_id,
-                    razorpay_order_id: response.razorpay_order_id,
-                    razorpay_signature: response.razorpay_signature,
-                });
+                const verify = verifyPayment(response);
                 console.log(verify);
                 if (verify.success) {
                     alert("Payment Successful");
@@ -156,6 +166,8 @@ const ProductState = (props) => {
                     isLogged,
                     setIsLogged,
                     checkoutHandle,
+                    discounts,
+                    getDiscounts,
                 }}
             >
                 {props.children}
