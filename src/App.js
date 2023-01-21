@@ -11,6 +11,8 @@ import {
     ShippingPolicy,
     TermsConditions,
     PrivacyPolicy,
+    PaymentSuccess,
+    PaymentUnsuccess,
 } from "./Pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -50,6 +52,14 @@ const App = () => {
                         element={<ShippingPolicy />}
                     />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route
+                        path="/payment-success"
+                        element={<PaymentSuccess />}
+                    />
+                    <Route
+                        path="/payment-unsuccess"
+                        element={<PaymentUnsuccess />}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

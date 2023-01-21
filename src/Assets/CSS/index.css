@@ -156,3 +156,7 @@ li.hero:nth-child(1) {
     margin-right : -3rem;
   }
 }
+
+.ql-snow{
+  border-radius: 8px;
+}

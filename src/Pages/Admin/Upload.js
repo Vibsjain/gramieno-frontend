@@ -1,9 +1,12 @@
 import React, { useState, useContext } from "react";
-import { PlusCircleOutlined, CloseOutlined } from "@ant-design/icons";
+// import { PlusCircleOutlined, CloseOutlined } from "@ant-design/icons";
 import "../../Assets/CSS/index.css";
 import FileBase64 from "react-file-base64";
 import ProductContext from "../../Context/ProductContext";
 import swal from "sweetalert";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "../../Assets/CSS/index.css";
 
 const Upload = () => {
     const { addProduct } = useContext(ProductContext);
@@ -27,10 +30,7 @@ const Upload = () => {
             !data.price ||
             !data.description ||
             !data.countInStock ||
-            !data.images ||
-            !data.len ||
-            !data.breadth ||
-            !data.height
+            !data.images 
         ) {
             swal({
                 title: "Error",
@@ -145,20 +145,21 @@ const Upload = () => {
                         />
                     </div>
                     <label className={labelStyle}>Description of Product</label>
-                    <textarea
-                        type="text"
-                        id="desc"
-                        className={inputStyle}
-                        placeholder="Description"
+                    <div className="bg-white rounded-lg">
+                    <ReactQuill
+                        theme="snow"
+                        className="rounded-xl"
                         value={data.description}
-                        rows={5}
+                        placeholder="Product Description"
                         onChange={(e) => {
+                            console.log(e);
                             setData({
                                 ...data,
-                                description: e.target.value,
+                                description: e,
                             });
                         }}
                     />
+                    </div>
                     <label className={labelStyle}>Price of Product</label>
                     <input
                         type="number"

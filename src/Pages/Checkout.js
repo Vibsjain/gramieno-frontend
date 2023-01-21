@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Navbar, Footer } from "../Components";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
 import swal from "sweetalert";
 
 const Checkout = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {
         added,
         setAdded,
         products,
         getProducts,
-        addOrder,
+        // addOrder,
         checkoutHandle,
         discounts,
         getDiscounts,
@@ -48,7 +48,15 @@ const Checkout = () => {
                 ),
             });
         }
-
+        if (discounts[0].minPurchase <= order.totalPrice) {
+            setOrder({
+                ...order,
+                discount: discounts[0].discountPercent,
+                totalPrice:
+                    (1 - discounts[0].discountPercent / 100) *
+                    order.totalPrice.toFixed(0),
+            });
+        }
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, [added]);

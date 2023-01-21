@@ -119,18 +119,19 @@ const ProductState = (props) => {
             description: "Test Transaction",
             image: logo,
             order_id: id,
-            handler: function (response) {
-                // alert(response.razorpay_payment_id);
-                // alert(response.razorpay_order_id);
-                // alert(response.razorpay_signature);
-                const verify = verifyPayment(response);
-                console.log(verify);
-                if (verify.success) {
-                    alert("Payment Successful");
-                } else {
-                    alert("Payment Failed");
-                }
-            },
+            // handler: function (response) {
+            //     // alert(response.razorpay_payment_id);
+            //     // alert(response.razorpay_order_id);
+            //     // alert(response.razorpay_signature);
+            //     const verify = verifyPayment(response);
+            //     console.log(verify);
+            //     if (verify.success) {
+            //         alert("Payment Successful");
+            //     } else {
+            //         alert("Payment Failed");
+            //     }
+            // },
+            callback_url: "http://localhost:5000/api/payment/verification",
             notes: {
                 address: "Razorpay Corporate Office",
             },

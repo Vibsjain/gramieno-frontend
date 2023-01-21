@@ -11,8 +11,8 @@ import {
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useNavigate } from "react-router-dom";
-import artisan1 from "../Assets/Images/artisan1.jpeg";
-import artisan2 from "../Assets/Images/artisan2.jpeg";
+// import artisan1 from "../Assets/Images/artisan1.jpeg";
+// import artisan2 from "../Assets/Images/artisan2.jpeg";
 // import art from "../Assets/Images/art.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -20,12 +20,12 @@ import ProductContext from "../Context/ProductContext";
 
 function Home() {
     const [ar, setAr] = useState(true);
-    const { products, getProducts, snack, setAdded, added } =
+    const {  getProducts, snack, setAdded, added } =
         useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
     // const storyText = `text-[#836663]`;
-    const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+    // const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
     const art =
         "https://res.cloudinary.com/dumgn8uvd/image/upload/v1672390075/Main_ait5dc.jpg";
     const responsive = {
@@ -139,7 +139,7 @@ function Home() {
             >
                 <div className="w-[90%] min-h-[75vh] bg-[#545454] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
                     <div className="sm:p-12 p-2 flex w-full justify-center items-center ">
-                        <img src={art} className="rounded-xl w-[80%] h-[70%]" />
+                        <img src={art} className="rounded-xl w-[80%] h-[70%]" alt = "art" />
                     </div>
                     <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
                         <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">

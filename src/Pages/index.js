@@ -9,3 +9,5 @@ export { default as TermsConditions } from "./TermsConditions";
 export { default as CancellationRefundPolicy } from "./CancellationRefundPolicy";
 export { default as ShippingPolicy } from "./ShippingPolicy";
 export { default as PrivacyPolicy } from "./PrivacyPolicy";
+export { default as PaymentSuccess } from "./PaymentSuccess";
+export { default as PaymentUnsuccess } from "./PaymentUnsuccess";
