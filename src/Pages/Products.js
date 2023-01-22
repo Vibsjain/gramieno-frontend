@@ -9,6 +9,7 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductContext from "../Context/ProductContext";
+import Void from "../Assets/Images/Void.svg"
 
 const Products = () => {
     const { products, getProducts, snack } = useContext(ProductContext);
@@ -133,19 +134,27 @@ const Products = () => {
 
                 {/* Product Cards */}
                 <div className="flex flex-wrap w-full px-8 my-24 gap-12 justify-center ">
-                    {data?.map((product, index) => (
-                        <div data-aos="zoom-in">
-                            <ProductCard
-                                id={product._id}
-                                key={index}
-                                item={product.name}
-                                price={product.price}
-                                image1={product.images[0]}
-                                description={product.description}
-                                stock={product.countInStock}
-                            />
+                    {data.length !== 0 ? (
+                        data.map((product, index) => (
+                            <div data-aos="zoom-in" key={index}>
+                                <ProductCard
+                                    id={product._id}
+                                    item={product.name}
+                                    price={product.price}
+                                    image1={product.images[0]}
+                                    description={product.description}
+                                    stock={product.countInStock}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <div>
+                            <img src={Void} alt="Void" className="w-1/2 mx-auto" />
+                            <h1 className="text-center text-white font-bold text-2xl mt-4">
+                                No Products Found
+                            </h1>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
             <Footer />

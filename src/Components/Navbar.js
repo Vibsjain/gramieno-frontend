@@ -5,6 +5,9 @@ import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import ProductContext from "../Context/ProductContext";
 import swal from "sweetalert";
+import Modal from "react-awesome-modal";
+import api from "../api/index";
+import "../Assets/CSS/index.css";
 
 function Navbar() {
     const { added, setAdded } = useContext(ProductContext);
@@ -13,11 +16,31 @@ function Navbar() {
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await api.post("/contact", data);
+        swal({
+            title: "Success",
+            text: "Message Sent",
+            icon: "success",
+        });
+        setData({
+            name: "",
+            email: "",
+            message: "",
+        });
+
+        setOpen(false);
+    };
     const navLinks = [
         { title: "Home", path: "/" },
         { title: "Products", path: "/products" },
         { title: "Our Story", path: "/our-story" },
-        { title: "Contact", path: "#contact" },
     ];
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
@@ -31,6 +54,82 @@ function Navbar() {
     }, [added]);
     return (
         <div className="flex w-full  back  z-[10] pt-4">
+            <Modal
+                visible={modalOpen}
+                width="90%"
+                height="90%"
+                effect="fadeInUp"
+                onClickAway={() => setModalOpen(false)}
+            >
+                <div className="h-[100%] overflow-auto modals">
+                    <div className="flex w-full justify-end px-4 py-4 sm:gap-4 gap-2">
+                        <CloseOutlined
+                            className="text-black hover:font-bold text-[20px]"
+                            onClick={() => {
+                                setModalOpen(false);
+                            }}
+                        />
+                    </div>
+                    <div className="w-full">
+                        <h1 className="text-black font-bold text-center text-[24px]">
+                            Contact Us
+                        </h1>
+                    </div>
+                    <div className="sm:px-28 px-4">
+                        <label className={labelStyle}>Name</label>
+                        <input
+                            type="text"
+                            id="title"
+                            className={inputStyle}
+                            placeholder="Full Name"
+                            value={data.name}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    name: e.target.value,
+                                });
+                            }}
+                        />
+
+                        <label className={labelStyle}>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            className={inputStyle}
+                            placeholder="Enter Your Email"
+                            value={data.email}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    email: e.target.value,
+                                });
+                            }}
+                        />
+
+                        <label className={labelStyle}>Message</label>
+                        <textarea
+                            type="text"
+                            id="message"
+                            className={inputStyle}
+                            placeholder="Write Your Message"
+                            value={data.message}
+                            onChange={(e) => {
+                                setData({
+                                    ...data,
+                                    message: e.target.value,
+                                });
+                            }}
+                            rows={5}
+                        />
+                        <button
+                            className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </Modal>
             <div className="flex sm:w-9/12 w-3/12  sm:px-12 px-4 py-4 sm:items-center ">
                 <img
                     className="sm:h-[60px] h-[50px] cursor-pointer"
@@ -56,6 +155,14 @@ function Navbar() {
                             </li>
                         );
                     })}
+                    <li>
+                        <button
+                            className="flex text-[16px] text-[#FFFFFF] hover:text-black hover:bg-white py-2 px-6 rounded-xl"
+                            onClick={() => setModalOpen(true)}
+                        >
+                            Contact Us
+                        </button>
+                    </li>
                 </ul>
             </div>
             <div className="flex sm:w-3/12 w-9/12 sm:pb-0 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
@@ -99,25 +206,29 @@ function Navbar() {
                         <ul className="flex flex-col mt-12 gap-4 justify-center items-center">
                             {navLinks.map((link) => {
                                 return (
-                                    link.title === "Contact" ? (
-                                        <a
-                                            href={link.path}
-                                            className="text-black text-lg"
-                                        >
-                                            {link.title}
-                                        </a>
-                                    ) : (
-                                        <button
-                                            className="text-black text-lg"
-                                            onClick={() =>
-                                                navigate(`${link.path}`)
-                                            }
-                                        >
-                                            {link.title}
-                                        </button>
-                                    )
+                                    <button
+                                        className="text-black text-lg"
+                                        onClick={() => navigate(`${link.path}`)}
+                                    >
+                                        {link.title}
+                                    </button>
                                 );
                             })}
+                            <button
+                                className="text-black text-lg"
+                                onClick={() => setModalOpen(true)}
+                            >
+                                Contact Us
+                            </button>
+                            <div className="w-full flex justify-center items-center mt-[-1px]">
+                                <div className="h-[1px] bg-black w-9/12"></div>
+                            </div>
+                            <div className="flex justify-end relative z-4">
+                                <div className="w-4 h-4 rounded-full bg-[#FF0000] text-white font-bold text-[12px] absolute ml-[-4px]">
+                                    <h1 className="text-center">{cartItems}</h1>
+                                </div>  
+                            </div>
+
                             <i
                                 className="fa fa-shopping-cart sm:text-[28px] text-[25px] hover:text-black cursor-pointer"
                                 onClick={() => navigate("/cart")}

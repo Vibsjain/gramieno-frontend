@@ -22,7 +22,7 @@ const Cart = () => {
         getDiscounts();
         window.scrollTo(0, 0);
         // eslint-disable-next-line
-    }, [discounts]);
+    }, []);
     const buyBtn = `w-8 h-8 justify-center items-center border-2 border-white rounded-[6px] text-[14px] text-white bg-[#E08849] hover:text-black text-center drop-shadow about-font hover:border-gray-800 hover:font-bold`;
     const Card = ({ id, quantity }) => {
         const product = products.find((item) => item._id === id);
@@ -54,6 +54,7 @@ const Cart = () => {
                         <button
                             className={buyBtn}
                             onClick={() => {
+                                console.log("-");
                                 const cart = JSON.parse(
                                     localStorage.getItem("cart")
                                 );
@@ -76,6 +77,7 @@ const Cart = () => {
                         <button
                             className={buyBtn}
                             onClick={() => {
+                                console.log("+");
                                 const cart = JSON.parse(
                                     localStorage.getItem("cart")
                                 );
@@ -172,7 +174,10 @@ const Cart = () => {
                                     {cart[0] &&
                                         products[0] &&
                                         cart.map((item, index) => (
-                                            <div className="flex justify-between px-4" key = {index}>
+                                            <div
+                                                className="flex justify-between px-4"
+                                                key={index}
+                                            >
                                                 <h1 className="font-bold">
                                                     {
                                                         products.find(
@@ -247,12 +252,12 @@ const Cart = () => {
                                             dangerMode: true,
                                         }).then((res) => {
                                             if (res) {
-                                                navigate("/checkout");
                                                 const orders = cart;
                                                 localStorage.setItem(
                                                     "orders",
                                                     JSON.stringify(orders)
                                                 );
+                                                navigate("/checkout");
                                             } else {
                                                 swal({
                                                     title: "Cancelled",

@@ -111,6 +111,7 @@ const ProductState = (props) => {
         const res1 = await api.get("/payment/key");
         const key = res1.data.key;
         const { amount, id, currency } = res.data.message;
+        addOrder(data);
         var options = {
             key: key,
             amount: amount,

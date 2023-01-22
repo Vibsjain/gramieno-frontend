@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-awesome-modal";
 import { CloseOutlined } from "@ant-design/icons";
+import parse from "html-react-parser";
 
 const Product = () => {
     AOS.init();
@@ -43,6 +44,13 @@ const Product = () => {
         mobile: {
             breakpoint: { max: 464, min: 0 },
             items: 1,
+        },
+    };
+    const options = {
+        replace: (domNode) => {
+            if (domNode.attribs && domNode.attribs.class === "remove") {
+                return <></>;
+            }
         },
     };
 
@@ -164,7 +172,8 @@ const Product = () => {
                             </h1>
                             <div className="" data-aos="zoom-in">
                                 <h1 className="text-justify">
-                                    {product.description}
+                                    {product.description &&
+                                        parse(product.description, options)}
                                 </h1>
                             </div>
                             <h1 className="  text-[20px]" data-aos="zoom-in">
@@ -176,10 +185,16 @@ const Product = () => {
                                 {product.length}" x {product.breadth}" x{" "}
                                 {product.height}"
                             </h1>
-                            {product.countInStock === 0 && (
+                            {product.countInStock === 0 ? (
                                 <h1 className=" text-[20px]" data-aos="zoom-in">
                                     <span className="font-bold text-[#FF0000]">
                                         Out of Stock
+                                    </span>{" "}
+                                </h1>
+                            ) : (
+                                <h1 className=" text-[20px]" data-aos="zoom-in">
+                                    <span className="font-bold text-[#00FF00]">
+                                        In Stock
                                     </span>{" "}
                                 </h1>
                             )}
@@ -319,7 +334,8 @@ const Product = () => {
                         </h1>
                         <div className="">
                             <h1 className="text-justify" data-aos="zoom-in">
-                                {product.description}
+                                {product.description &&
+                                    parse(product.description)}
                             </h1>
                         </div>
                     </div>

@@ -8,6 +8,9 @@ import FileBase64 from "react-file-base64";
 import swal from "sweetalert";
 import Carousel from "react-multi-carousel";
 import table from "../../Assets/Images/table.png";
+import parse from "html-react-parser";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const Product = () => {
     const { products, getProducts, editProduct } = useContext(ProductContext);
@@ -66,7 +69,7 @@ const Product = () => {
             setEdit(false);
             return;
         }
-        
+
         editProduct(editData._id, editData);
         swal({
             title: "Success",
@@ -180,17 +183,16 @@ const Product = () => {
                             <label className={labelStyle}>
                                 Description of Product
                             </label>
-                            <textarea
-                                type="text"
-                                id="desc"
-                                className={inputStyle}
-                                placeholder="Description"
+                            <ReactQuill
+                                theme="snow"
+                                className="rounded-xl"
                                 value={editData.description}
-                                rows={5}
+                                placeholder="Product Description"
                                 onChange={(e) => {
+                                    console.log(e);
                                     setEditData({
                                         ...editData,
-                                        description: e.target.value,
+                                        description: e,
                                     });
                                 }}
                             />
@@ -234,7 +236,11 @@ const Product = () => {
                                         files.map((file) => {
                                             images.push(file.base64);
                                         });
-                                        for (let i = 0; i < editData.images; i++) {
+                                        for (
+                                            let i = 0;
+                                            i < editData.images;
+                                            i++
+                                        ) {
                                             images.push(editData.images[i]);
                                         }
                                         setEditData({
@@ -413,7 +419,8 @@ const Product = () => {
                                         </h1>
                                         <div className="" data-aos="zoom-in">
                                             <h1 className="text-justify">
-                                                {product.description}
+                                                {product.description &&
+                                                    parse(product.description)}
                                             </h1>
                                         </div>
                                         <h1
@@ -425,21 +432,52 @@ const Product = () => {
                                             </span>{" "}
                                             {product.category}
                                         </h1>
-                                        <h1
-                                            className=" text-[20px]"
-                                            data-aos="zoom-in"
-                                        >
-                                            <span className="font-bold">
-                                                Dimensions :{" "}
-                                            </span>{" "}
-                                            {product.length} x {product.breadth}{" "}
-                                            x {product.height}
-                                        </h1>
+                                        {product.length &&
+                                            product.breadth &&
+                                            product.height && (
+                                                <h1
+                                                    className=" text-[20px]"
+                                                    data-aos="zoom-in"
+                                                >
+                                                    <span className="font-bold">
+                                                        Dimensions :{" "}
+                                                    </span>{" "}
+                                                    {product.length}" x{" "}
+                                                    {product.breadth}" x{" "}
+                                                    {product.height}"
+                                                </h1>
+                                            )}
+                                        {product.countInStock === 0 ? (
+                                            <h1
+                                                className=" text-[20px]"
+                                                data-aos="zoom-in"
+                                            >
+                                                <span className="font-bold text-[#FF0000]">
+                                                    Out of Stock
+                                                </span>{" "}
+                                            </h1>
+                                        ) : (
+                                            <h1
+                                                className=" text-[20px]"
+                                                data-aos="zoom-in"
+                                            >
+                                                <span className="font-bold text-[#00FF00]">
+                                                    In Stock
+                                                </span>{" "}
+                                            </h1>
+                                        )}
                                         <h1
                                             className=" font-bold text-[20px]"
                                             data-aos="zoom-in"
                                         >
-                                            ₹ {product.price}
+                                            {product.price.toLocaleString(
+                                                "en-IN",
+                                                {
+                                                    maximumFractionDigits: 2,
+                                                    style: "currency",
+                                                    currency: "INR",
+                                                }
+                                            )}
                                         </h1>
                                     </div>
                                 </div>
@@ -457,7 +495,8 @@ const Product = () => {
                                             className="text-justify"
                                             data-aos="zoom-in"
                                         >
-                                            {product.description}
+                                            {product.description &&
+                                                parse(product.description)}
                                         </h1>
                                     </div>
                                 </div>
@@ -518,6 +557,7 @@ const Product = () => {
                                         ? "bg-[#F9FAFB]"
                                         : "bg-white"
                                 }}`}
+                                key={index}
                             >
                                 <th
                                     scope="row"

@@ -129,13 +129,39 @@ const Orders = () => {
                                     : "Not Delivered"}
                             </span>
                         </h1>
-                        <button
-                            className="w-full sm:w-auto border border-[#1E293B] bg-[#1E293B] text-white px-6 py-2 rounded-xl shadow-2xl hover:bg-white hover:text-[#1E293B]"
-                            onClick={updateOrder}
-                        >
-                            Change
-                        </button>
+                        {!data.isDelivered && (
+                            <button
+                                className="w-full sm:w-auto border border-[#1E293B] bg-[#1E293B] text-white px-6 py-2 rounded-xl shadow-2xl hover:bg-white hover:text-[#1E293B]"
+                                onClick={updateOrder}
+                            >
+                                Change
+                            </button>
+                        )}
                     </div>
+                    {data.isDelivered && (
+                        <h1 className="px-8">
+                            Delivery Date :{" "}
+                            <span className="font-bold">
+                                {new Date(data.deliveredAt).toLocaleDateString(
+                                    "en-IN",
+                                    {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    }
+                                )}
+                                ,
+                                {new Date(data.deliveredAt).toLocaleTimeString(
+                                    "en-IN",
+                                    {
+                                        hour: "numeric",
+                                        minute: "numeric",
+                                        second: "numeric",
+                                    }
+                                )}
+                            </span>
+                        </h1>
+                    )}
                     <h1 className="py-4 font-extrabold text-[24px] underline text-center ">
                         Order Details
                     </h1>

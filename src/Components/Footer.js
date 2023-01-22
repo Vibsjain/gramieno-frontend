@@ -8,6 +8,7 @@ import "../Assets/CSS/index.css";
 import Modal from "react-awesome-modal";
 import api from "../api/index";
 import swal from "sweetalert";
+import { SiGmail } from "react-icons/si";
 
 const Footer = () => {
     const [open, setOpen] = useState(false);
@@ -69,9 +70,20 @@ const Footer = () => {
             </div>
             <div className="w-full flex sm:flex-row flex-col">
                 <div className="sm:w-4/12 w-full sm:p-12 p-4 flex flex-col items-center">
-                    <h1 className="sm:text-[18px] text-[16px] text-white text-center">
-                        connect@gramieno.com
-                    </h1>
+                    <div
+                        className="flex items-center gap-2 cursor-pointer"
+                        onClick={() => {
+                            window.open(
+                                "mailto:connect@gramieno.com",
+                                "_blank"
+                            );
+                        }}
+                    >
+                        <SiGmail className="text-2xl text-white" />
+                        <h1 className="sm:text-[18px] text-[16px] text-white text-center">
+                            connect@gramieno.com
+                        </h1>
+                    </div>
                     <button
                         id="contact"
                         className="sm:mt-20 mt-8 flex py-4 px-8 border-2 border-white rounded-xl sm:text-[18px] text-[16px] text-white hover:text-black hover:bg-white"

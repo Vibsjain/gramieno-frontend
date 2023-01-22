@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Navbar, Footer } from "../Components";
-// import { useNavigate } from "react-router-dom";
+import { Navbar, Footer, DiscountAvail } from "../Components";
 import ProductContext from "../Context/ProductContext";
 import swal from "sweetalert";
 
 const Checkout = () => {
-    // const navigate = useNavigate();
     const {
         added,
         setAdded,
@@ -16,6 +14,7 @@ const Checkout = () => {
         discounts,
         getDiscounts,
     } = useContext(ProductContext);
+    const [getDiscount, setGetDiscount] = useState(false);
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState({
         orderItems: [],
@@ -48,10 +47,10 @@ const Checkout = () => {
                 ),
             });
         }
-        if (discounts[0].minPurchase <= order.totalPrice) {
+        if (discounts[0].minPurchase <= order.totalPrice && getDiscount) {
             setOrder({
                 ...order,
-                discount: discounts[0].discountPercent,
+                discount: discounts[0].discountPercent, 
                 totalPrice:
                     (1 - discounts[0].discountPercent / 100) *
                     order.totalPrice.toFixed(0),
@@ -59,7 +58,7 @@ const Checkout = () => {
         }
         window.scrollTo(0, 0);
         // eslint-disable-next-line
-    }, [added]);
+    }, [added, getDiscount]);
     const handlePayment = () => {
         if (discounts[0].minPurchase <= order.totalPrice) {
             setOrder({
@@ -120,7 +119,8 @@ const Checkout = () => {
     return (
         <div className="back">
             <Navbar />
-            <div>
+            <DiscountAvail setGetDiscount={setGetDiscount} />
+            <div className="mt-8">
                 <div className="flex flex-col md:flex-row w-full min-h-[100vh] sm:gap-0 gap-12">
                     <div className="sm:hidden flex py-2">
                         <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">

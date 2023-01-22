@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import api from "../api";
+import swal from "sweetalert";
 
-const DiscountNotice = () => {
+const DiscountAvail = ({ setGetDiscount }) => {
     const [show, setShow] = useState(true);
     const [discounts, setDiscounts] = useState([]);
     const getDiscounts = async () => {
@@ -73,7 +74,23 @@ const DiscountNotice = () => {
                             )}
                         </div>
 
-                        <div className="w-full flex items-center justify-end gap-4 ">
+                        <div className="w-full flex items-center justify-end gap-4">
+                            {discounts[0] && discounts[0].active && (
+                                <button
+                                    className="bg-[#F2C94C] text-[#72562C] px-4 py-2 rounded-md text-sm font-semibold"
+                                    onClick={() => {
+                                        setShow(false);
+                                        setGetDiscount(true);
+                                        swal({
+                                            title: "Discount Availed",
+                                            text: "Discount will be applied at checkout",
+                                            icon: "success",
+                                        });
+                                    }}
+                                >
+                                    Avail
+                                </button>
+                            )}
                             <AiOutlineClose
                                 className="text-white text-2xl cursor-pointer"
                                 onClick={() => setShow(false)}
@@ -86,4 +103,4 @@ const DiscountNotice = () => {
     );
 };
 
-export default DiscountNotice;
+export default DiscountAvail;
