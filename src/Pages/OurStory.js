@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Logo from "../Assets/Images/logo.png";
 import { Navbar, Footer } from "../Components";
 import AOS from "aos";
@@ -9,8 +9,7 @@ const OurStory = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     });
-    const aboutText = `Logo 
-    Gramien (Village) 'O (Global) : We bring products from the heartland which can have global appeal and acceptance.
+    const aboutText = `We bring products from the heartland which can have global appeal and acceptance.
     Diya is indicative of spreading the light and prosperity for all stakeholders associated with the brand.
     Tree represents growth. Seed planted becomes a tree and spreads all across.
     Origin
@@ -24,9 +23,9 @@ const OurStory = () => {
     return (
         <div className="back">
             <Navbar />
-            <div className="flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
+            <div className="pt-[7rem] flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
                 <div
-                    className="flex sm:w-4/12 w-full justify-center items-center"
+                    className="flex sm:w-4/12 w-full justify-center items-center" 
                     data-aos="zoom-in"
                 >
                     <img src={Logo} alt="" />

@@ -20,8 +20,7 @@ import ProductContext from "../Context/ProductContext";
 
 function Home() {
     const [ar, setAr] = useState(true);
-    const {  getProducts, snack, setAdded, added } =
-        useContext(ProductContext);
+    const { getProducts, snack, setAdded, added } = useContext(ProductContext);
     AOS.init();
     const navigate = useNavigate();
     // const storyText = `text-[#836663]`;
@@ -94,93 +93,104 @@ function Home() {
         <div className="w-full back">
             <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
-            <DiscountNotice />
-            {/* Hero Section */}
-            <div
-                className="flex w-full sm:flex hidden justify-center h-0"
-                data-aos="fade-up"
-            >
-                <HeroAnimate className="mt-[-20px]" />
-            </div>
-            <div className="sm:hidden flex py-2 ">
-                <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
-                    Hey, Gramien'O
-                </h1>
-            </div>
-            {/* Products Section */}
-            <div
-                className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[10vh]"
-                data-aos="fade-up"
-            >
-                <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
-                    <div className="w-1/2 flex flex-col justify-start">
-                        <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
-                            Our Products
-                        </h1>
-                        <h1 className="text-[12px] sm:hidden flex text-white">
-                            (Swipe to See More)
-                        </h1>
-                    </div>
-                    <div className="w-1/2 flex justify-end">
-                        <button
-                            className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-white rounded-xl"
-                            onClick={() => navigate("/products")}
-                        >
-                            See All
-                        </button>
-                    </div>
+            <div className=" pt-[5rem]">
+                <DiscountNotice />
+                {/* Hero Section */}
+                <div
+                    className="flex w-full sm:flex hidden justify-center h-0"
+                    data-aos="fade-up"
+                >
+                    <HeroAnimate className="mt-[-20px]" />
                 </div>
-                <Slider />
-            </div>
-            {/* Artisians Section */}
-            <div
-                className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-12 px-2 gap-16 mt-24 justify-center items-center"
-                data-aos="fade-up"
-            >
-                <div className="w-[90%] min-h-[75vh] bg-[#545454] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
-                    <div className="sm:p-12 p-2 flex w-full justify-center items-center ">
-                        <img src={art} className="rounded-xl w-[80%] h-[70%]" alt = "art" />
-                    </div>
-                    <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
-                        <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
-                            <h1 className="text-center font-bold text-white text-2xl">
-                                The Woodwork Artisans
+                <div className="sm:hidden flex py-2 ">
+                    <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                        Hey, Gramien'O
+                    </h1>
+                </div>
+                {/* Products Section */}
+                <div
+                    className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[10vh]"
+                    data-aos="fade-up"
+                >
+                    <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
+                        <div className="w-1/2 flex flex-col justify-start">
+                            <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
+                                Our Products
                             </h1>
-                            <h1 className="text-center py-4 px-6 text-justify text-white">
-                                Chhotu, Rakesh & Buddhu are excellent craftsmen
-                                and their Ability to convert an idea into
-                                finished products is unmatched. But what is most
-                                admiring, is their enthusiasm and ever-smiling
-                                faces even under adverse times like the
-                                pandemic. Gramien’O brings to you their creation
+                            <h1 className="text-[12px] sm:hidden flex text-white">
+                                (Swipe to See More)
                             </h1>
                         </div>
-                        <div className="sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
-                            <h1 className="text-center font-bold text-white text-2xl">
-                                Brajgandha - An Initiative empowering the Matas
-                                of Vrindavan
-                            </h1>
-                            <h1 className="text-center py-4 px-6 text-justify text-white">
-                                A unique initiative by Destitute Matas of
-                                Vrindavan, creating floral products (Incense
-                                sticks, Rose Pack, Gulal) from the flowers
-                                offered to the deity in temples of
-                                Vrindavan-Mathura
-                            </h1>
+                        <div className="w-1/2 flex justify-end">
+                            <button
+                                className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-white rounded-xl"
+                                onClick={() => navigate("/products")}
+                            >
+                                See All
+                            </button>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center py-2   ">
-                        <button
-                            className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white hover:text-black hover:bg-white text-center my-4"
-                            onClick={() => navigate("/products")}
-                        >
-                            Visit Store
-                        </button>
+                    <Slider />
+                </div>
+                {/* Artisians Section */}
+                <div
+                    className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-12 px-2 gap-16 mt-24 justify-center items-center"
+                    data-aos="fade-up"
+                >
+                    <div className="w-[90%] min-h-[75vh] bg-[#9b8063] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
+                        <div className="sm:p-12 p-2 flex w-full justify-center items-center ">
+                            <img
+                                src={art}
+                                className="rounded-xl w-[80%] h-[70%]"
+                                alt="art"
+                            />
+                        </div>
+                        <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
+                            <div className=" sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
+                                <h1 className="text-center font-bold text-white text-2xl">
+                                    The Woodwork Artisans
+                                </h1>
+                                <h1 className="text-center py-4 px-6 text-justify text-white">
+                                    Chhotu, Rakesh & Buddhu are excellent
+                                    craftsmen and their Ability to convert an
+                                    idea into finished products is unmatched.
+                                    But what is most admiring, is their
+                                    enthusiasm and ever-smiling faces even under
+                                    adverse times like the pandemic. Gramien’O
+                                    brings to you their creation
+                                </h1>
+                                <button
+                                    className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white hover:text-black hover:bg-white text-center my-4"
+                                    onClick={() => navigate("/products")}
+                                >
+                                    Visit Store
+                                </button>
+                            </div>
+                            <div className=" sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
+                                <h1 className="text-center font-bold text-white text-2xl">
+                                    Our Story
+                                </h1>
+                                <h1 className="text-center py-4 px-6 text-justify text-white">
+                                    We bring products from the heartland which
+                                    can have global appeal and acceptance. Diya
+                                    is indicative of spreading the light and
+                                    prosperity for all stakeholders associated
+                                    with the brand. Tree represents growth. Seed
+                                    planted becomes a tree and spreads all
+                                    across... 
+                                </h1>
+                                <button
+                                    className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white hover:text-black hover:bg-white text-center my-4"
+                                    onClick={() => navigate("/our-story")}
+                                >
+                                    Read More
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {/* Story Card */}
-            {/* <div
+                {/* Story Card */}
+                {/* <div
                 data-aos="fade-up"
                 className="w-full flex flex-col max-h-[80vh] px-24 justify-between items-center mt-24 rounded-2xl "
             >
@@ -214,20 +224,25 @@ function Home() {
                     </div>
                 </div>
             </div> */}
-            {/* Testimonial Card */}
-            <div className="w-full mt-24" data-aos="fade-up">
-                <h1 className="text-center my-12 font-bold text-[30px] text-white">
-                    Testimonials
-                </h1>
-                <Carousel responsive={responsive} infinite={true} arrows={ar}>
-                    {testimonials.map((testimonial, index) => (
-                        <TestimonialCard
-                            key = {index}
-                            name={testimonial.name}
-                            text={testimonial.text}
-                        />
-                    ))}
-                </Carousel>
+                {/* Testimonial Card */}
+                <div className="w-full mt-24" data-aos="fade-up">
+                    <h1 className="text-center my-12 font-bold text-[30px] text-white">
+                        Testimonials
+                    </h1>
+                    <Carousel
+                        responsive={responsive}
+                        infinite={true}
+                        arrows={ar}
+                    >
+                        {testimonials.map((testimonial, index) => (
+                            <TestimonialCard
+                                key={index}
+                                name={testimonial.name}
+                                text={testimonial.text}
+                            />
+                        ))}
+                    </Carousel>
+                </div>
             </div>
             <Footer />
         </div>

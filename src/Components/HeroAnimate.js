@@ -9,28 +9,28 @@ const HeroAnimate = () => {
                     <img
                         src="https://res.cloudinary.com/dumgn8uvd/image/upload/v1672390075/Main_ait5dc.jpg"
                         alt="hero"
-                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                        className="w-[87vw] h-[60vh]  rounded-2xl"
                     />
                 </li>
                 <li className="hero">
                     <img
                         src="https://res.cloudinary.com/dumgn8uvd/image/upload/v1672389915/One_fyszpj.jpg"
                         alt="hero"
-                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                        className="w-[87vw] h-[60vh]  rounded-2xl"
                     />
                 </li>
                 <li className="hero">
                     <img
                         src="https://res.cloudinary.com/dumgn8uvd/image/upload/v1672389916/Two_xseh4b.jpg"
                         alt="hero"
-                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                        className="w-[87vw] h-[60vh]  rounded-2xl"
                     />
                 </li>
                 <li className="hero">
                     <img
                         src="https://res.cloudinary.com/dumgn8uvd/image/upload/v1672390075/Three_qhz40o.jpg"
                         alt="hero"
-                        className="w-[77vw] h-[85vh]  rounded-2xl"
+                        className="w-[87vw] h-[60vh]  rounded-2xl"
                     />
                 </li>
             </ul>

@@ -53,7 +53,7 @@ function Navbar() {
         // eslint-disable-next-line
     }, [added]);
     return (
-        <div className="flex w-full  back  z-[10] pt-4">
+        <div className="flex w-full fixed bg-[#9b8063] z-[10] py-[10px]">
             <Modal
                 visible={modalOpen}
                 width="90%"
@@ -130,13 +130,15 @@ function Navbar() {
                     </div>
                 </div>
             </Modal>
-            <div className="flex sm:w-9/12 w-3/12  sm:px-12 px-4 py-4 sm:items-center ">
-                <img
-                    className="sm:h-[60px] h-[50px] cursor-pointer"
-                    src={Logo}
-                    alt=""
-                    onClick={() => navigate("/")}
-                />
+            <div className="flex sm:w-9/12 w-3/12  sm:px-8 px-4 sm:items-center ">
+                <div className="bg-white p-2 w-16 h-16 rounded-lg flex justify-center items-center">
+                    <img
+                        className="sm:h-[40px] h-[30px]  cursor-pointer"
+                        src={Logo}
+                        alt=""
+                        onClick={() => navigate("/")}
+                    />
+                </div>
                 <ul className="flex gap-4 mx-8 hidden sm:flex">
                     {navLinks.map((link, index) => {
                         return (
@@ -165,7 +167,7 @@ function Navbar() {
                     </li>
                 </ul>
             </div>
-            <div className="flex sm:w-3/12 w-9/12 sm:pb-0 sm:px-12 px-4 py-4 gap-8 sm:items-center justify-end hidden sm:flex">
+            <div className="flex sm:w-3/12 w-9/12 sm:pb-0 sm:px-8 px-4 gap-8 sm:items-center justify-end hidden sm:flex">
                 <div>
                     <div className="flex justify-end relative z-4">
                         <div className="w-4 h-4 rounded-full bg-[#FF0000] text-white font-bold text-[12px] absolute ml-[-4px]">
@@ -226,7 +228,7 @@ function Navbar() {
                             <div className="flex justify-end relative z-4">
                                 <div className="w-4 h-4 rounded-full bg-[#FF0000] text-white font-bold text-[12px] absolute ml-[-4px]">
                                     <h1 className="text-center">{cartItems}</h1>
-                                </div>  
+                                </div>
                             </div>
 
                             <i

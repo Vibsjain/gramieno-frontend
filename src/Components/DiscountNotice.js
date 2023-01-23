@@ -25,7 +25,7 @@ const DiscountNotice = () => {
     return (
         <div>
             {show && (
-                <div className="w-full min-h-[3rem] py-4 px-4 bg-[#72562C]">
+                <div className="w-full min-h-[3rem] py-4 px-4 bg-white text-black">
                     <div className="flex items-center justify-start items-between">
                         <div className="w-full flex flex-col gap-2 justify-center">
                             {discounts[0] && (
@@ -39,7 +39,7 @@ const DiscountNotice = () => {
                                                     {discount.active && (
                                                         <div className="flex items-center">
                                                             <div className="w-2 h-2 bg-[#F2C94C] rounded-full"></div>
-                                                            <div className="ml-2 text-sm text-white">
+                                                            <div className="ml-2 text-sm font-bold">
                                                                 {
                                                                     discount.discountPercent
                                                                 }
@@ -64,7 +64,7 @@ const DiscountNotice = () => {
                                     ) : (
                                         <div className="flex items-center">
                                             <div className="w-2 h-2 bg-[#F2C94C] rounded-full"></div>
-                                            <div className="ml-2 text-sm text-white">
+                                            <div className="ml-2 text-sm">
                                                 No Discount Available
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@ const DiscountNotice = () => {
 
                         <div className="w-full flex items-center justify-end gap-4 ">
                             <AiOutlineClose
-                                className="text-white text-2xl cursor-pointer"
+                                className="text-2xl cursor-pointer"
                                 onClick={() => setShow(false)}
                             />
                         </div>
