@@ -8,11 +8,17 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif;*/
+    font-family : "poppins", sans-serif;
 }
 
 .back{
-  background-color: #B89C7D;
+  /* background-color: #B89C7D;
+   */
+   /* background-color: #D2B48C; */
+   /* background-color: #896B60; */
+    background-color: #FFF;
+
 }
 
 .back1{
@@ -159,4 +165,8 @@ li.hero:nth-child(1) {
 
 .ql-snow{
   border-radius: 8px;
+}
+
+.react-multi-carousel-list {
+  padding: 50px 0px;
 }

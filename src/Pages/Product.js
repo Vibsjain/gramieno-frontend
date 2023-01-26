@@ -15,6 +15,9 @@ import parse from "html-react-parser";
 
 const Product = () => {
     AOS.init();
+    const backImage =
+        // "https://res.cloudinary.com/dzvapad5s/image/upload/v1674704261/WhatsApp_Image_2023-01-26_at_09.07.27_as5nha.jpg";
+        "https://res.cloudinary.com/dzvapad5s/image/upload/v1674704578/WhatsApp_Image_2023-01-26_at_09.12.40_occms9.jpg";
     const navigate = useNavigate();
     const { id } = useParams();
     const [image, setImage] = useState("");
@@ -80,12 +83,16 @@ const Product = () => {
                         src={image ? image : table}
                         className="w-[90%] h-[85%] rounded-xl cursor-pointer"
                         title="Click to zoom"
+                        alt="table"
                     />
                 </div>
             </Modal>
-            <div className="w-full flex flex-col sm:px-24 px-4">
+            {/* <div className="fixed h-[100vh] flex items-center">
+                <img src={backImage} alt="back" className="h-[75%] opacity-60" />
+            </div> */}
+            <div className="w-full flex flex-col sm:px-24 px-4 pt-[2rem]">
                 {product.name && (
-                    <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8">
+                    <div className="w-full flex sm:flex-row flex-col sm:gap-0 gap-8 sm:mt-6 mt-0 items-center">
                         <div className="sm:w-1/2 w-full flex gap-16 px-4">
                             <div className="flex flex-col w-full gap-4 items-center">
                                 <div
@@ -98,7 +105,7 @@ const Product = () => {
                                     <img
                                         src={image ? image : product.images[0]}
                                         alt="table"
-                                        className="w-96 h-80 rounded-2xl"
+                                        className="w-[32rem] sm:h-96 h-80 rounded-2xl"
                                         data-aos="zoom-in"
                                     />
                                 </div>
@@ -161,7 +168,7 @@ const Product = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="sm:w-1/2 w-full flex flex-col text-white gap-6 px-4">
+                        <div className="sm:w-1/2 w-full flex flex-col gap-4 px-4 border-[1px] rounded-xl border-[#B89C7D] p-8">
                             <h1
                                 className="font-bold text-[20px]"
                                 data-aos="zoom-in"
@@ -171,21 +178,25 @@ const Product = () => {
                                     : "Multipurpose Portable Table (Yellow-Orange)"}
                             </h1>
                             <div className="" data-aos="zoom-in">
-                                <h1 className="text-justify">
+                                <h1 className="text-justify text-sm">
                                     {product.description &&
                                         parse(product.description, options)}
                                 </h1>
                             </div>
-                            <h1 className="  text-[20px]" data-aos="zoom-in">
-                                <span className="font-bold">Category : </span>{" "}
-                                {product.category}
+                            <h1 data-aos="zoom-in">
+                                <span className=" font-bold">Category : </span>{" "}
+                                <span className="text-sm">
+                                    {product.category}
+                                </span>
                             </h1>
-                            <h1 className=" text-[20px]" data-aos="zoom-in">
+                            <h1 data-aos="zoom-in">
                                 <span className="font-bold">Dimensions : </span>{" "}
-                                {product.length}" x {product.breadth}" x{" "}
-                                {product.height}"
+                                <span className="text-sm">
+                                    {product.length}" x {product.breadth}" x{" "}
+                                    {product.height}"
+                                </span>
                             </h1>
-                            {product.countInStock === 0 ? (
+                            {product.countInStock == 0 ? (
                                 <h1 className=" text-[20px]" data-aos="zoom-in">
                                     <span className="font-bold text-[#FF0000]">
                                         Out of Stock
@@ -193,21 +204,62 @@ const Product = () => {
                                 </h1>
                             ) : (
                                 <h1 className=" text-[20px]" data-aos="zoom-in">
-                                    <span className="font-bold text-[#00FF00]">
+                                    <span className="font-bold text-[#006400]">
                                         In Stock
                                     </span>{" "}
                                 </h1>
                             )}
-                            <h1
-                                className=" font-bold text-[20px]"
-                                data-aos="zoom-in"
-                            >
-                                {product.price.toLocaleString("en-IN", {
-                                    maximumFractionDigits: 2,
-                                    style: "currency",
-                                    currency: "INR",
-                                })}
-                            </h1>
+                            {product.discount ? (
+                                <div className="flex gap-2 items-center">
+                                    <del>
+                                        <h1
+                                            className=" font-bold text-[20px]"
+                                            data-aos="zoom-in"
+                                        >
+                                            {product.price.toLocaleString(
+                                                "en-IN",
+                                                {
+                                                    maximumFractionDigits: 2,
+                                                    style: "currency",
+                                                    currency: "INR",
+                                                }
+                                            )}
+                                        </h1>
+                                    </del>
+                                    <h1
+                                        className=" font-bold text-[20px] text-[#FF0000]"
+                                        data-aos="zoom-in"
+                                    >
+                                        {(
+                                            (product.price *
+                                                (100 - product.discount)) /
+                                            100
+                                        ).toLocaleString("en-IN", {
+                                            maximumFractionDigits: 2,
+                                            style: "currency",
+                                            currency: "INR",
+                                        })}
+                                    </h1>
+                                    <h1
+                                        className="
+                                    text-sm
+                                    "
+                                    >
+                                        ({product.discount}% off)
+                                    </h1>
+                                </div>
+                            ) : (
+                                <h1
+                                    className=" font-bold text-[20px]"
+                                    data-aos="zoom-in"
+                                >
+                                    {product.price.toLocaleString("en-IN", {
+                                        maximumFractionDigits: 2,
+                                        style: "currency",
+                                        currency: "INR",
+                                    })}
+                                </h1>
+                            )}
                             <div
                                 className="w-full flex gap-4 justify-center sm:justify-start"
                                 data-aos="zoom-in"
@@ -325,7 +377,7 @@ const Product = () => {
                     </div>
                 )}
                 <div className="w-full flex sm:flex-row flex-col-reverse mt-24 sm:gap-0 gap-8">
-                    <div className="sm:w-1/2 w-full flex flex-col text-white sm:gap-12 gap-8 px-4">
+                    <div className="sm:w-1/2 w-full flex flex-col sm:gap-12 gap-8 px-4 border-[1px] rounded-xl border-[#B89C7D] p-8">
                         <h1
                             className="font-bold text-[20px]"
                             data-aos="zoom-in"
@@ -333,7 +385,10 @@ const Product = () => {
                             More Details About the Product
                         </h1>
                         <div className="">
-                            <h1 className="text-justify" data-aos="zoom-in">
+                            <h1
+                                className="text-justify text-sm"
+                                data-aos="zoom-in"
+                            >
                                 {product.description &&
                                     parse(product.description)}
                             </h1>

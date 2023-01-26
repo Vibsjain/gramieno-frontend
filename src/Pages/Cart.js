@@ -137,7 +137,7 @@ const Cart = () => {
     return (
         <div className="back">
             <Navbar />
-            <div className="pt-[8rem]">
+            <div className="pt-[2rem]">
                 {cart.length === 0 ? (
                     <div className="w-full h-[80vh]">
                         <img

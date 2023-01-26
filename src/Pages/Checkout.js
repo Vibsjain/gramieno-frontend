@@ -60,14 +60,6 @@ const Checkout = () => {
         // eslint-disable-next-line
     }, [added, getDiscount]);
     const handlePayment = () => {
-        if (discounts[0].minPurchase <= order.totalPrice) {
-            setOrder({
-                ...order,
-                discount: discounts[0].discountPercent,
-                totalPrice:
-                    (1 - discounts[0].discountPercent / 100) * order.totalPrice,
-            });
-        }
         if (
             order.shippingAddress.fullName === "" ||
             order.shippingAddress.email === "" ||

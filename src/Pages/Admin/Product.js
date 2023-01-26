@@ -47,19 +47,16 @@ const Product = () => {
     }, []);
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
-    const handleUpload = () => {
+    const handleUpload = async() => {
         if (
-            data.image1 === "" ||
-            data.image2 === "" ||
-            data.image3 === "" ||
-            data.image4 === "" ||
-            data.name === "" ||
-            data.category === "" ||
-            data.price === 0 ||
-            data.description === "" ||
-            data.length === 0 ||
-            data.breadth === 0 ||
-            data.height === 0
+            editData.images.length ===0 ||
+            editData.name === "" ||
+            editData.category === "" ||
+            editData.price === 0 ||
+            editData.description === "" ||
+            editData.length === 0 ||
+            editData.breadth === 0 ||
+            editData.height === 0
         ) {
             swal({
                 title: "Error",
@@ -69,8 +66,9 @@ const Product = () => {
             setEdit(false);
             return;
         }
-
-        editProduct(editData._id, editData);
+        console.log(data);
+        console.log(editData);
+        await editProduct(editData._id, editData);
         swal({
             title: "Success",
             text: "Product Edited Successfully",
@@ -314,6 +312,7 @@ const Product = () => {
                                 onClick={() => {
                                     setEdit(!edit);
                                     setEditData(product);
+                                    console.log(editData )
                                 }}
                             />
                             <CloseOutlined
@@ -550,7 +549,7 @@ const Product = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => (
+                        {data && data.map((item, index) => (
                             <tr
                                 className={`text-white bg-[#192335] border-b ${
                                     index % 2 === 0
@@ -573,7 +572,6 @@ const Product = () => {
                                         className={adminShowBtn}
                                         onClick={() => {
                                             setProduct(item);
-                                            // setImage(product.images[0]);
                                             setOpen(!open);
                                         }}
                                     >

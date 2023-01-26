@@ -23,7 +23,7 @@ const OurStory = () => {
     return (
         <div className="back">
             <Navbar />
-            <div className="pt-[7rem] flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
+            <div className="flex flex-col sm:flex-row py-12 sm:px-8 px-4 sm:gap-0 gap-12 sm:mt-0 mt-12">
                 <div
                     className="flex sm:w-4/12 w-full justify-center items-center" 
                     data-aos="zoom-in"

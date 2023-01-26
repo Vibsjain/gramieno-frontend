@@ -8,6 +8,7 @@ import swal from "sweetalert";
 import Modal from "react-awesome-modal";
 import api from "../api/index";
 import "../Assets/CSS/index.css";
+import { navColor } from "../Assets/Constants";
 
 function Navbar() {
     const { added, setAdded } = useContext(ProductContext);
@@ -53,7 +54,7 @@ function Navbar() {
         // eslint-disable-next-line
     }, [added]);
     return (
-        <div className="flex w-full fixed bg-[#9b8063] z-[10] py-[10px]">
+        <div className={`flex w-full bg-[#B89C7D] z-[10] py-[10px]`}>
             <Modal
                 visible={modalOpen}
                 width="90%"

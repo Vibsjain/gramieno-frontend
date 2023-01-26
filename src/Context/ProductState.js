@@ -6,7 +6,6 @@ import api from "../api";
 const ProductState = (props) => {
     const [isLogged, setIsLogged] = useState(false);
     const [snack, setSnack] = useState({ text: "", visible: false });
-    const [data, setData] = useState({});
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState({});
     const [orders, setOrders] = useState([]);
@@ -14,6 +13,15 @@ const ProductState = (props) => {
     const [loading, setLoading] = useState(false);
     const [added, setAdded] = useState(false);
     const [discounts, setDiscounts] = useState([]);
+
+    const addUploadImage = async (image) => {
+        console.log(image);
+        const res = await api.post("/cloudinary/upload", {
+            image: image,
+        });
+        console.log(res);
+        return res;
+    };
 
     const getProducts = async () => {
         setLoading(true);
@@ -147,6 +155,7 @@ const ProductState = (props) => {
         <div>
             <ProductContext.Provider
                 value={{
+                    addUploadImage,
                     products,
                     getProducts,
                     product,

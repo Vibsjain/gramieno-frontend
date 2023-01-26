@@ -35,7 +35,7 @@ function Home() {
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 3,
+            items: 4,
         },
         tablet: {
             breakpoint: { max: 1024, min: 690 },
@@ -93,7 +93,7 @@ function Home() {
         <div className="w-full back">
             <SnackBar text={snack.text} visible={snack.visible} />
             <Navbar />
-            <div className=" pt-[5rem]">
+            <div className=" ">
                 <DiscountNotice />
                 {/* Hero Section */}
                 <div
@@ -107,23 +107,24 @@ function Home() {
                         Hey, Gramien'O
                     </h1>
                 </div>
+                <hr />
                 {/* Products Section */}
                 <div
-                    className="flex flex-col w-full sm:mt-[100vh] mt-12 min-h-[10vh]"
+                    className="flex flex-col w-full sm:mt-[75vh] mt-12 min-h-[10vh]"
                     data-aos="fade-up"
                 >
                     <div className="w-full flex py-4 sm:px-12 px-8 h-36 items-center">
                         <div className="w-1/2 flex flex-col justify-start">
-                            <h1 className="sm:text-[30px] text-[18px] text-white font-bold">
+                            <h1 className="sm:text-[30px] text-[18px] font-bold">
                                 Our Products
                             </h1>
-                            <h1 className="text-[12px] sm:hidden flex text-white">
+                            <h1 className="text-[12px] sm:hidden flex">
                                 (Swipe to See More)
                             </h1>
                         </div>
                         <div className="w-1/2 flex justify-end">
                             <button
-                                className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-white rounded-xl"
+                                className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-[#937D64] border rounded-xl"
                                 onClick={() => navigate("/products")}
                             >
                                 See All
@@ -132,25 +133,28 @@ function Home() {
                     </div>
                     <Slider />
                 </div>
+                <div className="px-8">
+                    <hr />
+                </div>
                 {/* Artisians Section */}
                 <div
-                    className="w-full min-h-[100vh] flex sm:flex-row flex-col sm:px-12 px-2 gap-16 mt-24 justify-center items-center"
+                    className="w-full flex sm:flex-row flex-col sm:px-12 px-2 gap-16 mt-24 justify-center items-center"
                     data-aos="fade-up"
                 >
-                    <div className="w-[90%] min-h-[75vh] bg-[#9b8063] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
-                        <div className="sm:p-12 p-2 flex w-full justify-center items-center ">
+                    <div className="w-[90%] bg-[#B89C7D] rounded-2xl drop-shadow-2xl flex flex-col justify-evenly ">
+                        <div className="sm:p-8 p-2 flex w-full justify-center items-center ">
                             <img
                                 src={art}
-                                className="rounded-xl w-[80%] h-[70%]"
+                                className="rounded-xl w-[60%] h-[50%]"
                                 alt="art"
                             />
                         </div>
                         <div className="flex sm:flex-row flex-col w-full gap-4 sm:px-8 px-2 py-12 justify-around items-center">
                             <div className=" sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
-                                <h1 className="text-center font-bold text-white text-2xl">
+                                <h1 className="text-center font-bold text-white text-xl">
                                     The Woodwork Artisans
                                 </h1>
-                                <h1 className="text-center py-4 px-6 text-justify text-white">
+                                <h1 className="text-center py-4 px-6 text-justify text-white text-sm">
                                     Chhotu, Rakesh & Buddhu are excellent
                                     craftsmen and their Ability to convert an
                                     idea into finished products is unmatched.
@@ -167,17 +171,17 @@ function Home() {
                                 </button>
                             </div>
                             <div className=" sm:w-1/3 md:w-1/2 w-full px-2 h-[80%] flex flex-col justify-between items-center">
-                                <h1 className="text-center font-bold text-white text-2xl">
+                                <h1 className="text-center font-bold text-white text-xl">
                                     Our Story
                                 </h1>
-                                <h1 className="text-center py-4 px-6 text-justify text-white">
+                                <h1 className="text-center py-4 px-6 text-justify text-white text-sm">
                                     We bring products from the heartland which
                                     can have global appeal and acceptance. Diya
                                     is indicative of spreading the light and
                                     prosperity for all stakeholders associated
                                     with the brand. Tree represents growth. Seed
                                     planted becomes a tree and spreads all
-                                    across... 
+                                    across...
                                 </h1>
                                 <button
                                     className="flex w-32 py-2 px-4 justify-center items-center border-2 border-white rounded-xl text-[16px] text-white hover:text-black hover:bg-white text-center my-4"
@@ -188,6 +192,9 @@ function Home() {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="px-8">
+                    <hr />
                 </div>
                 {/* Story Card */}
                 {/* <div
@@ -226,7 +233,7 @@ function Home() {
             </div> */}
                 {/* Testimonial Card */}
                 <div className="w-full mt-24" data-aos="fade-up">
-                    <h1 className="text-center my-12 font-bold text-[30px] text-white">
+                    <h1 className="text-center my-8 font-bold text-[30px]">
                         Testimonials
                     </h1>
                     <Carousel

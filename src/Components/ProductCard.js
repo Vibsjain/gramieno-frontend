@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { buyBtn } from "../Assets/Constants";
 import { useNavigate } from "react-router-dom";
 import ProductContext from "../Context/ProductContext";
+import parse from "html-react-parser";
 
 const ProductCard = ({ image1, item, description, price, id, stock }) => {
     const { setAdded, handleSnack } = useContext(ProductContext);
@@ -18,7 +19,7 @@ const ProductCard = ({ image1, item, description, price, id, stock }) => {
             >
                 <img
                     src={image1}
-                    className="rounded-t-2xl h-full w-full "
+                    className="rounded-t-2xl h-full w-full"
                 ></img>
             </div>
             <div
@@ -32,11 +33,11 @@ const ProductCard = ({ image1, item, description, price, id, stock }) => {
                         {"₹   " + price}
                     </h1>
                 </div>
-                <h1 className="w-1/2 px-2 text-center text-[13px] font-light about-font text-gray-600">
+                {<h1 className="w-1/2 px-2 text-center text-[13px] font-light about-font text-gray-600">
                     {description.length > 20
-                        ? description.slice(0, 30) + "..."
-                        : description}
-                </h1>
+                        ? parse(description.slice(0, 30)) + "..."
+                        : parse(description)}
+                </h1>}
                 <div className="w-full flex h-full">
                     <div
                         className="flex w-6/12 justify-center items-center cursor-pointer hover:text-black"

@@ -44,7 +44,7 @@ const Products = () => {
                     Products
                 </h1>
             </div>
-            <div className="pt-[6rem]">
+            <div className="">
                 <div className=" sm:px-24 px-8 rounded-2xl" data-aos="zoom-in">
                     <ProductAnimate />
                 </div>

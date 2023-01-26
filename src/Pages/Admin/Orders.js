@@ -5,14 +5,13 @@ import ProductContext from "../../Context/ProductContext";
 import { CloseOutlined } from "@ant-design/icons";
 import swal from "sweetalert";
 import Modal from "react-awesome-modal";
-import Void from "../../Assets/Images/Void.svg";
+import parse from "html-react-parser";
 
 const Orders = () => {
     const { orders, getOrders, products, getProducts, updateDeliveryStatus } =
         useContext(ProductContext);
     const [open, setOpen] = useState(false);
     const [data, setData] = useState({});
-    const [id, setId] = useState("");
     const headStyle = tableHeadStyle;
     const CustomerCard = ({ title, value }) => {
         return (
@@ -39,6 +38,7 @@ const Orders = () => {
                             <img
                                 src={product.images[0]}
                                 className="w-11/12 h-11/12 rounded-xl shadow-2xl"
+                                alt = "table"
                             />
                         </div>
                         <div className="w-full sm:w-3/4 flex flex-col p-4">
@@ -49,7 +49,7 @@ const Orders = () => {
                                 ({product.category})
                             </h1>
                             <h1 className="text-sm py-4 text-justify pr-0 sm:pr-24">
-                                {product.description}
+                                {product.description && parse(product.description)}
                             </h1>
 
                             <h1>
