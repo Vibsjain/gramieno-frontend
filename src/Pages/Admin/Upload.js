@@ -78,7 +78,7 @@ const Upload = () => {
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
     return (
         <div className="w-full sm:px-48 px-4 mt-24 about-font">
-            <div className="bg-[#0E1E2F] rounded-2xl min-h-[70vh]">
+            <div className="bg-[#B89C7D] rounded-2xl min-h-[70vh]">
                 <h1 className="text-center text-[25px] font-bold text-white py-8 px-12 about-font">
                     {loading ? "Adding" : "Add"} a new Product{" "}
                     {loading && ". . . . ."}
@@ -286,7 +286,7 @@ const Upload = () => {
                             </div>
                         </div>
                         <button
-                            className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
+                            className="text-white bg-[#937D64] w-full my-8 text-[16px] py-2 rounded-lg hover:text-black about-font"
                             onClick={handleUpload}
                         >
                             Upload

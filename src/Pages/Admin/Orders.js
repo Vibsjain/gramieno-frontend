@@ -275,7 +275,7 @@ const Orders = () => {
                         {orders[0] &&
                             orders.map((item, index) => (
                                 <tr
-                                    className={`text-white bg-[#192335] border-b ${
+                                    className={`text-white bg-[#B89C7D] border-b ${
                                         index % 2 === 0
                                             ? "bg-[#F9FAFB]"
                                             : "bg-white"
