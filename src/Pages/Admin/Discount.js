@@ -64,7 +64,7 @@ const Discount = () => {
     }, [changed]);
     return (
         <div className="w-full sm:px-24 px-4 mt-24 about-font">
-            <div className="bg-[#141C2F] rounded-2xl min-h-[70vh]">
+            <div className="bg-[#937D64] rounded-2xl min-h-[70vh]">
                 <div>
                     <h1 className="text-3xl text-white text-center pt-10">
                         Discount
@@ -96,7 +96,7 @@ const Discount = () => {
                             </thead>
                             <tbody>
                                 {data[0] && (
-                                    <tr className="bg-[#1E293B] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
@@ -276,7 +276,7 @@ const Discount = () => {
                                     </tr>
                                 )}
                                 {data[1] && (
-                                    <tr className="bg-[#1E293B] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
@@ -457,7 +457,7 @@ const Discount = () => {
                                     </tr>
                                 )}
                                 {data[2] && (
-                                    <tr className="bg-[#1E293B] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${

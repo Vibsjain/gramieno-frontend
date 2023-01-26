@@ -5,7 +5,7 @@ const ShippingPolicy = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     });
-    const divStyle = `flex flex-col text-justify text-white text-[18px] gap-8 my-12`;
+    const divStyle = `flex flex-col text-justify text-md gap-8 my-12`;
     const boldFontStyle = `font-bold text-[22px] uppercase`;
     return (
         <div className="back">

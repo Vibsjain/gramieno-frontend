@@ -18,7 +18,7 @@ const ProductAnimate = () => {
                             className="w-full sm:h-[70vh] h-[50vh] sm:rounded-t-[0px] sm:rounded-b-[0px] sm:rounded-tl-2xl sm:rounded-bl-2xl rounded-t-2xl"
                         />
                     </div>
-                    <div className="sm:w-5/12 w-full sm:py-0 py-8 flex flex-col justify-center items-center gap-4 bg-white sm:rounded-t-[0px] sm:rounded-tr-2xl rounded-br-2xl sm:rounded-bl-[0px] rounded-bl-2xl ">
+                    <div className="sm:w-5/12 w-full sm:py-0 py-8 border-r border-t border-b border-[2px] border-[#B89C7D] flex flex-col justify-center items-center gap-4 bg-white sm:rounded-t-[0px] sm:rounded-tr-2xl rounded-br-2xl sm:rounded-bl-[0px] rounded-bl-2xl ">
                         <img src={Logo} alt = "product"/>
                         <h1 className="sm:px-12 px-8 font-bold text-[18px]">
                             Village Mart for the Urban Heart

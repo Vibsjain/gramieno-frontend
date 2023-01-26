@@ -123,7 +123,7 @@ function Navbar() {
                             rows={5}
                         />
                         <button
-                            className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
+                            className="text-white bg-[#B89C7D] w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
                             onClick={handleSubmit}
                         >
                             Submit

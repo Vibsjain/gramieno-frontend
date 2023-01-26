@@ -46,7 +46,7 @@ const Slider = ({ data }) => {
                             <ProductCard
                                 key={index}
                                 product={product}
-                                image1={product.images[0]}
+                                image1={product?.images[0]}
                                 item={product.name}
                                 description={product.description}
                                 price={product.price}

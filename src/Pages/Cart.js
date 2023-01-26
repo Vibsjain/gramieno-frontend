@@ -342,7 +342,7 @@ const Cart = () => {
                     </div>
                 )}
             </div>
-            <h1 className="font-bold text-white my-12 px-12 sm:text-[26px] text-[20px] sm:text-left text-center">
+            <h1 className="font-bold my-12 px-12 sm:text-[26px] text-[20px] sm:text-left text-center">
                 See More Related Products
             </h1>
 

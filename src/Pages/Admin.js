@@ -14,10 +14,10 @@ import { BsFillShieldLockFill } from "react-icons/bs";
 const Admin = () => {
     const { isLogged, setIsLogged } = useContext(ProductContext);
     const navigate = useNavigate();
-    const navButtonStyle = `min-w-48 text-center blok border border-[#141C2F] rounded py-2 px-4 about-font`;
-    const navChosesStyle = `bg-[#fff] text-[#141C2F]`;
-    const navHoverStyle = `bg-[#141C2F] text-white hover:bg-[#fff] hover:text-[#141C2F]`;
-    const iconStyle = `text-[25px] text-white cursor-pointer`;
+    const navButtonStyle = `min-w-48 text-center blok border border-[#B89C7D] rounded py-2 px-4 about-font`;
+    const navChosesStyle = `bg-[#fff] text-[#B89C7D]`;
+    const navHoverStyle = `bg-[#B89C7D] text-white hover:bg-[#fff] hover:text-[#B89C7D]`;
+    const iconStyle = `text-[25px] text-white cursor-pointer hover:text-black`;
     const [orderDetails, setOrderDetails] = useState(true);
     const [productDetails, setProductDetails] = useState(false);
     const [upload, setUpload] = useState(false);
@@ -48,24 +48,26 @@ const Admin = () => {
         setOrderDetails(false);
         setUpload(false);
         setProductDetails(false);
-        setDiscount(false); 
+        setDiscount(false);
         setCurrentTab(0);
     };
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
-    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
+    const inputStyle = `bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 about-font`;
     return (
         <div className="back1 about-font">
             {isLogged ? (
                 <div>
-                    <div className="p-8 about-font">
-                        <div className="flex p-4 admin-shadow rounded-full">
-                            <div className="flex w-4/12 justify-start px-6">
-                                <img
-                                    src={Logo}
-                                    alt="logo"
-                                    className="w-8 cursor-pointer"
-                                    onClick={() => navigate("/")}
-                                />
+                    <div className="about-font">
+                        <div className="flex p-4 admin-shadow  bg-[#B89C7D] ">
+                            <div className="flex w-4/12 justify-start px-6 ">
+                                <div className="bg-white p-2 w-16 h-16 rounded-lg flex justify-center items-center">
+                                    <img
+                                        src={Logo}
+                                        alt="logo"
+                                        className="w-8 cursor-pointer"
+                                        onClick={() => navigate("/")}
+                                    />
+                                </div>
                             </div>
                             <div className="flex w-8/12 justify-end items-center gap-12 px-4">
                                 <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl sm:flex hidden items-center font-bold h-12">
@@ -107,7 +109,7 @@ const Admin = () => {
                     </div>
 
                     <div className="mt-12 mb-24 w-full">
-                        <h1 className="text-white font-bold sm:text-[70px] text-[40px] text-center about-font">
+                        <h1 className=" font-bold sm:text-[70px] text-[40px] text-center about-font">
                             Hey, Gramien'O
                         </h1>
                     </div>
@@ -190,16 +192,18 @@ const Admin = () => {
                     )}
                 </div>
             ) : (
-                <div className="w-full flex flex-col items-center min-h-[100vh]">
-                    <div className="py-8 w-full px-4">
-                        <div className="flex p-4 admin-shadow rounded-full">
+                <div className="w-full flex flex-col items-center min-h-[100vh] gap-8">
+                    <div className="w-full">
+                        <div className="flex p-4 admin-shadow bg-[#B89C7D]">
                             <div className="flex w-4/12 justify-start px-6">
-                                <img
-                                    src={Logo}
-                                    alt="logo"
-                                    className="w-8 cursor-pointer"
-                                    onClick={() => navigate("/")}
-                                />
+                                <div className="bg-white p-2 w-16 h-16 rounded-lg flex justify-center items-center">
+                                    <img
+                                        src={Logo}
+                                        alt="logo"
+                                        className="w-8 cursor-pointer"
+                                        onClick={() => navigate("/")}
+                                    />
+                                </div>
                             </div>
                             <div className="flex w-8/12 justify-end items-center gap-12 px-4">
                                 <h1 className="about-font px-4 py-2 bg-white text-black rounded-2xl sm:flex hidden items-center font-bold h-12">
@@ -212,7 +216,7 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="sm:w-[75%] w-[95%] bg-white flex flex-col py-16 rounded-xl">
+                    <div className="sm:w-[75%] w-[95%] bg-[#B89C7D] flex flex-col py-16 rounded-xl">
                         <div className="flex w-full justify-center items-center gap-4">
                             <h1 className="text-2xl font-bold text-center">
                                 Login Admin
@@ -251,7 +255,7 @@ const Admin = () => {
                                 }
                             />
                             <button
-                                className="text-white bg-[#1E293B] w-full my-8 text-[16px] border border-[#1E293B] py-2 rounded-lg hover:bg-white hover:text-[#1E293B] about-font"
+                                className="text-white bg-[#937D64] w-full my-8 text-[16px] border border-[#937D64] py-2 rounded-lg hover:text-black about-font"
                                 onClick={handleLogin}
                             >
                                 Login

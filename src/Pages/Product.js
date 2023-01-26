@@ -126,33 +126,37 @@ const Product = () => {
                                             setImage(product.images[0])
                                         }
                                     />
-                                    <img
-                                        src={
-                                            product.images[1]
-                                                ? product.images[1]
-                                                : table
-                                        }
-                                        alt="table"
-                                        className="w-16 h-16 rounded-lg cursor-pointer"
-                                        data-aos="zoom-in"
-                                        onClick={() =>
-                                            setImage(product.images[1])
-                                        }
-                                    />
-                                    <img
-                                        src={
-                                            product.images[2]
-                                                ? product.images[2]
-                                                : table
-                                        }
-                                        alt="table"
-                                        className="w-16 h-16 rounded-lg cursor-pointer"
-                                        data-aos="zoom-in"
-                                        onClick={() =>
-                                            setImage(product.images[2])
-                                        }
-                                    />
-                                    <img
+                                    {product.images[1] && (
+                                        <img
+                                            src={
+                                                product.images[1]
+                                                    ? product.images[1]
+                                                    : table
+                                            }
+                                            alt="table"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
+                                            data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.images[1])
+                                            }
+                                        />
+                                    )}
+                                    {product.images[2] && (
+                                        <img
+                                            src={
+                                                product.images[2]
+                                                    ? product.images[2]
+                                                    : table
+                                            }
+                                            alt="table"
+                                            className="w-16 h-16 rounded-lg cursor-pointer"
+                                            data-aos="zoom-in"
+                                            onClick={() =>
+                                                setImage(product.images[2])
+                                            }
+                                        />
+                                    )}
+                                    {product.images[3] && <img
                                         src={
                                             product.images[3]
                                                 ? product.images[3]
@@ -164,7 +168,7 @@ const Product = () => {
                                         onClick={() =>
                                             setImage(product.images[3])
                                         }
-                                    />
+                                    />}
                                 </div>
                             </div>
                         </div>
@@ -230,7 +234,7 @@ const Product = () => {
                                         className=" font-bold text-[20px] text-[#FF0000]"
                                         data-aos="zoom-in"
                                     >
-                                        {(
+                                        {Math.ceil(
                                             (product.price *
                                                 (100 - product.discount)) /
                                             100

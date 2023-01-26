@@ -19,30 +19,43 @@ const ProductCard = ({
     const widthBox = "20rem";
     return (
         <div
-            className={`w-[${widthBox}] drop-shadow-2xl about-font rounded-2xl zoom `}
+            className={`w-[20rem] drop-shadow-2xl about-font rounded-2xl zoom `}
         >
             <div
-                className={`w-[${widthBox}] bg-white h-[12rem] rounded-t-2xl cursor-pointer`}
+                className={`w-[20rem] bg-white h-[12rem] rounded-t-2xl cursor-pointer`}
                 onClick={() => navigate(`/products/${id}`)}
             >
                 <img src={image1} className="rounded-t-2xl h-full w-full"></img>
             </div>
             <div
-                className={`flex flex-col gap-4 justify-between w-[${widthBox}] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8`}
+                className={`flex flex-col gap-4 justify-between w-[20rem] h-[15rem] rounded-b-2xl bg-[#FFF]  py-4 z-8`}
             >
                 <div className="flex w-full justify-between text-sm">
-                    <h1 className="w-1/2 px-2 text-center font-bold about-font ">
+                    <h1 className="w-full flex px-2 text-center font-bold about-font ">
                         {item}
                     </h1>
-                    <h1 className="w-1/2 px-2 text-center font-bold about-font">
-                        {"₹   " + price}
-                    </h1>
+                    <div className="w-full  justify-center flex items-center">
+                        <h1 className=" px-2 text-center font-bold about-font">
+                            {"₹   " + price}
+                        </h1>
+                        {discount && (
+                            <h1 className="text-xs">
+                                {"( "}
+                                {discount}
+                                {"%off )"}
+                            </h1>
+                        )}
+                    </div>
                 </div>
                 {
                     <h1 className="w-1/2 px-2 text-center text-[13px] font-light about-font text-gray-600">
-                        {description && description.length > 20
-                            ? parse(description.slice(0, 30)) + "..."
-                            : parse(description)}
+                        {description &&
+                            parse(
+                                description.slice(
+                                    0,
+                                    Math.min(description.length, 40)
+                                )
+                            )}
                     </h1>
                 }
                 <div className="w-full flex h-full">

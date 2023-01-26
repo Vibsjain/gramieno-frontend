@@ -47,9 +47,9 @@ const Product = () => {
     }, []);
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
     const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
-    const handleUpload = async() => {
+    const handleUpload = async () => {
         if (
-            editData.images.length ===0 ||
+            editData.images.length === 0 ||
             editData.name === "" ||
             editData.category === "" ||
             editData.price === 0 ||
@@ -194,6 +194,20 @@ const Product = () => {
                                     });
                                 }}
                             />
+                            <label className={labelStyle}>Discount</label>
+                            <input
+                                type="number"
+                                id="discount"
+                                className={inputStyle}
+                                placeholder="Discount %"
+                                value={editData.discount}
+                                onChange={(e) => {
+                                    setEditData({
+                                        ...editData,
+                                        discount: e.target.value,
+                                    });
+                                }}
+                            />
                             <label className={labelStyle}>
                                 Price of Product
                             </label>
@@ -312,7 +326,7 @@ const Product = () => {
                                 onClick={() => {
                                     setEdit(!edit);
                                     setEditData(product);
-                                    console.log(editData )
+                                    console.log(editData);
                                 }}
                             />
                             <CloseOutlined
@@ -529,7 +543,7 @@ const Product = () => {
             </Modal>
             <div className="overflow-x-auto relative rounded-2xl">
                 <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-white  bg-[rgb(20,28,47)] py-2 px-2">
+                    <thead className="text-xs text-white  bg-[#937D64] py-2 px-2">
                         <tr>
                             <th scope="col" className={headStyle}>
                                 Product
@@ -549,37 +563,38 @@ const Product = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data && data.map((item, index) => (
-                            <tr
-                                className={`text-white bg-[#192335] border-b ${
-                                    index % 2 === 0
-                                        ? "bg-[#F9FAFB]"
-                                        : "bg-white"
-                                }}`}
-                                key={index}
-                            >
-                                <th
-                                    scope="row"
-                                    className="py-4 px-8 font-medium whitespace-nowrap about-font"
+                        {data &&
+                            data.map((item, index) => (
+                                <tr
+                                    className={`text-white bg-[#192335] border-b ${
+                                        index % 2 === 0
+                                            ? "bg-[#F9FAFB]"
+                                            : "bg-white"
+                                    }}`}
+                                    key={index}
                                 >
-                                    {item.name}
-                                </th>
-                                <td className="py-4 px-8 about-font sm:flex hidden">
-                                    {item.price}
-                                </td>
-                                <td className="py-4 px-8 text-center">
-                                    <button
-                                        className={adminShowBtn}
-                                        onClick={() => {
-                                            setProduct(item);
-                                            setOpen(!open);
-                                        }}
+                                    <th
+                                        scope="row"
+                                        className="py-4 px-8 font-medium whitespace-nowrap about-font"
                                     >
-                                        Show More
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+                                        {item.name}
+                                    </th>
+                                    <td className="py-4 px-8 about-font sm:flex hidden">
+                                        {item.price}
+                                    </td>
+                                    <td className="py-4 px-8 text-center">
+                                        <button
+                                            className={adminShowBtn}
+                                            onClick={() => {
+                                                setProduct(item);
+                                                setOpen(!open);
+                                            }}
+                                        >
+                                            Show More
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>

@@ -159,7 +159,7 @@ const Products = () => {
                                     alt="Void"
                                     className="w-1/2 mx-auto"
                                 />
-                                <h1 className="text-center text-white font-bold text-2xl mt-4">
+                                <h1 className="text-center font-bold text-2xl mt-4">
                                     No Products Found
                                 </h1>
                             </div>

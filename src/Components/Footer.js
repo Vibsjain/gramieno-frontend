@@ -86,7 +86,7 @@ const Footer = () => {
                     </div>
                     <button
                         id="contact"
-                        className="sm:mt-20 mt-8 flex py-4 px-8 border-2 bg-[#937D64] rounded-xl sm:text-[18px] text-[16px]  hover:text-black hover:bg-[#B89C7D]"
+                        className="sm:mt-20 mt-8 flex text-white py-4 px-8 border-2 bg-[#937D64] rounded-xl sm:text-[18px] text-[16px]  hover:text-black hover:bg-[#B89C7D]"
                         onClick={() => setOpen(!open)}
                     >
                         Contact Us
@@ -199,7 +199,7 @@ const Footer = () => {
                             rows={5}
                         />
                         <button
-                            className="text-white bg-blue-700 w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
+                            className="text-white bg-[#B89C7D] w-full my-8 text-[16px] py-2 rounded-lg hover:bg-blue-800 about-font"
                             onClick={handleSubmit}
                         >
                             Submit
