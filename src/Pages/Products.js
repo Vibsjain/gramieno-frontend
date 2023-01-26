@@ -14,9 +14,9 @@ import Void from "../Assets/Images/Void.svg";
 const Products = () => {
     const { products, getProducts, snack } = useContext(ProductContext);
     AOS.init();
-    const navButtonStyle = `sm:min-w-36 min-w-64 text-center border border-white rounded py-2 px-4`;
-    const navChosesStyle = `bg-white text-black`;
-    const navHoverStyle = `back text-white hover:bg-white hover:text-black`;
+    const navButtonStyle = `sm:min-w-36 min-w-64 text-center border rounded py-2 px-4 text-black `;
+    const navChosesStyle = `bg-[#B89C7D] text-black`;
+    const navHoverStyle = `bg-white text-white hover:bg-[#B89C7D] hover:text-black`;
     const [data, setData] = useState([]);
     const [woodenTab, setWoodenTab] = useState(false);
     const [incenseTab, setIncenseTab] = useState(false);

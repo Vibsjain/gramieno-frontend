@@ -45,11 +45,13 @@ const Slider = ({ data }) => {
                         products.map((product, index) => (
                             <ProductCard
                                 key={index}
+                                product={product}
                                 image1={product.images[0]}
                                 item={product.name}
                                 description={product.description}
                                 price={product.price}
                                 id={product._id}
+                                discount = {product.discount}
                             />
                         ))}
                 </Carousel>

@@ -27,9 +27,12 @@ const Cart = () => {
     const Card = ({ id, quantity }) => {
         const product = products.find((item) => item._id === id);
         return (
-            <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg ">
+            <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg border">
                 <div className="sm:w-3/12 w-full flex gap-16 justify-center items-center">
-                    <div className="w-[9rem] h-[9rem] flex justify-center items-center">
+                    <div
+                        className="w-[9rem] h-[9rem] flex justify-center items-center cursor-pointer"
+                        onClick={() => navigate(`/products/${product._id}`)}
+                    >
                         <img
                             src={product.images[0]}
                             alt="table"
@@ -164,7 +167,7 @@ const Cart = () => {
                                 ))}
                             </div>
                             <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4">
-                                <div className="flex flex-col w-full justify-between min-h-[300px]  bg-white px-4 rounded-lg py-4 ">
+                                <div className="flex flex-col w-full justify-between min-h-[300px] border bg-white px-4 rounded-lg py-4 ">
                                     <div className="flex flex-col w-full ">
                                         <h1 className="text-center font-bold text-[18px]">
                                             Subtotal
@@ -173,49 +176,77 @@ const Cart = () => {
                                     <hr />
                                     <div>
                                         {cart[0] &&
-                                            products[0] &&
+                                            products &&
                                             cart.map((item, index) => (
                                                 <div
                                                     className="flex justify-between px-4"
                                                     key={index}
                                                 >
-                                                    <h1 className="font-bold">
-                                                        {
-                                                            products.find(
-                                                                (product) =>
-                                                                    product._id ===
-                                                                    item.id
-                                                            ).name
-                                                        }
-                                                    </h1>
-                                                    <h1>
-                                                        ₹{" "}
-                                                        {products.find(
-                                                            (product) =>
-                                                                product._id ===
-                                                                item.id
-                                                        ).price * item.quantity}
-                                                    </h1>
+                                                    {products[0] && (
+                                                        <h1 className="font-bold">
+                                                            {
+                                                                products.find(
+                                                                    (product) =>
+                                                                        product._id ===
+                                                                        item.id
+                                                                ).name
+                                                            }
+                                                        </h1>
+                                                    )}
+                                                    {products[0] && (
+                                                        <h1>
+                                                            ₹{" "}
+                                                            {Math.ceil(
+                                                                (products.find(
+                                                                    (product) =>
+                                                                        product._id ===
+                                                                        item.id
+                                                                ).price *
+                                                                    item.quantity *
+                                                                    (100 -
+                                                                        products.find(
+                                                                            (
+                                                                                product
+                                                                            ) =>
+                                                                                product._id ===
+                                                                                item.id
+                                                                        )
+                                                                            .discount)) /
+                                                                    100
+                                                            )}
+                                                        </h1>
+                                                    )}
                                                 </div>
                                             ))}
                                         <div className="flex px-4 justify-between mt-4">
                                             <h1 className="font-bold">Tax</h1>
                                             <h1>
                                                 ₹{" "}
-                                                {cart
-                                                    .reduce(
-                                                        (acc, item) =>
-                                                            acc +
-                                                            products.find(
-                                                                (product) =>
-                                                                    product._id ===
-                                                                    item.id
-                                                            ).price *
-                                                                item.quantity *
-                                                                0.18,
-                                                        0
-                                                    )
-                                                    .toFixed(0)}
+                                                {products[0] &&
+                                                    Math.ceil(
+                                                        cart.reduce(
+                                                            (acc, item) =>
+                                                                acc +
+                                                                ((products.find(
+                                                                    (product) =>
+                                                                        product._id ===
+                                                                        item.id
+                                                                ).price *
+                                                                    item.quantity *
+                                                                    (100 -
+                                                                        products.find(
+                                                                            (
+                                                                                product
+                                                                            ) =>
+                                                                                product._id ===
+                                                                                item.id
+                                                                        )
+                                                                            .discount)) /
+                                                                    100) *
+                                                                    0.18,
+                                                            0
+                                                        )
+                                                    )}
                                             </h1>
                                         </div>
                                     </div>
@@ -224,20 +255,54 @@ const Cart = () => {
                                         <h1 className="font-bold">Total</h1>
                                         <h1>
                                             ₹{" "}
-                                            {cart
-                                                .reduce(
-                                                    (acc, item) =>
-                                                        acc +
-                                                        products.find(
-                                                            (product) =>
-                                                                product._id ===
-                                                                item.id
-                                                        ).price *
-                                                            item.quantity *
-                                                            1.18,
-                                                    0
-                                                )
-                                                .toFixed(0)}
+                                            {products[0] &&
+                                                Math.ceil(
+                                                    cart.reduce(
+                                                        (acc, item) =>
+                                                            acc +
+                                                            (products.find(
+                                                                (product) =>
+                                                                    product._id ===
+                                                                    item.id
+                                                            ).price *
+                                                                item.quantity *
+                                                                (100 -
+                                                                    products.find(
+                                                                        (
+                                                                            product
+                                                                        ) =>
+                                                                            product._id ===
+                                                                            item.id
+                                                                    )
+                                                                        .discount)) /
+                                                                100,
+                                                        0
+                                                    )
+                                                ) + products[0] &&
+                                                Math.ceil(
+                                                    cart.reduce(
+                                                        (acc, item) =>
+                                                            acc +
+                                                            ((products.find(
+                                                                (product) =>
+                                                                    product._id ===
+                                                                    item.id
+                                                            ).price *
+                                                                item.quantity *
+                                                                (100 -
+                                                                    products.find(
+                                                                        (
+                                                                            product
+                                                                        ) =>
+                                                                            product._id ===
+                                                                            item.id
+                                                                    )
+                                                                        .discount)) /
+                                                                100) *
+                                                                1.18,
+                                                        0
+                                                    )
+                                                )}
                                         </h1>
                                     </div>
                                 </div>

@@ -50,12 +50,13 @@ const Checkout = () => {
         if (discounts[0].minPurchase <= order.totalPrice && getDiscount) {
             setOrder({
                 ...order,
-                discount: discounts[0].discountPercent, 
+                discount: discounts[0].discountPercent,
                 totalPrice:
                     (1 - discounts[0].discountPercent / 100) *
                     order.totalPrice.toFixed(0),
             });
         }
+        console.log(orders);
         window.scrollTo(0, 0);
         // eslint-disable-next-line
     }, [added, getDiscount]);
@@ -261,7 +262,7 @@ const Checkout = () => {
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 items-center sm:w-1/3 w-full sm:px-8 px-4">
-                        <div className="flex flex-col w-full justify-between min-h-[300px]  bg-white px-4 rounded-lg py-4 ">
+                        <div className="flex flex-col w-full justify-between min-h-[300px] border bg-white px-4 rounded-lg py-4 ">
                             <div className="flex flex-col w-full ">
                                 <h1 className="text-center font-bold text-[18px]">
                                     Subtotal
@@ -284,10 +285,9 @@ const Checkout = () => {
                                         </h1>
                                         <h1>
                                             ₹{" "}
-                                            {products.find(
-                                                (product) =>
-                                                    product._id === item.id
-                                            ).price * item.quantity}
+                                            {Math.ceil(
+                                                item.price * item.quantity
+                                            )}
                                         </h1>
                                     </div>
                                 ))}
@@ -299,11 +299,7 @@ const Checkout = () => {
                                             .reduce(
                                                 (acc, item) =>
                                                     acc +
-                                                    products.find(
-                                                        (product) =>
-                                                            product._id ===
-                                                            item.id
-                                                    ).price *
+                                                    item.price *
                                                         item.quantity *
                                                         0.18,
                                                 0
@@ -315,33 +311,18 @@ const Checkout = () => {
                                     <h1 className="font-bold">Discount</h1>
                                     <h1>
                                         - ₹{" "}
-                                        {order.totalPrice *
-                                            order.discount *
-                                            0.01}
+                                        {Math.ceil(
+                                            order.totalPrice *
+                                                order.discount *
+                                                0.01
+                                        )}
                                     </h1>
                                 </div>
                             </div>
                             <hr />
                             <div className="flex px-4 justify-between ">
                                 <h1 className="font-bold">Total</h1>
-                                <h1>
-                                    ₹{" "}
-                                    {orders
-                                        .reduce(
-                                            (acc, item) =>
-                                                acc +
-                                                products.find(
-                                                    (product) =>
-                                                        product._id === item.id
-                                                ).price *
-                                                    item.quantity *
-                                                    (1 -
-                                                        order.discount * 0.01) *
-                                                    1.18,
-                                            0
-                                        )
-                                        .toFixed(0)}
-                                </h1>
+                                <h1>₹ {Math.ceil(order.totalPrice)}</h1>
                             </div>
                         </div>
                         <div className="my-4">

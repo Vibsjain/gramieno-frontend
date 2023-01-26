@@ -30,19 +30,19 @@ function Home() {
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5,
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
+            breakpoint: { max: 3000, min: 1200 },
             items: 4,
         },
+        desktop: {
+            breakpoint: { max: 1200, min: 880 },
+            items: 3,
+        },
         tablet: {
-            breakpoint: { max: 1024, min: 690 },
+            breakpoint: { max: 880, min: 590 },
             items: 2,
         },
         mobile: {
-            breakpoint: { max: 690, min: 0 },
+            breakpoint: { max: 590, min: 0 },
             items: 1,
         },
     };
@@ -124,7 +124,7 @@ function Home() {
                         </div>
                         <div className="w-1/2 flex justify-end">
                             <button
-                                className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-[#937D64] border rounded-xl"
+                                className="sm:h-12 h-8 sm:w-[8rem] w-[6rem] bg-[#937D64] text-white border rounded-xl hover:text-black hover:border-black"
                                 onClick={() => navigate("/products")}
                             >
                                 See All
