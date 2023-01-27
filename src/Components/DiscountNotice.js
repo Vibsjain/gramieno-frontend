@@ -13,17 +13,9 @@ const DiscountNotice = () => {
     useEffect(() => {
         getDiscounts();
         console.log(discounts);
-        const open = false;
-        if (discounts.length !== 0) {
-            for (let i = 0; i < discounts.length; i++) {
-                if (discounts[i].active) {
-                    open = true;
-                }
-            }
-        }
     }, []);
     return (
-        <div>
+        <div className="border-b">
             {show && (
                 <div className="w-full min-h-[3rem] py-4 px-4 bg-white text-black">
                     <div className="flex items-center justify-start items-between">
@@ -73,7 +65,7 @@ const DiscountNotice = () => {
                             )}
                         </div>
 
-                        <div className="w-full flex items-center justify-end gap-4 ">
+                        <div className="flex items-center justify-end gap-4 ">
                             <AiOutlineClose
                                 className="text-2xl cursor-pointer"
                                 onClick={() => setShow(false)}

@@ -415,7 +415,7 @@ const Product = () => {
                                         key={index}
                                         src={image}
                                         alt="table"
-                                        className="w-96 h-72 rounded-lg"
+                                        className="w-96 h-72 rounded-lg border border-[2px] border-[#B89C7D]"
                                         data-aos="zoom-in"
                                     />
                                 ))}
@@ -424,27 +424,27 @@ const Product = () => {
                     )}
                 </div>
             </div>
-            <div className="flex flex-col w-full mt-24 min-h-[100vh]">
+            <div className="flex flex-col w-full mt-4 sm:mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-20 text-[26px]"
+                    className="font-bold my-4 sm:my-12 sm:px-20 px-4 text-[26px]"
                     data-aos="zoom-in"
                 >
                     Woodwork Products
                 </h1>
                 <Slider data-aos="zoom-in" />
             </div>
-            <div className="flex flex-col w-full mt-24 min-h-[100vh]">
+            <div className="flex flex-col w-full mt-4 sm:mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-20 text-[26px]"
+                    className="font-bold my-4 sm:my-12 sm:px-20 px-4 text-[26px]"
                     data-aos="zoom-in"
                 >
                     Incense Sticks
                 </h1>
                 <Slider data-aos="zoom-in" />
             </div>
-            <div className="flex flex-col w-full mt-24 min-h-[100vh]">
+            <div className="flex flex-col w-full mt-4 sm:mt-24 min-h-[100vh]">
                 <h1
-                    className="font-bold text-white my-12 px-20 text-[26px]"
+                    className="font-bold my-4 sm:my-12 sm:px-20 px-4 text-[26px]"
                     data-aos="zoom-in"
                 >
                     Rose Pack

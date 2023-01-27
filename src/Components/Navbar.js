@@ -200,10 +200,10 @@ function Navbar() {
                 )}
             </div>
             {open && (
-                <div className="h-[100vh] absolute w-full sm:hidden flex justify-end bg-[rgb(0,0,0,0)] z-[10]">
+                <div className="transition ease-in-out delay-150 h-[100vh] top-0 fixed w-full sm:hidden flex justify-end bg-[rgb(0,0,0,0)] z-[10]">
                     <div className="h-full w-8/12 side-nav py-4 px-4">
                         <CloseOutlined
-                            className="text-[30px] text-white"
+                            className="text-[30px] text-black"
                             onClick={() => setOpen(!open)}
                         />
                         <ul className="flex flex-col mt-12 gap-4 justify-center items-center">

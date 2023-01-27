@@ -40,7 +40,7 @@ const Products = () => {
             <Navbar />
             {/* Product Hero Section */}
             <div className="sm:hidden flex py-2 " data-aos="zoom-in">
-                <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                <h1 className="bg-[#937D64] text-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
                     Products
                 </h1>
             </div>

@@ -30,7 +30,7 @@ const Cart = () => {
             <div className="w-full min-h-[12rem] flex flex-col sm:flex-row sm:gap-0 gap-8 bg-white rounded-lg border">
                 <div className="sm:w-3/12 w-full flex gap-16 justify-center items-center">
                     <div
-                        className="w-[9rem] h-[9rem] flex justify-center items-center cursor-pointer"
+                        className="sm:w-[9rem] w-full sm:h-[9rem] h-[11rem] flex justify-center items-center cursor-pointer"
                         onClick={() => navigate(`/products/${product._id}`)}
                     >
                         <img
@@ -152,7 +152,7 @@ const Cart = () => {
                 ) : (
                     <div>
                         <div className="sm:hidden flex py-8">
-                            <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                            <h1 className="bg-[#937D64] text-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
                                 Your Cart
                             </h1>
                         </div>

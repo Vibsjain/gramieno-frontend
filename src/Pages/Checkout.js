@@ -116,12 +116,12 @@ const Checkout = () => {
             <div className="mt-8">
                 <div className="flex flex-col md:flex-row w-full min-h-[100vh] sm:gap-0 gap-12">
                     <div className="sm:hidden flex py-2">
-                        <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                        <h1 className="bg-[#937D64] text-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
                             Your Checkout
                         </h1>
                     </div>
                     <div className="flex flex-col gap-12 sm:w-2/3 w-full sm:px-8 px-4">
-                        <div className="flex flex-col justify-between w-full bg-white flex rounded-lg px-4">
+                        <div className="flex flex-col justify-between w-full bg-white flex rounded-lg px-4 border">
                             <div className="flex flex-col w-full py-4">
                                 <h1 className="text-center font-bold text-[18px]">
                                     Fill Your Details

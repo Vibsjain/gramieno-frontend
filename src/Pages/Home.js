@@ -103,11 +103,10 @@ function Home() {
                     <HeroAnimate className="mt-[-20px]" />
                 </div>
                 <div className="sm:hidden flex py-2 ">
-                    <h1 className="bg-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
+                    <h1 className="bg-[#937D64] text-white w-full text-center mx-4 rounded-lg font-bold text-[20px] py-4">
                         Hey, Gramien'O
                     </h1>
                 </div>
-                <hr />
                 {/* Products Section */}
                 <div
                     className="flex flex-col w-full sm:mt-[75vh] mt-12 min-h-[10vh]"
@@ -145,7 +144,7 @@ function Home() {
                         <div className="sm:p-8 p-2 flex w-full justify-center items-center ">
                             <img
                                 src={art}
-                                className="rounded-xl w-[60%] h-[50%]"
+                                className="rounded-xl sm:w-[60%] w-[95%] h-[50%] pt-2"
                                 alt="art"
                             />
                         </div>
@@ -154,7 +153,7 @@ function Home() {
                                 <h1 className="text-center font-bold text-white text-xl">
                                     The Woodwork Artisans
                                 </h1>
-                                <h1 className="text-center py-4 px-6 text-justify text-white text-sm">
+                                <h1 className="text-center py-4 text-justify text-white text-sm">
                                     Chhotu, Rakesh & Buddhu are excellent
                                     craftsmen and their Ability to convert an
                                     idea into finished products is unmatched.
@@ -174,7 +173,7 @@ function Home() {
                                 <h1 className="text-center font-bold text-white text-xl">
                                     Our Story
                                 </h1>
-                                <h1 className="text-center py-4 px-6 text-justify text-white text-sm">
+                                <h1 className="text-center py-4 text-justify text-white text-sm">
                                     We bring products from the heartland which
                                     can have global appeal and acceptance. Diya
                                     is indicative of spreading the light and
