@@ -433,7 +433,7 @@ const Product = () => {
                 </h1>
                 <Slider data-aos="zoom-in" />
             </div>
-            <div className="flex flex-col w-full mt-4 sm:mt-24 min-h-[100vh]">
+            {/* <div className="flex flex-col w-full mt-4 sm:mt-24 min-h-[100vh]">
                 <h1
                     className="font-bold my-4 sm:my-12 sm:px-20 px-4 text-[26px]"
                     data-aos="zoom-in"
@@ -450,7 +450,7 @@ const Product = () => {
                     Rose Pack
                 </h1>
                 <Slider data-aos="zoom-in" />
-            </div>
+            </div> */}
             <Footer data-aos="zoom-in" />
         </div>
     );
