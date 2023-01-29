@@ -74,8 +74,8 @@ const Discount = () => {
                     <h1 className="text-white">Current Discount </h1>
                     <br />
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead className="text-xs text-white uppercase bg-[rgb(16,22,36)] dark:bg-gray-700 dark:text-gray-400">
+                        <table className="w-full text-sm text-left text-gray-500 ">
+                            <thead className="text-xs text-white uppercase bg-[rgb(16,22,36)]">
                                 <tr>
                                     <th scope="col" className="px-6 py-3">
                                         Active Status
@@ -96,7 +96,7 @@ const Discount = () => {
                             </thead>
                             <tbody>
                                 {data[0] && (
-                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
@@ -132,7 +132,7 @@ const Discount = () => {
                                         </td>
                                         <th
                                             scope="row"
-                                            className="px-6 py-4 font-medium     whitespace-nowrap dark:text-white"
+                                            className="px-6 py-4 font-medium     whitespace-nowrap "
                                         >
                                             Wooden Works
                                         </th>
@@ -276,7 +276,7 @@ const Discount = () => {
                                     </tr>
                                 )}
                                 {data[1] && (
-                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
@@ -312,7 +312,7 @@ const Discount = () => {
                                         </td>
                                         <th
                                             scope="row"
-                                            className="px-6 py-4 font-medium     whitespace-nowrap dark:text-white"
+                                            className="px-6 py-4 font-medium     whitespace-nowrap "
                                         >
                                             Incense Sticks
                                         </th>
@@ -457,7 +457,7 @@ const Discount = () => {
                                     </tr>
                                 )}
                                 {data[2] && (
-                                    <tr className="bg-[#B89C7D] text-white border-b dark:bg-gray-900 dark:border-gray-700">
+                                    <tr className="bg-[#B89C7D] text-white border-b">
                                         <td className="px-6 py-4">
                                             <div
                                                 className={`cursor-pointer w-4 h-4 rounded-full bg-[#${
@@ -493,7 +493,7 @@ const Discount = () => {
                                         </td>
                                         <th
                                             scope="row"
-                                            className="px-6 py-4 font-medium     whitespace-nowrap dark:text-white"
+                                            className="px-6 py-4 font-medium     whitespace-nowrap "
                                         >
                                             Rose Pack
                                         </th>

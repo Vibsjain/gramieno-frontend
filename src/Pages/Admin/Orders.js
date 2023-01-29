@@ -250,7 +250,7 @@ const Orders = () => {
                 </div>
             </Modal>
             <div className="overflow-x-auto relative rounded-2xl">
-                <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-[16px] text-left text-gray-500">
                     <thead className="text-xs text-white  bg-[#937D64] py-2 px-2">
                         <tr>
                             <th scope="col" className={headStyle}>

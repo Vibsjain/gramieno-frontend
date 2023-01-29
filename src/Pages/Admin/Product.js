@@ -46,7 +46,7 @@ const Product = () => {
         // eslint-disable-next-line
     }, []);
     const labelStyle = `block mb-2 text-[16px] font-medium text-black mt-8 about-font`;
-    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 about-font`;
+    const inputStyle = `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 about-font`;
     const handleUpload = async () => {
         if (
             editData.images.length === 0 ||
@@ -542,7 +542,7 @@ const Product = () => {
                 )}
             </Modal>
             <div className="overflow-x-auto relative rounded-2xl">
-                <table className="w-full text-[16px] text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-[16px] text-left text-gray-500">
                     <thead className="text-xs text-white  bg-[#937D64] py-2 px-2">
                         <tr>
                             <th scope="col" className={headStyle}>
