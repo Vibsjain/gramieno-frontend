@@ -44,6 +44,7 @@ const Upload = () => {
             data.length = parseInt(data.len);
             data.breadth = parseInt(data.breadth);
             data.height = parseInt(data.height);
+            data.mainImage = data.images[0];
             let imageArray = [];
             setLoading(true);
             for (let i = 0; i < data.images.length; i++) {
