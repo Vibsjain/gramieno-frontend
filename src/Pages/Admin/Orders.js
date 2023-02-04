@@ -290,11 +290,25 @@ const Orders = () => {
                                     </th>
                                     <td className="py-4 px-8 about-font text-[14px] hidden sm:flex">
                                         {item.isDelivered ? (
-                                            <span className="font-bold text-green-500">
+                                            // <button 
+                                            // className="font-bold bg-white text-[#00FF00] px-4 py-2 rounded-md"
+                                            // >
+                                            //     Delivered
+                                            // </button>
+                                            <span 
+                                            className="font-bold text-[#023020] px-4 py-2 rounded-md"
+                                            >
                                                 Delivered
                                             </span>
                                         ) : (
-                                            <span className="font-bold text-red-500">
+                                            // <button 
+                                            // className="font-bold bg-white text-[#FF0000] px-4 py-2 rounded-md"
+                                            // >
+                                            //     Delivered
+                                            // </button>
+                                            <span 
+                                            className="font-bold text-[#8B0000] px-4 py-2 rounded-md"
+                                            >
                                                 Not Delivered
                                             </span>
                                         )}

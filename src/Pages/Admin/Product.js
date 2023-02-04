@@ -186,7 +186,7 @@ const Product = () => {
 									onChange={(e) => {
 										setEditData({
 											...editData,
-											len: e.target.value,
+											length: e.target.value,
 										});
 									}}
 								/>
